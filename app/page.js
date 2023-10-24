@@ -36,7 +36,7 @@ export default function Home() {
                 objectFit="cover"
                 placeholder="blur"
                 style={{
-                  width: "85%",
+                  width: "100%",
                   height: "auto",
                 }}
               />
@@ -85,7 +85,7 @@ export default function Home() {
         <Typography variant="h5" component="h3">
           Features Work
         </Typography>
-        <CustomContainer>
+        <CustomContainer maxWidth="md">
           <Grid
             container
             alignItems="stretch"

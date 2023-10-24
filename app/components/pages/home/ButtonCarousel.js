@@ -1,6 +1,5 @@
 "use client";
-import { Box, Button, Typography } from "@mui/material";
-import LanguageIcon from "@mui/icons-material/Language";
+import { Box, Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import CustomBoxBorderedBottom from "../../CustomBoxBorderedBottom";
 import CustomContainer from "../../CustomContainer";
@@ -37,7 +36,7 @@ const ButtonCarousel = ({ buttons }) => {
 
   return (
     <CustomBoxBorderedBottom sx={{ overflow: "hidden" }}>
-      <CustomContainer>
+      <CustomContainer maxWidth="md">
         <Box
           sx={{
             display: "flex",

@@ -21,10 +21,19 @@ export default function RootLayout({ children }) {
         <ThemeRegistry options={{ key: "mui" }}>
           <Box sx={{ display: "flex" }}>
             <Sidebar />
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Box
+              component="main"
+              sx={{
+                flexGrow: 1,
+                p: {
+                  xs: 1,
+                  md: 3
+                },
+              }}
+            >
               <DrawerHeader />
               {children}
-            <Footer/>
+              <Footer />
             </Box>
           </Box>
         </ThemeRegistry>
