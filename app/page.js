@@ -1,5 +1,12 @@
 import { profile } from "@/utils/constant";
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
 import ButtonOpenWork from "./components/pages/home/ButtonOpenWork";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -10,12 +17,13 @@ import Link from "next/link";
 import CustomBoxBorderedBottom from "./components/CustomBoxBorderedBottom";
 import CustomContainer from "./components/CustomContainer";
 import CarouselButton from "./components/pages/home/ButtonCarousel";
+import React from "react";
 
 export default function Home() {
   return (
     <Box>
       <CustomBoxBorderedBottom>
-        <Grid container>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm>
             <Box
               sx={{
@@ -89,8 +97,172 @@ export default function Home() {
         </CustomContainer>
       </CustomBoxBorderedBottom>
 
-      <CarouselButton/>
+      <CarouselButton sx={{ width: "100px" }} />
 
+      <CustomBoxBorderedBottom my={4}>
+        <Typography variant="h5" component="h3">Features Work</Typography>
+        <CustomContainer>
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              justifyContent: {
+                xs: "center",
+                md: "space-between",
+              },
+            }}
+          >
+            <Grid item>
+              <Card
+                sx={{
+                  maxWidth: {
+                    xs: "100%",
+                    sm: 250,
+                  },
+                  backgroundImage: "none",
+                  boxShadow: "none",
+                  textAlign: "center",
+                }}
+              >
+                <Image
+                  src={profile.src}
+                  alt="Paella dish"
+                  objectFit="cover"
+                  loading="lazy"
+                  style={{
+                    width: "85%",
+                    height: "auto",
+                  }}
+                />
+                <CardContent sx={{ padding: "20px 0" }}>
+                  <Typography
+                    variant="subtitle2"
+                    component="h5"
+                    color="secondary"
+                    gutterBottom
+                  >
+                    This impressive
+                  </Typography>
+                  <Typography variant="h6" component="h6">
+                    This impressiveThis impressiv
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item>
+              <Card
+                sx={{
+                  maxWidth: {
+                    xs: "100%",
+                    sm: 250,
+                  },
+                  backgroundImage: "none",
+                  boxShadow: "none",
+                  textAlign: "center",
+                }}
+              >
+                <Image
+                  src={profile.src}
+                  alt="Paella dish"
+                  objectFit="cover"
+                  loading="lazy"
+                  style={{
+                    width: "85%",
+                    height: "auto",
+                  }}
+                />
+                <CardContent sx={{ padding: "20px 0" }}>
+                  <Typography
+                    variant="subtitle2"
+                    component="h5"
+                    color="secondary"
+                    gutterBottom
+                  >
+                    This impressive
+                  </Typography>
+                  <Typography variant="h6" component="h6">
+                    This impressiveThis impressiv
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item>
+              <Card
+                sx={{
+                  maxWidth: {
+                    xs: "100%",
+                    sm: 250,
+                  },
+                  backgroundImage: "none",
+                  boxShadow: "none",
+                  textAlign: "center",
+                }}
+              >
+                <Image
+                  src={profile.src}
+                  alt="Paella dish"
+                  objectFit="cover"
+                  loading="lazy"
+                  style={{
+                    width: "85%",
+                    height: "auto",
+                  }}
+                />
+                <CardContent sx={{ padding: "20px 0" }}>
+                  <Typography
+                    variant="subtitle2"
+                    component="h5"
+                    color="secondary"
+                    gutterBottom
+                  >
+                    This impressive
+                  </Typography>
+                  <Typography variant="h6" component="h6">
+                    This impressiveThis impressiv
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item>
+              <Card
+                sx={{
+                  maxWidth: {
+                    xs: "100%",
+                    sm: 250,
+                  },
+                  backgroundImage: "none",
+                  boxShadow: "none",
+                  textAlign: "center",
+                }}
+              >
+                <Image
+                  src={profile.src}
+                  alt="Paella dish"
+                  objectFit="cover"
+                  loading="lazy"
+                  style={{
+                    width: "85%",
+                    height: "auto",
+                  }}
+                />
+                <CardContent sx={{ padding: "20px 0" }}>
+                  <Typography
+                    variant="subtitle2"
+                    component="h5"
+                    color="secondary"
+                    gutterBottom
+                  >
+                    This impressive
+                  </Typography>
+                  <Typography variant="h6" component="h6">
+                    This impressiveThis impressiv
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        </CustomContainer>
+      </CustomBoxBorderedBottom>
     </Box>
   );
 }

@@ -79,7 +79,7 @@ function CarouselButton() {
   const buttons = ["Button 1", "Button 2", "Button 3", "Button 4", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5"];
 
   return (
-      <ButtonCarousel buttons={buttons} />
+            <ButtonCarousel buttons={buttons} />
   );
 }
 
