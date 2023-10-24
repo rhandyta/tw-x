@@ -1,17 +1,8 @@
-import { profile } from "@/utils/constant";
-import {
-  Avatar,
-  Box,
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { linkExternal, profile, projects } from "@/utils/constant";
+import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import ButtonOpenWork from "./components/pages/home/ButtonOpenWork";
 import LanguageIcon from "@mui/icons-material/Language";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GitHubIcon from "@mui/icons-material/GitHub";
 import CustomButtonIcon from "./components/pages/home/CustomButtonIcon";
 import Link from "next/link";
 import CustomBoxBorderedBottom from "./components/CustomBoxBorderedBottom";
@@ -78,21 +69,13 @@ export default function Home() {
               gap: "0.5rem",
             }}
           >
-            <Link href="https://www.rhandyta.my.id">
-              <CustomButtonIcon color="secondary" aria-label="add an alarm">
-                <LanguageIcon />
-              </CustomButtonIcon>
-            </Link>
-            <Link href="https://www.rhandyta.my.id">
-              <CustomButtonIcon color="secondary" aria-label="add an alarm">
-                <LinkedInIcon />
-              </CustomButtonIcon>
-            </Link>
-            <Link href="https://www.rhandyta.my.id">
-              <CustomButtonIcon color="secondary" aria-label="add an alarm">
-                <GitHubIcon />
-              </CustomButtonIcon>
-            </Link>
+            {linkExternal.map((item) => (
+              <Link href={item.link}>
+                <CustomButtonIcon color="secondary" aria-label={item.name}>
+                  <item.icon />
+                </CustomButtonIcon>
+              </Link>
+            ))}
           </Box>
         </CustomContainer>
       </CustomBoxBorderedBottom>
@@ -100,10 +83,13 @@ export default function Home() {
       <CarouselButton sx={{ width: "100px" }} />
 
       <CustomBoxBorderedBottom my={4}>
-        <Typography variant="h5" component="h3">Features Work</Typography>
+        <Typography variant="h5" component="h3">
+          Features Work
+        </Typography>
         <CustomContainer>
           <Grid
             container
+            alignItems="stretch"
             spacing={2}
             sx={{
               justifyContent: {
@@ -112,154 +98,47 @@ export default function Home() {
               },
             }}
           >
-            <Grid item>
-              <Card
-                sx={{
-                  maxWidth: {
-                    xs: "100%",
-                    sm: 250,
-                  },
-                  backgroundImage: "none",
-                  boxShadow: "none",
-                  textAlign: "center",
-                }}
-              >
-                <Image
-                  src={profile.src}
-                  alt="Paella dish"
-                  objectFit="cover"
-                  loading="lazy"
-                  style={{
-                    width: "85%",
-                    height: "auto",
+            {
+              projects.map((item) => (
+                <Grid item>
+                <Card
+                  sx={{
+                    maxWidth: {
+                      xs: "100%",
+                      sm: 250,
+                    },
+                    backgroundImage: "none",
+                    boxShadow: "none",
+                    textAlign: "center",
                   }}
-                />
-                <CardContent sx={{ padding: "20px 0" }}>
-                  <Typography
-                    variant="subtitle2"
-                    component="h5"
-                    color="secondary"
-                    gutterBottom
-                  >
-                    This impressive
-                  </Typography>
-                  <Typography variant="h6" component="h6">
-                    This impressiveThis impressiv
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item>
-              <Card
-                sx={{
-                  maxWidth: {
-                    xs: "100%",
-                    sm: 250,
-                  },
-                  backgroundImage: "none",
-                  boxShadow: "none",
-                  textAlign: "center",
-                }}
-              >
-                <Image
-                  src={profile.src}
-                  alt="Paella dish"
-                  objectFit="cover"
-                  loading="lazy"
-                  style={{
-                    width: "85%",
-                    height: "auto",
-                  }}
-                />
-                <CardContent sx={{ padding: "20px 0" }}>
-                  <Typography
-                    variant="subtitle2"
-                    component="h5"
-                    color="secondary"
-                    gutterBottom
-                  >
-                    This impressive
-                  </Typography>
-                  <Typography variant="h6" component="h6">
-                    This impressiveThis impressiv
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item>
-              <Card
-                sx={{
-                  maxWidth: {
-                    xs: "100%",
-                    sm: 250,
-                  },
-                  backgroundImage: "none",
-                  boxShadow: "none",
-                  textAlign: "center",
-                }}
-              >
-                <Image
-                  src={profile.src}
-                  alt="Paella dish"
-                  objectFit="cover"
-                  loading="lazy"
-                  style={{
-                    width: "85%",
-                    height: "auto",
-                  }}
-                />
-                <CardContent sx={{ padding: "20px 0" }}>
-                  <Typography
-                    variant="subtitle2"
-                    component="h5"
-                    color="secondary"
-                    gutterBottom
-                  >
-                    This impressive
-                  </Typography>
-                  <Typography variant="h6" component="h6">
-                    This impressiveThis impressiv
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item>
-              <Card
-                sx={{
-                  maxWidth: {
-                    xs: "100%",
-                    sm: 250,
-                  },
-                  backgroundImage: "none",
-                  boxShadow: "none",
-                  textAlign: "center",
-                }}
-              >
-                <Image
-                  src={profile.src}
-                  alt="Paella dish"
-                  objectFit="cover"
-                  loading="lazy"
-                  style={{
-                    width: "85%",
-                    height: "auto",
-                  }}
-                />
-                <CardContent sx={{ padding: "20px 0" }}>
-                  <Typography
-                    variant="subtitle2"
-                    component="h5"
-                    color="secondary"
-                    gutterBottom
-                  >
-                    This impressive
-                  </Typography>
-                  <Typography variant="h6" component="h6">
-                    This impressiveThis impressiv
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
+                >
+                  <Image
+                    src={item.src}
+                    alt="Paella dish"
+                    objectFit="cover"
+                    loading="lazy"
+                    style={{
+                      width: "85%",
+                      height: "auto",
+                    }}
+                  />
+                  <CardContent sx={{ padding: "20px 0" }}>
+                    <Typography
+                      variant="subtitle2"
+                      component="h5"
+                      color="secondary"
+                      gutterBottom
+                    >
+                      {item.category}
+                    </Typography>
+                    <Typography variant="h6" component="h6">
+                      {item.title}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              ))
+            }
           </Grid>
         </CustomContainer>
       </CustomBoxBorderedBottom>

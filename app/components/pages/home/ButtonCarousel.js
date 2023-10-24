@@ -4,6 +4,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import React, { useState, useEffect } from "react";
 import CustomBoxBorderedBottom from "../../CustomBoxBorderedBottom";
 import CustomContainer from "../../CustomContainer";
+import { softSkills } from "@/utils/constant";
 
 const ButtonCarousel = ({ buttons }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -14,7 +15,7 @@ const ButtonCarousel = ({ buttons }) => {
     if (scrollPosition < maxPosition) {
       setScrollPosition(scrollPosition + 1);
     } else {
-      setScrollPosition(0); // Kembali ke slide pertama jika sudah di slide terakhir
+      setScrollPosition(0); 
     }
   };
 
@@ -22,13 +23,12 @@ const ButtonCarousel = ({ buttons }) => {
     if (scrollPosition > 0) {
       setScrollPosition(scrollPosition - 1);
     } else {
-      setScrollPosition(maxPosition); // Kembali ke slide terakhir jika sudah di slide pertama
+      setScrollPosition(maxPosition); 
     }
   };
 
   useEffect(() => {
-    // Contoh penggunaan interval untuk mengatur otomatis berganti slide
-    const interval = setInterval(scrollRight, 2000);
+    const interval = setInterval(scrollRight, 1150);
 
     return () => {
       clearInterval(interval);
@@ -52,19 +52,19 @@ const ButtonCarousel = ({ buttons }) => {
                 top: "-15%",
                 display: "flex",
                 flexDirection: "row",
-                transform: `translateX(-${scrollPosition * 50}px)`,
+                transform: `translateX(-${scrollPosition * 220}px)`,
                 transition: "transform 0.5s",
               }}
             >
-              {buttons.map((button, index) => (
+              {buttons.map((item, index) => (
                 <Button
                   key={index}
                   variant="text"
                   disabled
-                  startIcon={<LanguageIcon />}
-                  sx={{width: "150px"}}
+                  startIcon={<item.icon />}
+                  sx={{width: "240px"}}
                 >
-                  {button}
+                  {item.name}
                 </Button>
               ))}
             </Box>
@@ -76,7 +76,7 @@ const ButtonCarousel = ({ buttons }) => {
 };
 
 function CarouselButton() {
-  const buttons = ["Button 1", "Button 2", "Button 3", "Button 4", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5", "Button 5"];
+  const buttons = softSkills;
 
   return (
             <ButtonCarousel buttons={buttons} />
