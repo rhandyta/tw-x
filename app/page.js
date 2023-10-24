@@ -70,7 +70,7 @@ export default function Home() {
             }}
           >
             {linkExternal.map((item) => (
-              <Link href={item.link}>
+              <Link href={item.link} key={item.name}>
                 <CustomButtonIcon color="secondary" aria-label={item.name}>
                   <item.icon />
                 </CustomButtonIcon>
