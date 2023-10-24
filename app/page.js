@@ -2,7 +2,6 @@ import { linkExternal, profile, projects } from "@/utils/constant";
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import ButtonOpenWork from "./components/pages/home/ButtonOpenWork";
-import LanguageIcon from "@mui/icons-material/Language";
 import CustomButtonIcon from "./components/pages/home/CustomButtonIcon";
 import Link from "next/link";
 import CustomBoxBorderedBottom from "./components/CustomBoxBorderedBottom";
@@ -37,7 +36,7 @@ export default function Home() {
                 objectFit="cover"
                 placeholder="blur"
                 style={{
-                  width: "100%",
+                  width: "85%",
                   height: "auto",
                 }}
               />
