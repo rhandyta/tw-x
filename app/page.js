@@ -100,7 +100,7 @@ export default function Home() {
           >
             {
               projects.map((item) => (
-                <Grid item>
+                <Grid item key={item.title}>
                 <Card
                   sx={{
                     maxWidth: {
@@ -114,7 +114,7 @@ export default function Home() {
                 >
                   <Image
                     src={item.src}
-                    alt="Paella dish"
+                    alt={item.title}
                     objectFit="cover"
                     loading="lazy"
                     style={{
