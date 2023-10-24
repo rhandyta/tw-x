@@ -5,6 +5,7 @@ import ThemeRegistry from "./themeRegistry";
 import { Box } from "@mui/material";
 import Sidebar from "./components/Sidebar";
 import DrawerHeader from "./components/DrawerHeader";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
               <DrawerHeader />
               {children}
+            <Footer/>
             </Box>
           </Box>
         </ThemeRegistry>

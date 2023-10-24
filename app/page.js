@@ -21,7 +21,7 @@ import React from "react";
 
 export default function Home() {
   return (
-    <Box>
+    <>
       <CustomBoxBorderedBottom>
         <Grid container spacing={2}>
           <Grid item xs={12} sm>
@@ -263,6 +263,6 @@ export default function Home() {
           </Grid>
         </CustomContainer>
       </CustomBoxBorderedBottom>
-    </Box>
+    </>
   );
 }
