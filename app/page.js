@@ -1,95 +1,95 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import { profile } from "@/utils/constant";
+import { Box, Container, Grid, Typography } from "@mui/material";
+import Image from "next/image";
+import ButtonOpenWork from "./components/pages/home/ButtonOpenWork";
+import LanguageIcon from "@mui/icons-material/Language";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import CustomButtonIcon from "./components/pages/home/CustomButtonIcon";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <Box>
+      <Grid container>
+        <Grid item xs={12} sm>
+          <Box
+            sx={{
+              width: {
+                xs: "40vh",
+                sm: "150px",
+              },
+              mx: {
+                xs: "auto",
+                sm: 0,
+              },
+              borderRadius: "5px",
+              overflow: "hidden",
+            }}
           >
-            By{' '}
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
+              src={profile.src}
+              alt={profile.name}
               priority
+              objectFit="cover"
+              placeholder="blur"
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
             />
-          </a>
-        </div>
-      </div>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm="auto" sx={{ textAlign: "center" }}>
+          <ButtonOpenWork />
+        </Grid>
+      </Grid>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <Container
+        maxWidth="md"
+        sx={{
+          mx: 0,
+          my: 4,
+        }}
+        style={{ padding: 0 }}
+      >
+        <Typography variant="h4" component="h1" gutterBottom>
+          Hi, Welcome to TW-X I&#39;m Rhandyta Briantama - I&#39;m Software
+          Engineer
+        </Typography>
+        <Typography variant="subtitle2" textAlign="justify" color="secondary">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur.
+        </Typography>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Box
+          sx={{
+            mt: 4,
+            display: "flex",
+            gap: "0.5rem",
+          }}
         >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+          <Link href="https://www.rhandyta.my.id">
+            <CustomButtonIcon color="secondary" aria-label="add an alarm">
+              <LanguageIcon />
+            </CustomButtonIcon>
+          </Link>
+          <Link href="https://www.rhandyta.my.id">
+            <CustomButtonIcon color="secondary" aria-label="add an alarm">
+              <LinkedInIcon />
+            </CustomButtonIcon>
+          </Link>
+          <Link href="https://www.rhandyta.my.id">
+            <CustomButtonIcon color="secondary" aria-label="add an alarm">
+              <GitHubIcon />
+            </CustomButtonIcon>
+          </Link>
+        </Box>
+      </Container>
+    </Box>
+  );
 }
