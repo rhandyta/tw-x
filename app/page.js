@@ -5,14 +5,7 @@ import {
   projects,
   skills,
 } from "@/utils/constant";
-import {
-  Box,
-  Card,
-  CardContent,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardContent, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import ButtonOpenWork from "./components/pages/home/ButtonOpenWork";
 import CustomButtonIcon from "./components/pages/home/CustomButtonIcon";
@@ -97,7 +90,7 @@ export default function Home() {
       <CarouselButton sx={{ width: "100px" }} />
 
       <CustomBoxBorderedBottom my={4}>
-        <Typography variant="h5" component="h3">
+        <Typography variant="h4" component="h3">
           Features Work
         </Typography>
         <CustomContainer>
@@ -131,7 +124,7 @@ export default function Home() {
                     objectFit="cover"
                     loading="lazy"
                     style={{
-                      width: "85%",
+                      width: "100%",
                       height: "auto",
                     }}
                   />
@@ -159,7 +152,7 @@ export default function Home() {
       </CustomBoxBorderedBottom>
 
       <CustomBoxBorderedBottom my={4}>
-        <Typography variant="h5" component="h3">
+        <Typography variant="h4" component="h3">
           Blog
         </Typography>
         <CustomContainer>
@@ -221,11 +214,16 @@ export default function Home() {
       </CustomBoxBorderedBottom>
 
       <CustomBoxBorderedBottom>
-        <Typography variant="h5" component="h3">
+        <Typography variant="h4" component="h3">
           Tech Stack
         </Typography>
         <CustomContainer>
-          <Grid container spacing={2} justifyContent="center" alignItems="center">
+          <Grid
+            container
+            spacing={2}
+            justifyContent="center"
+            alignItems="center"
+          >
             {skills.map((item) => (
               <Grid
                 key={item.title}
@@ -253,6 +251,7 @@ export default function Home() {
                   <Grid container>
                     <Grid item xs={3} md={4}>
                       <Stack
+                        padding={1}
                         flex
                         justifyContent="center"
                         alignItems="center"
@@ -263,7 +262,7 @@ export default function Home() {
                           src={item.icon}
                           style={{
                             width: "50%",
-                            height: "auto"
+                            height: "auto",
                           }}
                           loading="lazy"
                           objectFit="cover"
@@ -271,20 +270,20 @@ export default function Home() {
                       </Stack>
                     </Grid>
                     <Grid item xs={9} md={8}>
-                      <Grid container >
+                      <Grid container>
                         <Grid item xs={12}>
                           <Typography variant="h6" component="h4">
                             {item.title}
                           </Typography>
                         </Grid>
-                        <Grid item xs={12}
-                        sx={{
-                          color: "secondary.main"
-                        }}>
-                          <Typography
-                            variant="subtitle2"
-                            component="h5"
-                          >
+                        <Grid
+                          item
+                          xs={12}
+                          sx={{
+                            color: "secondary.main",
+                          }}
+                        >
+                          <Typography variant="subtitle2" component="h5">
                             {item.description}
                           </Typography>
                         </Grid>
