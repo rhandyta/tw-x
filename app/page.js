@@ -1,5 +1,12 @@
 import { linkExternal, profile, projects } from "@/utils/constant";
-import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
 import ButtonOpenWork from "./components/pages/home/ButtonOpenWork";
 import CustomButtonIcon from "./components/pages/home/CustomButtonIcon";
@@ -8,6 +15,7 @@ import CustomBoxBorderedBottom from "./components/CustomBoxBorderedBottom";
 import CustomContainer from "./components/CustomContainer";
 import CarouselButton from "./components/pages/home/ButtonCarousel";
 import React from "react";
+import { grey } from "@mui/material/colors";
 
 export default function Home() {
   return (
@@ -85,7 +93,7 @@ export default function Home() {
         <Typography variant="h5" component="h3">
           Features Work
         </Typography>
-        <CustomContainer maxWidth="md">
+        <CustomContainer>
           <Grid
             container
             alignItems="stretch"
@@ -97,9 +105,8 @@ export default function Home() {
               },
             }}
           >
-            {
-              projects.map((item) => (
-                <Grid item key={item.title}>
+            {projects.map((item) => (
+              <Grid item key={item.title}>
                 <Card
                   sx={{
                     maxWidth: {
@@ -136,10 +143,33 @@ export default function Home() {
                   </CardContent>
                 </Card>
               </Grid>
-              ))
-            }
+            ))}
           </Grid>
+          <Link href="work" style={{ textDecoration: "none" }}>
+            <Button
+              variant="outlined"
+              sx={{
+                display: "block",
+                width: "100%",
+                color: "secondary.main",
+                border: `1px solid ${grey[600]}`,
+                "&:hover": {
+                  color: "primary.main"
+                }
+              }}
+            >
+              view all work
+            </Button>
+          </Link>
         </CustomContainer>
+      </CustomBoxBorderedBottom>
+
+
+      <CustomBoxBorderedBottom my={4}>
+      <Typography variant="h5" component="h3">
+          Blog
+        </Typography>
+              <CustomContainer></CustomContainer>
       </CustomBoxBorderedBottom>
     </>
   );
