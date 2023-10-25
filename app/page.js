@@ -16,6 +16,7 @@ import CarouselButton from "./components/pages/home/ButtonCarousel";
 import React from "react";
 import { grey, orange } from "@mui/material/colors";
 import CustomButton from "./components/CustomButton";
+import CardWork from "./components/CardWork";
 
 export default function Home() {
   return (
@@ -106,42 +107,27 @@ export default function Home() {
             }}
           >
             {projects.map((item) => (
-              <Grid item key={item.title}>
-                <Card
-                  sx={{
-                    maxWidth: {
-                      xs: "100%",
-                      sm: 250,
-                    },
-                    backgroundImage: "none",
-                    boxShadow: "none",
-                    textAlign: "center",
+              <Grid
+                key={item.title}
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{
+                  "&:hover": {
+                    color: orange[400],
+                  },
+                }}
+              >
+                <Link
+                  href={`work/${item.title}`}
+                  key={item.title}
+                  style={{
+                    textDecoration: "none",
                   }}
                 >
-                  <Image
-                    src={item.src}
-                    alt={item.title}
-                    objectFit="cover"
-                    loading="lazy"
-                    style={{
-                      width: "100%",
-                      height: "auto",
-                    }}
-                  />
-                  <CardContent sx={{ padding: "20px 0" }}>
-                    <Typography
-                      variant="subtitle2"
-                      component="h5"
-                      color="secondary"
-                      gutterBottom
-                    >
-                      {item.category}
-                    </Typography>
-                    <Typography variant="h6" component="h6">
-                      {item.title}
-                    </Typography>
-                  </CardContent>
-                </Card>
+                <CardWork title={item.title} category={item.category} src={item.src} />
+                </Link>
               </Grid>
             ))}
           </Grid>
@@ -166,6 +152,7 @@ export default function Home() {
                         backgroundImage: "none",
                         boxShadow: "none",
                         textAlign: "center",
+                        height: "100%", // Mengatur tinggi Card ke tinggi maksimum
                       }}
                     >
                       <Image
@@ -175,7 +162,8 @@ export default function Home() {
                         loading="lazy"
                         style={{
                           width: "100%",
-                          height: "auto",
+                          height: "100%", // Mengatur tinggi Image ke tinggi maksimum
+                          maxHeight: "100%", // Optional: Untuk menghindari gambar terlalu besar
                         }}
                       />
                     </Card>

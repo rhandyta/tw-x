@@ -2,6 +2,7 @@ import Profile from "@/public/assets/images/profile.jpg";
 import Covid from "@/public/assets/images/covid.jpg";
 import Note from "@/public/assets/images/note.jpg";
 import Rental from "@/public/assets/images/penyewaan.jpg";
+import Nasi from "@/public/assets/images/nasi.png";
 
 import DescriptionIcon from "@mui/icons-material/Description";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -37,19 +38,19 @@ export const linkNavigation = [
   },
   {
     title: "Work",
-    link: "work",
+    link: "/work",
   },
   {
     title: "Blog",
-    link: "blogs",
+    link: "/blogs",
   },
   {
     title: "About",
-    link: "about",
+    link: "/about",
   },
   {
     title: "Contact",
-    link: "contact",
+    link: "/contact",
   },
 ];
 
@@ -128,6 +129,7 @@ export const projects = [
     src: Rental,
   },
 ];
+
 export const blogs = [
   {
     title: "Hi First Post",

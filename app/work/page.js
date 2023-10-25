@@ -1,57 +1,57 @@
-import { Typography } from '@mui/material'
-import React from 'react'
-
+import { Card, CardContent, Grid, Typography } from "@mui/material";
+import CustomBoxBorderedBottom from "../components/CustomBoxBorderedBottom";
+import CustomContainer from "../components/CustomContainer";
+import Image from "next/image";
+import { projects } from "@/utils/constant";
+import Link from "next/link";
+import { grey, orange } from "@mui/material/colors";
+import CardWork from "../components/CardWork";
 function page() {
   return (
-    <Typography variant="subtitle2" textAlign="justify" color="secondary">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
-          </Typography>
-  )
+    <CustomBoxBorderedBottom>
+      <Typography variant="h3" component="h2">
+        Work
+      </Typography>
+      <CustomContainer>
+        <Grid
+          container
+          alignItems="stretch"
+          spacing={2}
+          sx={{
+            justifyContent: {
+              xs: "center",
+              md: "space-between",
+            },
+          }}
+        >
+          {projects.map((item) => (
+            <Grid
+              key={item.title}
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              sx={{
+                "&:hover": {
+                  color: orange[400],
+                },
+              }}
+            >
+              <Link
+                href={`work/${item.title}`}
+                key={item.title}
+                style={{
+                  textDecoration: "none",
+                }}
+              >
+                <CardWork title={item.title} category={item.category} src={item.src} />
+              </Link>
+            </Grid>
+          ))}
+        </Grid>
+      </CustomContainer>
+    </CustomBoxBorderedBottom>
+  );
 }
 
-export default page
+export default page;
