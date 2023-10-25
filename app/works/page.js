@@ -38,7 +38,7 @@ function page() {
               }}
             >
               <Link
-                href={`work/${item.title}`}
+                href={`works/${item.title}`}
                 key={item.title}
                 style={{
                   textDecoration: "none",
