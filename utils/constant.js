@@ -228,21 +228,26 @@ export const guestbooks = [
   {
     name: "John Doe",
     message: "lorem lorem lorem lorem lorem",
+    icon: "https://mui.com/static/images/avatar/2.jpg"
   },
   {
     name: "Abdul",
     message: "lorem lorem lorem lorem lorem",
+    icon: "https://mui.com/static/images/avatar/1.jpg"
   },
   {
     name: "Bedul",
     message: "lorem lorem lorem lorem lorem",
+    icon: "https://mui.com/static/images/avatar/3.jpg"
   },
   {
     name: "Queue",
     message: "lorem lorem lorem lorem lorem",
+    icon: "https://mui.com/static/images/avatar/4.jpg"
   },
   {
     name: "Nasi",
     message: "lorem lorem lorem lorem lorem",
+    icon: "https://mui.com/static/images/avatar/5.jpg"
   },
 ]
