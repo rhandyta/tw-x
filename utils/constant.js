@@ -120,3 +120,25 @@ export const projects = [
     },
 
 ]
+export const blogs = [
+
+    {
+        title: "Hi First Post",
+        category: "Design",
+        src: Covid,
+        created_at: "3 min ago"
+    },
+    {
+        title: "Experience Using NextJS",
+        category: "Tool Framework",
+        src: Note,
+        created_at: "3 min ago"
+    },
+    {
+        title: "Eating",
+        category: "Food",
+        src: Rental,
+        created_at: "3 min ago"
+    },
+
+]

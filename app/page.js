@@ -1,4 +1,4 @@
-import { linkExternal, profile, projects } from "@/utils/constant";
+import { blogs, linkExternal, profile, projects } from "@/utils/constant";
 import {
   Box,
   Button,
@@ -16,6 +16,7 @@ import CustomContainer from "./components/CustomContainer";
 import CarouselButton from "./components/pages/home/ButtonCarousel";
 import React from "react";
 import { grey } from "@mui/material/colors";
+import CustomButton from "./components/CustomButton";
 
 export default function Home() {
   return (
@@ -146,31 +147,73 @@ export default function Home() {
             ))}
           </Grid>
           <Link href="work" style={{ textDecoration: "none" }}>
-            <Button
-              variant="outlined"
-              sx={{
-                display: "block",
-                width: "100%",
-                color: "secondary.main",
-                border: `1px solid ${grey[600]}`,
-                "&:hover": {
-                  color: "primary.main"
-                }
-              }}
-            >
-              view all work
-            </Button>
+           <CustomButton text="view all work"/>
+          </Link>
+        </CustomContainer>
+      </CustomBoxBorderedBottom>
+
+      <CustomBoxBorderedBottom my={4}>
+        <Typography variant="h5" component="h3">
+          Blog
+        </Typography>
+        <CustomContainer>
+          <Grid container mb={4} spacing={4}>
+            {blogs.map((item) => (
+              <Grid item xs={12} key={item.title}>
+                <Grid container columnSpacing={4}>
+                  <Grid item xs={12} md={4}>
+                    <Card
+                      sx={{
+                        backgroundImage: "none",
+                        boxShadow: "none",
+                        textAlign: "center",
+                      }}
+                    >
+                      <Image
+                        src={item.src}
+                        alt={item.title}
+                        objectFit="cover"
+                        loading="lazy"
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                        }}
+                      />
+                    </Card>
+                  </Grid>
+
+                  <Grid item xs={12} md={8}>
+                    <CardContent sx={{ padding: "20px 0" }}>
+                      <Typography
+                        variant="subtitle2"
+                        component="h5"
+                        color="secondary"
+                        gutterBottom
+                      >
+                        {item.category}
+                      </Typography>
+                      <Typography variant="h6" component="h6">
+                        {item.title}
+                      </Typography>
+                      <Typography color="secondary" variant="subtitle2" component="p">{item.created_at}</Typography>
+                    </CardContent>
+                  </Grid>
+                </Grid>
+              </Grid>
+            ))}
+          </Grid>
+          <Link href="blog" style={{ textDecoration: "none" }}>
+            <CustomButton text="view all posts"/>
           </Link>
         </CustomContainer>
       </CustomBoxBorderedBottom>
 
 
-      <CustomBoxBorderedBottom my={4}>
-      <Typography variant="h5" component="h3">
-          Blog
-        </Typography>
-              <CustomContainer></CustomContainer>
-      </CustomBoxBorderedBottom>
+      {/* <CustomBoxBorderedBottom>
+        <CustomContainer>
+
+        </CustomContainer>
+      </CustomBoxBorderedBottom> */}
     </>
   );
 }
