@@ -51,6 +51,7 @@ function page() {
               id="standard-basic"
               label="Name"
               variant="standard"
+              fullWidth
             />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -58,6 +59,7 @@ function page() {
               id="standard-basic"
               label="Email"
               variant="standard"
+              fullWidth
             />
               </Grid>
               <Grid item xs={12}>

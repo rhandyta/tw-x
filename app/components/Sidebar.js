@@ -15,8 +15,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import DrawerHeader from "./DrawerHeader";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
@@ -168,11 +166,14 @@ function Sidebar() {
               href={item.link}
               style={{ color: "inherit", textDecoration: "none" }}
               key={item.title}
+              onClick={() => handleDrawerClose()}
             >
               <ListItem
                 key={item.title}
                 disablePadding
-                sx={{ display: "block", backgroundColor: router === `/${item.link.length < 2 ? "" : item.link}` ? grey[400] : "transparent" }}
+                sx={{ display: "block", 
+                backgroundColor: router === item.link ? grey[900] : ''
+              }}
               >
                 <ListItemButton
                   sx={{
@@ -188,7 +189,7 @@ function Sidebar() {
                       justifyContent: "center",
                     }}
                   >
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    {item.icon}
                   </ListItemIcon>
                   <ListItemText
                     primary={item.title}

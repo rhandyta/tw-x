@@ -15,6 +15,11 @@ import HourglassBottomIcon from "@mui/icons-material/HourglassBottom"; //time ma
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement"; //adability
 import ReduceCapacityIcon from "@mui/icons-material/ReduceCapacity"; // collaboration skills
 import Diversity3Icon from "@mui/icons-material/Diversity3"; // professional ethics
+import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import BookIcon from '@mui/icons-material/Book';
+import InfoIcon from '@mui/icons-material/Info';
+import MailIcon from "@mui/icons-material/Mail";
 
 import Html from "@/public/assets/images/icons/html5.svg";
 import Css from "@/public/assets/images/icons/css3.svg";
@@ -35,22 +40,27 @@ export const linkNavigation = [
   {
     title: "Home",
     link: "/",
+    icon: <SpaceDashboardIcon/>
   },
   {
     title: "Work",
     link: "/works",
+    icon: <EngineeringIcon/>
   },
   {
     title: "Blog",
     link: "/blogs",
+    icon: <BookIcon/>
   },
   {
     title: "About",
     link: "/about",
+    icon: <InfoIcon/>
   },
   {
     title: "Contact",
     link: "/contact",
+    icon: <MailIcon/>
   },
 ];
 

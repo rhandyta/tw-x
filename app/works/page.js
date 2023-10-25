@@ -1,10 +1,9 @@
-import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import CustomBoxBorderedBottom from "../components/CustomBoxBorderedBottom";
 import CustomContainer from "../components/CustomContainer";
-import Image from "next/image";
 import { projects } from "@/utils/constant";
 import Link from "next/link";
-import { grey, orange } from "@mui/material/colors";
+import { orange } from "@mui/material/colors";
 import CardWork from "../components/CardWork";
 function page() {
   return (

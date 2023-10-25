@@ -18,12 +18,12 @@ function CardBlog({title, src, category, created_at}) {
             <Image
               src={src}
               alt={title}
-              objectFit="cover"
               loading="lazy"
               style={{
                 width: "100%",
                 height: "100%", // Mengatur tinggi Image ke tinggi maksimum
                 maxHeight: "100%", // Optional: Untuk menghindari gambar terlalu besar
+                objectFit:"cover"
               }}
             />
           </Card>

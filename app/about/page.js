@@ -6,7 +6,6 @@ import Image from "next/image";
 import { profile } from "@/utils/constant";
 import CustomButton from "../components/CustomButton";
 import Link from "next/link";
-import { grey, orange } from "@mui/material/colors";
 
 function page() {
   return (

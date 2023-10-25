@@ -5,7 +5,7 @@ import {
   projects,
   skills,
 } from "@/utils/constant";
-import { Box, Card, CardContent, Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import ButtonOpenWork from "./components/pages/home/ButtonOpenWork";
 import CustomButtonIcon from "./components/pages/home/CustomButtonIcon";
@@ -43,11 +43,12 @@ export default function Home() {
                 src={profile.src}
                 alt={profile.name}
                 priority
-                objectFit="cover"
                 placeholder="blur"
                 style={{
                   width: "100%",
                   height: "auto",
+                  
+                objectFit:"cover"
                 }}
               />
             </Box>
@@ -205,9 +206,9 @@ export default function Home() {
                           style={{
                             width: "50%",
                             height: "auto",
+                            objectFit:"cover"
                           }}
                           loading="lazy"
-                          objectFit="cover"
                         />
                       </Stack>
                     </Grid>
