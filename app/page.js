@@ -1,10 +1,16 @@
-import { blogs, linkExternal, profile, projects } from "@/utils/constant";
+import {
+  blogs,
+  linkExternal,
+  profile,
+  projects,
+  skills,
+} from "@/utils/constant";
 import {
   Box,
-  Button,
   Card,
   CardContent,
   Grid,
+  Stack,
   Typography,
 } from "@mui/material";
 import Image from "next/image";
@@ -15,7 +21,7 @@ import CustomBoxBorderedBottom from "./components/CustomBoxBorderedBottom";
 import CustomContainer from "./components/CustomContainer";
 import CarouselButton from "./components/pages/home/ButtonCarousel";
 import React from "react";
-import { grey } from "@mui/material/colors";
+import { grey, orange } from "@mui/material/colors";
 import CustomButton from "./components/CustomButton";
 
 export default function Home() {
@@ -147,7 +153,7 @@ export default function Home() {
             ))}
           </Grid>
           <Link href="work" style={{ textDecoration: "none" }}>
-           <CustomButton text="view all work"/>
+            <CustomButton text="view all work" />
           </Link>
         </CustomContainer>
       </CustomBoxBorderedBottom>
@@ -195,7 +201,13 @@ export default function Home() {
                       <Typography variant="h6" component="h6">
                         {item.title}
                       </Typography>
-                      <Typography color="secondary" variant="subtitle2" component="p">{item.created_at}</Typography>
+                      <Typography
+                        color="secondary"
+                        variant="subtitle2"
+                        component="p"
+                      >
+                        {item.created_at}
+                      </Typography>
                     </CardContent>
                   </Grid>
                 </Grid>
@@ -203,17 +215,88 @@ export default function Home() {
             ))}
           </Grid>
           <Link href="blog" style={{ textDecoration: "none" }}>
-            <CustomButton text="view all posts"/>
+            <CustomButton text="view all posts" />
           </Link>
         </CustomContainer>
       </CustomBoxBorderedBottom>
 
-
-      {/* <CustomBoxBorderedBottom>
+      <CustomBoxBorderedBottom>
+        <Typography variant="h5" component="h3">
+          Tech Stack
+        </Typography>
         <CustomContainer>
-
+          <Grid container spacing={2} justifyContent="center" alignItems="center">
+            {skills.map((item) => (
+              <Grid
+                key={item.title}
+                item
+                xs={12}
+                sm={6}
+                md={3}
+                sx={{
+                  padding: "5px",
+                  "&:hover": {
+                    cursor: "pointer",
+                    color: `${orange[200]}`,
+                  },
+                }}
+              >
+                <Box
+                  borderRadius={2}
+                  sx={{
+                    border: `1px solid ${grey[600]}`,
+                    "&:hover": {
+                      border: `1px solid ${orange[200]}`,
+                    },
+                  }}
+                >
+                  <Grid container>
+                    <Grid item xs={3} md={4}>
+                      <Stack
+                        flex
+                        justifyContent="center"
+                        alignItems="center"
+                        width="100%"
+                        height="100%"
+                      >
+                        <Image
+                          src={item.icon}
+                          style={{
+                            width: "50%",
+                            height: "auto"
+                          }}
+                          loading="lazy"
+                          objectFit="cover"
+                        />
+                      </Stack>
+                    </Grid>
+                    <Grid item xs={9} md={8}>
+                      <Grid container >
+                        <Grid item xs={12}>
+                          <Typography variant="h6" component="h4">
+                            {item.title}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={12}
+                        sx={{
+                          color: "secondary.main"
+                        }}>
+                          <Typography
+                            variant="subtitle2"
+                            component="h5"
+                          >
+                            {item.description}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
         </CustomContainer>
-      </CustomBoxBorderedBottom> */}
+      </CustomBoxBorderedBottom>
     </>
   );
 }

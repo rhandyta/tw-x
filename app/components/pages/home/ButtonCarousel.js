@@ -52,7 +52,7 @@ const ButtonCarousel = ({ buttons }) => {
                 display: "flex",
                 flexDirection: "row",
                 transform: `translateX(-${scrollPosition * 220}px)`,
-                transition: "transform 0.5s",
+                transition: "transform 1s",
               }}
             >
               {buttons.map((item, index) => (

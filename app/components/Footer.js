@@ -4,7 +4,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <Grid container justifyContent="center" spacing={5} color={grey[600]}>
+    <Grid container justifyContent="center" spacing={5} color={grey[600]} mt={1}>
         <Grid item>
             <Typography variant="subtitle1" component="h6">Rhandyta Briantama</Typography>
         </Grid>
