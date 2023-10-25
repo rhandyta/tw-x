@@ -30,6 +30,7 @@ function page() {
             alignItems: "center",
             flexDirection: "column",
             width: "100%",
+            height: "100%",
             textAlign: "justify",
           }}
         >
@@ -42,20 +43,27 @@ function page() {
             loremloremlorem lorem lorem llorem lorenlorem loremloremlorem lorem
             lorem llorem lorenlorem lorem
           </Typography>
-          <Image
+          <Box sx={{
+            
+            borderRadius: "10px",
+            overflow: "hidden"
+          }}>
+            <Image
             src={profile.src}
             placeholder="blur"
             alt="profile rhandy"
-            priority
-            objectFit="cover"
             style={{
               width: "100%",
-              height: "60vh",
-              maxWidth: "400px",
+              height: "100%",
+              maxHeight: "400px",
               borderRadius: "10px",
               marginBottom: "10px",
+              backgroundPosition: "top",
+              objectFit: "contain",
             }}
           />
+          </Box>
+          
           <Typography
             variant="subtitle2"
             component="p"
