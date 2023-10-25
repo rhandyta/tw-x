@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import React from "react";
 
-function CustomButton({ text = "view all work", children }) {
+function CustomButton({ text = "view all work", children, ...props }) {
   return (
     <Button
       variant="outlined"
@@ -15,6 +15,7 @@ function CustomButton({ text = "view all work", children }) {
           color: "primary.main",
         },
       }}
+      {...props}
     >
       { children ? children : text }
     </Button>

@@ -223,3 +223,26 @@ export const skills = [
     icon: Laravel
   },
 ];
+
+export const guestbooks = [
+  {
+    name: "John Doe",
+    message: "lorem lorem lorem lorem lorem",
+  },
+  {
+    name: "Abdul",
+    message: "lorem lorem lorem lorem lorem",
+  },
+  {
+    name: "Bedul",
+    message: "lorem lorem lorem lorem lorem",
+  },
+  {
+    name: "Queue",
+    message: "lorem lorem lorem lorem lorem",
+  },
+  {
+    name: "Nasi",
+    message: "lorem lorem lorem lorem lorem",
+  },
+]

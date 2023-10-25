@@ -1,12 +1,15 @@
 import React from 'react'
 import CustomBoxBorderedBottom from '../components/CustomBoxBorderedBottom'
 import CustomContainer from '../components/CustomContainer'
+import { Box, Typography } from '@mui/material'
+import CustomButton from '../components/CustomButton'
+import Link from 'next/link'
 
 function page() {
   return (
     <CustomBoxBorderedBottom>
       <Typography variant="h3" component="h1">
-        About
+        Let&#39;s Talk
       </Typography>
       <Box
         sx={{
@@ -27,64 +30,12 @@ function page() {
             textAlign: "justify",
           }}
         >
-          <Typography variant="h4" component="h2" gutterBottom>
-            Rhandy
-          </Typography>
-          <Typography variant="body1" component="h3" gutterBottom>
-            loremlorem lorem lorem llorem lorenlorem loremloremlorem lorem lorem
-            llorem lorenlorem loremloremlorem lorem lorem llorem lorenlorem
-            loremloremlorem lorem lorem llorem lorenlorem loremloremlorem lorem
-            lorem llorem lorenlorem lorem
-          </Typography>
-          <Image
-            src={profile.src}
-            placeholder="blur"
-            alt="profile rhandy"
-            priority
-            objectFit="cover"
-            style={{
-              width: "100%",
-              height: "60vh",
-              maxWidth: "400px",
-              borderRadius: "10px",
-              marginBottom: "10px",
-            }}
-          />
-          <Typography
-            variant="subtitle2"
-            component="p"
-            color="secondary"
-            gutterBottom
-          >
-            loremlorem lorem lorem llorem lorenlorem loremloremlorem lorem lorem
-            llorem lorenlorem loremloremlorem lorem lorem llorem lorenlorem
-            loremloremlorem lorem lorem llorem lorenlorem loremloremlorem lorem
-            lorem llorem lorenlorem loremloremlorem lorem lorem llorem
-            lorenlorem loremloremlorem lorem lorem llorem lorenlorem
-            loremloremlorem lorem lorem llorem lorenlorem loremloremlorem lorem
-            lorem llorem lorenlorem loremloremlorem lorem lorem llorem
-            lorenlorem loremloremlorem lorem lorem llorem lorenlorem
-            loremloremlorem lorem lorem llorem lorenlorem loremloremlorem lorem
-            lorem llorem lorenlorem loremloremlorem lorem lorem llorem
-            lorenlorem loremloremlorem lorem lorem llorem lorenlorem
-            loremloremlorem lorem lorem llorem lorenlorem loremloremlorem lorem
-            lorem llorem lorenlorem loremloremlorem lorem lorem llorem
-            lorenlorem loremloremlorem lorem lorem llorem lorenlorem
-            loremloremlorem lorem lorem llorem lorenlorem loremloremlorem lorem
-            lorem llorem lorenlorem loremloremlorem lorem lorem llorem
-            lorenlorem loremloremlorem lorem lorem llorem lorenlorem
-            loremloremlorem lorem lorem llorem lorenlorem loremloremlorem lorem
-            lorem llorem lorenlorem loremloremlorem lorem lorem llorem
-            lorenlorem loremloremlorem lorem lorem llorem lorenlorem
-            loremloremlorem lorem lorem llorem lorenlorem loremloremlorem lorem
-            lorem llorem lorenlorem loremloremlorem lorem lorem llorem
-            lorenlorem loremloremlorem lorem lorem llorem lorenlorem
-            loremloremlorem lorem lorem llorem lorenlorem loremloremlorem lorem
-            lorem llorem lorenlorem loremloremlorem lorem lorem llorem
-            lorenlorem loremloremlorem lorem lorem llorem lorenlorem lorem
-          </Typography>
+
+          
+
+
           <Link href="/contact" className="button-link">
-            <CustomButton>Contact Me</CustomButton>
+            <CustomButton>Send Message</CustomButton>
           </Link>
         </CustomContainer>
       </Box>
