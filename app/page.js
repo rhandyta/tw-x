@@ -200,6 +200,7 @@ export default function Home() {
                         height="100%"
                       >
                         <Image
+                          alt={item.description}
                           src={item.icon}
                           style={{
                             width: "50%",
