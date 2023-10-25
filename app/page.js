@@ -17,6 +17,7 @@ import React from "react";
 import { grey, orange } from "@mui/material/colors";
 import CustomButton from "./components/CustomButton";
 import CardWork from "./components/CardWork";
+import CardBlog from "./components/CardBlog";
 
 export default function Home() {
   return (
@@ -144,55 +145,7 @@ export default function Home() {
         <CustomContainer>
           <Grid container mb={4} spacing={4}>
             {blogs.map((item) => (
-              <Grid item xs={12} key={item.title}>
-                <Grid container columnSpacing={4}>
-                  <Grid item xs={12} md={4}>
-                    <Card
-                      sx={{
-                        backgroundImage: "none",
-                        boxShadow: "none",
-                        textAlign: "center",
-                        height: "100%", // Mengatur tinggi Card ke tinggi maksimum
-                      }}
-                    >
-                      <Image
-                        src={item.src}
-                        alt={item.title}
-                        objectFit="cover"
-                        loading="lazy"
-                        style={{
-                          width: "100%",
-                          height: "100%", // Mengatur tinggi Image ke tinggi maksimum
-                          maxHeight: "100%", // Optional: Untuk menghindari gambar terlalu besar
-                        }}
-                      />
-                    </Card>
-                  </Grid>
-
-                  <Grid item xs={12} md={8}>
-                    <CardContent sx={{ padding: "20px 0" }}>
-                      <Typography
-                        variant="subtitle2"
-                        component="h5"
-                        color="secondary"
-                        gutterBottom
-                      >
-                        {item.category}
-                      </Typography>
-                      <Typography variant="h6" component="h6">
-                        {item.title}
-                      </Typography>
-                      <Typography
-                        color="secondary"
-                        variant="subtitle2"
-                        component="p"
-                      >
-                        {item.created_at}
-                      </Typography>
-                    </CardContent>
-                  </Grid>
-                </Grid>
-              </Grid>
+               <CardBlog key={item.title} src={item.src} title={item.title} category={item.category} created_at={item.created_at}/>
             ))}
           </Grid>
           <Link href="blog" style={{ textDecoration: "none" }}>

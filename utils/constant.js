@@ -38,7 +38,7 @@ export const linkNavigation = [
   },
   {
     title: "Work",
-    link: "/work",
+    link: "/works",
   },
   {
     title: "Blog",
