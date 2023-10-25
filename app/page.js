@@ -132,7 +132,7 @@ export default function Home() {
               </Grid>
             ))}
           </Grid>
-          <Link href="work" style={{ textDecoration: "none" }}>
+          <Link href="work" className="button-link">
             <CustomButton text="view all work" />
           </Link>
         </CustomContainer>
@@ -148,7 +148,7 @@ export default function Home() {
                <CardBlog key={item.title} src={item.src} title={item.title} category={item.category} created_at={item.created_at}/>
             ))}
           </Grid>
-          <Link href="blog" style={{ textDecoration: "none" }}>
+          <Link href="blog" className="button-link">
             <CustomButton text="view all posts" />
           </Link>
         </CustomContainer>
