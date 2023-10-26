@@ -1,11 +1,11 @@
 import React from "react";
-import CustomBoxBorderedBottom from "../components/CustomBoxBorderedBottom";
 import { Box, Typography } from "@mui/material";
-import CustomContainer from "../components/CustomContainer";
 import Image from "next/image";
 import { profile } from "@/utils/constant";
-import CustomButton from "../components/CustomButton";
 import Link from "next/link";
+import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
+import CustomContainer from "@/components/CustomContainer";
+import CustomButton from "@/components/CustomButton";
 
 function page() {
   return (

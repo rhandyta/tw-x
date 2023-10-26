@@ -1,10 +1,10 @@
 import { Grid, Typography } from "@mui/material";
-import CustomBoxBorderedBottom from "../components/CustomBoxBorderedBottom";
-import CustomContainer from "../components/CustomContainer";
 import { projects } from "@/utils/constant";
 import Link from "next/link";
 import { orange } from "@mui/material/colors";
-import CardWork from "../components/CardWork";
+import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
+import CustomContainer from "@/components/CustomContainer";
+import CardWork from "@/components/CardWork";
 function page() {
   return (
     <CustomBoxBorderedBottom>

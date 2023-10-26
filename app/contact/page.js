@@ -1,9 +1,9 @@
 import React from "react";
-import CustomBoxBorderedBottom from "../components/CustomBoxBorderedBottom";
-import CustomContainer from "../components/CustomContainer";
 import { Box, Grid, TextField, Typography } from "@mui/material";
-import CustomButton from "../components/CustomButton";
 import Link from "next/link";
+import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
+import CustomContainer from "@/components/CustomContainer";
+import CustomButton from "@/components/CustomButton";
 
 function page() {
   return (
@@ -45,7 +45,7 @@ function page() {
               height: "auto",
             }}
           >
-            <Grid container rowSpacing={2}>
+            <Grid container rowSpacing={2} columnSpacing={2}>
               <Grid item xs={12} sm={6}>
               <TextField
               id="standard-basic"

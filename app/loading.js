@@ -1,5 +1,5 @@
+import LoadingProgress from "@/components/LoadingProgress";
 import { Box } from "@mui/material";
-import LoadingProgress from "./components/LoadingProgress";
 
 function Loading() {
   return (

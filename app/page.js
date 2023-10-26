@@ -7,17 +7,17 @@ import {
 } from "@/utils/constant";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import ButtonOpenWork from "./components/pages/home/ButtonOpenWork";
-import CustomButtonIcon from "./components/pages/home/CustomButtonIcon";
 import Link from "next/link";
-import CustomBoxBorderedBottom from "./components/CustomBoxBorderedBottom";
-import CustomContainer from "./components/CustomContainer";
-import CarouselButton from "./components/pages/home/ButtonCarousel";
 import React from "react";
 import { grey, orange } from "@mui/material/colors";
-import CustomButton from "./components/CustomButton";
-import CardWork from "./components/CardWork";
-import CardBlog from "./components/CardBlog";
+import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
+import ButtonOpenWork from "@/components/pages/home/ButtonOpenWork";
+import CustomContainer from "@/components/CustomContainer";
+import CustomButtonIcon from "@/components/pages/home/CustomButtonIcon";
+import CarouselButton from "@/components/pages/home/ButtonCarousel";
+import CustomButton from "@/components/CustomButton";
+import CardWork from "@/components/CardWork";
+import CardBlog from "@/components/CardBlog";
 
 export default function Home() {
   return (

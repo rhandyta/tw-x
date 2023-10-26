@@ -1,8 +1,8 @@
 import { Grid, Typography } from "@mui/material";
-import CardBlog from "../components/CardBlog";
-import CustomBoxBorderedBottom from "../components/CustomBoxBorderedBottom";
-import CustomContainer from "../components/CustomContainer";
 import { blogs } from "@/utils/constant";
+import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
+import CustomContainer from "@/components/CustomContainer";
+import CardBlog from "@/components/CardBlog";
 
 function page() {
   return (

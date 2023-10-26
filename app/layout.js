@@ -3,9 +3,9 @@ import "./globals.css";
 import ThemeRegistry from "./themeRegistry";
 
 import { Box } from "@mui/material";
-import Sidebar from "./components/Sidebar";
-import DrawerHeader from "./components/DrawerHeader";
-import Footer from "./components/Footer";
+import Sidebar from "@/components/Sidebar";
+import DrawerHeader from "@/components/DrawerHeader";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
