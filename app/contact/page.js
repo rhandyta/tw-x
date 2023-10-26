@@ -4,6 +4,7 @@ import Link from "next/link";
 import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
 import CustomButton from "@/components/CustomButton";
+import SignIn from "@/components/pages/contact/SignIn";
 
 function page() {
   return (
@@ -78,6 +79,7 @@ function page() {
           <Link href="/contact" className="button-link">
             <CustomButton>Send Message</CustomButton>
           </Link>
+            <SignIn/>
         </CustomContainer>
       </Box>
     </CustomBoxBorderedBottom>

@@ -1,4 +1,6 @@
 import { initializeApp, getApps } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { GoogleAuthProvider, getAuth } from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -11,6 +13,12 @@ const firebaseConfig = {
     measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
 
-let firebaseApp =  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+let app =  getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
-export default firebaseApp
+
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider()
+provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+const db = getFirestore(app);
+
+export {auth, provider, db}
