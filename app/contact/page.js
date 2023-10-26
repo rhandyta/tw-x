@@ -1,10 +1,8 @@
 import React from "react";
 import { Box, Grid, TextField, Typography } from "@mui/material";
-import Link from "next/link";
 import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
-import CustomButton from "@/components/CustomButton";
-import SignIn from "@/components/pages/contact/SignIn";
+import User from "@/components/User";
 
 function page() {
   return (
@@ -75,11 +73,7 @@ function page() {
               </Grid>
             </Grid>
           </Box>
-
-          <Link href="/contact" className="button-link">
-            <CustomButton>Send Message</CustomButton>
-          </Link>
-            <SignIn/>
+            <User/>
         </CustomContainer>
       </Box>
     </CustomBoxBorderedBottom>
