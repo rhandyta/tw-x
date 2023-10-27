@@ -58,8 +58,8 @@ export const linkNavigation = [
     icon: <InfoIcon/>
   },
   {
-    title: "Contact",
-    link: "/contact",
+    title: "Guest Book",
+    link: "/guestbook",
     icon: <MailIcon/>
   },
 ];
@@ -237,7 +237,7 @@ export const skills = [
 export const guestbooks = [
   {
     name: "John Doe",
-    message: "lorem lorem lorem lorem lorem",
+    message: "lorem lorem lorem lorem lorem lorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem lorem",
     icon: "https://mui.com/static/images/avatar/2.jpg"
   },
   {
