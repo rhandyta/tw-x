@@ -30,7 +30,6 @@ function page() {
             flexDirection: "column",
             width: "100%",
             height: "100%",
-            textAlign: "justify",
           }}
         >
           <Typography variant="h4" component="h2" gutterBottom>

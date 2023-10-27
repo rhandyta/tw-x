@@ -15,10 +15,10 @@ import HourglassBottomIcon from "@mui/icons-material/HourglassBottom"; //time ma
 import SelfImprovementIcon from "@mui/icons-material/SelfImprovement"; //adability
 import ReduceCapacityIcon from "@mui/icons-material/ReduceCapacity"; // collaboration skills
 import Diversity3Icon from "@mui/icons-material/Diversity3"; // professional ethics
-import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
-import EngineeringIcon from '@mui/icons-material/Engineering';
-import BookIcon from '@mui/icons-material/Book';
-import InfoIcon from '@mui/icons-material/Info';
+import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
+import EngineeringIcon from "@mui/icons-material/Engineering";
+import BookIcon from "@mui/icons-material/Book";
+import InfoIcon from "@mui/icons-material/Info";
 import MailIcon from "@mui/icons-material/Mail";
 
 import Html from "@/public/assets/images/icons/html5.svg";
@@ -40,27 +40,27 @@ export const linkNavigation = [
   {
     title: "Home",
     link: "/",
-    icon: <SpaceDashboardIcon/>
+    icon: <SpaceDashboardIcon />,
   },
   {
     title: "Work",
     link: "/works",
-    icon: <EngineeringIcon/>
+    icon: <EngineeringIcon />,
   },
   {
     title: "Blog",
     link: "/blogs",
-    icon: <BookIcon/>
+    icon: <BookIcon />,
   },
   {
     title: "About",
     link: "/about",
-    icon: <InfoIcon/>
+    icon: <InfoIcon />,
   },
   {
     title: "Guest Book",
     link: "/guestbook",
-    icon: <MailIcon/>
+    icon: <MailIcon />,
   },
 ];
 
@@ -126,17 +126,122 @@ export const projects = [
   {
     category: "healthy",
     title: "Covid-19",
-    src: Covid,
+    slug: "Covid-19",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    project: [
+      {
+        name: "challenge",
+        description:
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        name: "outcome",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+    ],
+    timeline: "2 month ago",
+    position: "Programmer",
+    createdAt: "Jumat, 13 Oktober 2023 22:22 WIB",
+    author: "Rhandyta Briantama",
+    pictures: [
+      {
+        picture: Covid,
+      },
+      {
+        picture: Covid,
+      },
+      {
+        picture: Covid,
+      },
+      {
+        picture: Covid,
+      },
+      {
+        picture: Covid,
+      },
+    ],
   },
   {
     category: "daily life",
     title: "Note App",
-    src: Note,
+    slug: "note-app",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    project: [
+      {
+        name: "challenge",
+        description:
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        name: "outcome",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+    ],
+    timeline: "2 month ago",
+    position: "Programmer",
+    createdAt: "Jumat, 13 Oktober 2023 22:22 WIB",
+    author: "Rhandyta Briantama",
+    pictures: [
+      {
+        picture: Note,
+      },
+      {
+        picture: Note,
+      },
+      {
+        picture: Note,
+      },
+      {
+        picture: Note,
+      },
+      {
+        picture: Note,
+      },
+    ],
   },
   {
     category: "service",
     title: "Rental",
-    src: Rental,
+    slug: "rental",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    project: [
+      {
+        name: "challenge",
+        description:
+          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        name: "outcome",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      },
+    ],
+    timeline: "2 month ago",
+    position: "Programmer",
+    createdAt: "Jumat, 13 Oktober 2023 22:22 WIB",
+    author: "Rhandyta Briantama",
+    pictures: [
+      {
+        picture: Rental,
+      },
+      {
+        picture: Rental,
+      },
+      {
+        picture: Rental,
+      },
+      {
+        picture: Rental,
+      },
+      {
+        picture: Rental,
+      },
+    ],
   },
 ];
 
@@ -165,99 +270,100 @@ export const skills = [
   {
     title: "HTML",
     description: "Markup language",
-    icon: Html
+    icon: Html,
   },
   {
     title: "CSS",
     description: "Styling language",
-    icon: Css
+    icon: Css,
   },
   {
     title: "Bootstrap",
     description: "Front-end framework",
-    icon: Bootstrap
+    icon: Bootstrap,
   },
   {
     title: "Tailwind CSS",
     description: "Utility-first CSS framework",
-    icon: Tailwindcss
+    icon: Tailwindcss,
   },
   {
     title: "Material-UI",
     description: "React UI framework",
-    icon: Mui
+    icon: Mui,
   },
   {
     title: "JavaScript",
     description: "Programming language",
-    icon: Javascript
+    icon: Javascript,
   },
   {
     title: "React.js",
     description: "JavaScript library for UI",
-    icon: React
+    icon: React,
   },
   {
     title: "Next.js",
     description: "React framework",
-    icon: Nextjs
+    icon: Nextjs,
   },
   {
     title: "Node.js",
     description: "JavaScript runtime",
-    icon: Nodejs
+    icon: Nodejs,
   },
   {
     title: "Nest.js",
     description: "Node.js framework",
-    icon: Nestjs
+    icon: Nestjs,
   },
   {
     title: "Express.js",
     description: "Node.js framework",
-    icon: Express
+    icon: Express,
   },
   {
     title: "MySQL",
     description: "Relational database",
-    icon: Mysql
+    icon: Mysql,
   },
   {
     title: "PHP",
     description: "Server-side scripting language",
-    icon: Php
+    icon: Php,
   },
   {
     title: "Laravel",
     description: "PHP web application framework",
-    icon: Laravel
+    icon: Laravel,
   },
 ];
 
 export const guestbooks = [
   {
     name: "John Doe",
-    message: "lorem lorem lorem lorem lorem lorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem lorem",
-    icon: "https://mui.com/static/images/avatar/2.jpg"
+    message:
+      "lorem lorem lorem lorem lorem lorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem loremlorem lorem lorem lorem lorem",
+    icon: "https://mui.com/static/images/avatar/2.jpg",
   },
   {
     name: "Abdul",
     message: "lorem lorem lorem lorem lorem",
-    icon: "https://mui.com/static/images/avatar/1.jpg"
+    icon: "https://mui.com/static/images/avatar/1.jpg",
   },
   {
     name: "Bedul",
     message: "lorem lorem lorem lorem lorem",
-    icon: "https://mui.com/static/images/avatar/3.jpg"
+    icon: "https://mui.com/static/images/avatar/3.jpg",
   },
   {
     name: "Queue",
     message: "lorem lorem lorem lorem lorem",
-    icon: "https://mui.com/static/images/avatar/4.jpg"
+    icon: "https://mui.com/static/images/avatar/4.jpg",
   },
   {
     name: "Nasi",
     message: "lorem lorem lorem lorem lorem",
-    icon: "https://mui.com/static/images/avatar/5.jpg"
+    icon: "https://mui.com/static/images/avatar/5.jpg",
   },
-]
+];

@@ -8,7 +8,7 @@ import CardWork from "@/components/CardWork";
 function page() {
   return (
     <CustomBoxBorderedBottom>
-      <Typography variant="h3" component="h2">
+      <Typography variant="h3" component="h1">
         Work
       </Typography>
       <CustomContainer>
@@ -37,13 +37,13 @@ function page() {
               }}
             >
               <Link
-                href={`works/${item.title}`}
-                key={item.title}
+                href={`works/${item.slug}`}
+                key={item.slug}
                 style={{
                   textDecoration: "none",
                 }}
               >
-                <CardWork title={item.title} category={item.category} src={item.src} />
+                <CardWork title={item.title} category={item.category} src={item.pictures[0].picture} />
               </Link>
             </Grid>
           ))}

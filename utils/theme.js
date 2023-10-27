@@ -1,5 +1,5 @@
 const { createTheme, responsiveFontSizes } = require("@mui/material");
-import { green, grey, orange, purple, red } from "@mui/material/colors";
+import { green, grey, orange, red } from "@mui/material/colors";
 
 const app = createTheme({
     palette: {

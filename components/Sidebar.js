@@ -94,7 +94,7 @@ function Sidebar() {
 
   React.useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 620) {
+      if (window.innerWidth < 900) {
         setOpen(false);
       } else {
         setOpen(true);
@@ -163,6 +163,7 @@ function Sidebar() {
         <List>
           {linkNavigation.map((item, index) => (
             <Link
+              title={item.title}
               href={item.link}
               style={{ color: "inherit", textDecoration: "none" }}
               key={item.title}

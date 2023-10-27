@@ -122,13 +122,13 @@ export default function Home() {
                 }}
               >
                 <Link
-                  href={`works/${item.title}`}
+                  href={`works/${item.slug}`}
                   key={item.title}
                   style={{
                     textDecoration: "none",
                   }}
                 >
-                <CardWork title={item.title} category={item.category} src={item.src} />
+                <CardWork title={item.title} category={item.category} src={item.pictures[0].picture} />
                 </Link>
               </Grid>
             ))}
