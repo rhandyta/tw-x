@@ -2,54 +2,37 @@
 import { auth } from "@/libs/firebase";
 import CustomButton from "@/components/CustomButton";
 import SignIn from "@/components/pages/guestbook/SignIn";
-import { deleteUser } from "firebase/auth";
 import { Stack } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 function User() {
   const [isClient, setIsClient] = useState(false);
-
+  const [user, setUser]= useState(null)
   const router = useRouter();
 
-
-  
-
   function logoutHandler() {
-  //   deleteUser(auth.currentUser)
-  //     .then(() => {
-  //       router.refresh();
-  //     })
-  //     .catch((error) => {
-  //       //
-  //     });
-
-    auth.currentUser.delete().catch(function(error) {
-      if (error.code == 'auth/requires-recent-login') {
-        // The user's credential is too old. She needs to sign in again.
-        auth.signOut().then(function() {
-          // The timeout allows the message to be displayed after the UI has
-          // changed to the signed out state.
-          setTimeout(function() {
-            alert('Please sign in again to delete your account.');
-          }, 1);
-        });
-      }
-    });
-  
-
+    auth
+      .signOut()
+      .then(function () {
+        router.refresh();
+      })
+      .catch(function (error) {
+        router.refresh();
+      });
   }
-
-  
-
 
   useEffect(() => {
     setIsClient(true);
+
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      setUser(authUser); // Mengatur informasi pengguna sesuai status otentikasi
+    });
+
+    return () => unsubscribe(); // Berhenti mendengarkan saat komponen dilepas
   }, []);
 
-
   if (!isClient) return false;
-
 
   return (
     <>

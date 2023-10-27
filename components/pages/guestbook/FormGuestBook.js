@@ -6,11 +6,11 @@ import { red } from "@mui/material/colors";
 import { ErrorMessage, Form, Formik } from "formik";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 function FormGuestBook() {
-  const [isClient, setIsClient] = useState(false) 
-  
+  const [isClient, setIsClient] = useState(false);
+  const [user, setUser] = useState(null);
   const initialValues = {
     message: "",
   };
@@ -20,22 +20,26 @@ function FormGuestBook() {
   });
 
   const onSubmit = async (values, props) => {
-    await addDoc(collection(db, 'messages'), {
+    await addDoc(collection(db, "messages"), {
       name: auth.currentUser.displayName,
       picture: auth.currentUser.photoURL,
       message: values.message,
       createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp()
-    })
+      updatedAt: serverTimestamp(),
+    });
     props.resetForm();
   };
- 
 
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      setUser(authUser); // Mengatur informasi pengguna sesuai status otentikasi
+    });
 
-  if(!isClient) return false;
+    return () => unsubscribe(); // Berhenti mendengarkan saat komponen dilepas
+  }, []);
+
+  if (!isClient) return false;
   return (
     <Formik
       onSubmit={onSubmit}

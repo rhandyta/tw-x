@@ -96,7 +96,7 @@ function page() {
             lorem llorem lorenlorem loremloremlorem lorem lorem llorem
             lorenlorem loremloremlorem lorem lorem llorem lorenlorem lorem
           </Typography>
-          <Link href="/contact" className="button-link">
+          <Link href="/guestbook" className="button-link">
             <CustomButton>Contact Me</CustomButton>
           </Link>
         </CustomContainer>
