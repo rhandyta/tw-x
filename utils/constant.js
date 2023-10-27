@@ -148,18 +148,23 @@ export const projects = [
     pictures: [
       {
         picture: Covid,
+        title: "Picture 1"
       },
       {
         picture: Covid,
+        title: "Picture 2"
       },
       {
         picture: Covid,
+        title: "Picture 3"
       },
       {
         picture: Covid,
+        title: "Picture 4"
       },
       {
         picture: Covid,
+        title: "Picture 5"
       },
     ],
   },
