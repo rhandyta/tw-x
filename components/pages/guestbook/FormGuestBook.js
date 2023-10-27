@@ -1,11 +1,12 @@
 "use client";
 import CustomButton from "@/components/CustomButton";
-import { auth } from "@/libs/firebase";
+import { auth, db } from "@/libs/firebase";
 import { Grid, TextField } from "@mui/material";
 import { red } from "@mui/material/colors";
 import { ErrorMessage, Form, Formik } from "formik";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 
 function FormGuestBook() {
   const [isClient, setIsClient] = useState(false) 
@@ -18,11 +19,17 @@ function FormGuestBook() {
     message: yup.string().required().min(3),
   });
 
-  const onSubmit = (values, props) => {
-    console.log(values);
-    console.log(props);
+  const onSubmit = async (values, props) => {
+    await addDoc(collection(db, 'messages'), {
+      name: auth.currentUser.displayName,
+      picture: auth.currentUser.photoURL,
+      message: values.message,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    })
     props.resetForm();
   };
+ 
 
   useEffect(() => {
     setIsClient(true)
