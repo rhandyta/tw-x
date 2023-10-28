@@ -133,7 +133,7 @@ export default function Home() {
               </Grid>
             ))}
           </Grid>
-          <Link href="work" className="button-link">
+          <Link href="/works" className="button-link" title="works">
             <CustomButton text="view all work" />
           </Link>
         </CustomContainer>

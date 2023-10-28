@@ -39,9 +39,7 @@ function page() {
               <Link
                 href={`works/${item.slug}`}
                 key={item.slug}
-                style={{
-                  textDecoration: "none",
-                }}
+                className="button-link"
               >
                 <CardWork title={item.title} category={item.category} src={item.pictures[0].picture} />
               </Link>
