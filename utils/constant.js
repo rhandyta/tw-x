@@ -36,6 +36,9 @@ import Nodejs from "@/public/assets/images/icons/nodedotjs.svg";
 import React from "@/public/assets/images/icons/react.svg";
 import Php from "@/public/assets/images/icons/php.svg";
 
+const d = new Date();
+const datetime = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
+
 export const linkNavigation = [
   {
     title: "Home",
@@ -255,19 +258,25 @@ export const blogs = [
     title: "Hi First Post",
     category: "Design",
     src: Covid,
-    created_at: "3 min ago",
+    created_at: datetime,
+    slug: "hi-first-post",
+    author: "Rhandyta Briantama"
   },
   {
     title: "Experience Using NextJS",
     category: "Tool Framework",
     src: Note,
-    created_at: "3 min ago",
+    created_at: datetime,
+    slug: "experience-using-nextjs",
+    author: "Rhandyta Briantama"
   },
   {
     title: "Eating",
     category: "Food",
     src: Rental,
-    created_at: "3 min ago",
+    created_at: datetime,
+    slug: "eating",
+    author: "Rhandyta Briantama"
   },
 ];
 

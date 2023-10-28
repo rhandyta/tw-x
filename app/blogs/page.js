@@ -13,7 +13,7 @@ function page() {
       <CustomContainer>
       <Grid container mb={4} spacing={4}>
             {blogs.map((item) => (
-              <CardBlog key={item.title} src={item.src} title={item.title} category={item.category} created_at={item.created_at}/>
+              <CardBlog key={item.title} src={item.src} title={item.title} category={item.category} created_at={item.created_at} slug={item.slug}/>
             ))}
           </Grid>
       </CustomContainer>

@@ -47,8 +47,8 @@ export default function Home() {
                 style={{
                   width: "100%",
                   height: "auto",
-                  
-                objectFit:"cover"
+
+                  objectFit: "cover",
                 }}
               />
             </Box>
@@ -60,8 +60,7 @@ export default function Home() {
 
         <CustomContainer maxWidth="md">
           <Typography variant="h4" component="h1" gutterBottom>
-            Hi, Welcome to TW-X I&#39;m Rhandyta Briantama - Software
-            Engineer
+            Hi, Welcome to TW-X I&#39;m Rhandyta Briantama - Software Engineer
           </Typography>
           <Typography variant="subtitle2" textAlign="justify" color="secondary">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -124,11 +123,14 @@ export default function Home() {
                 <Link
                   href={`works/${item.slug}`}
                   key={item.title}
-                  style={{
-                    textDecoration: "none",
-                  }}
+                  className="button-link"
+                  title={item.title}
                 >
-                <CardWork title={item.title} category={item.category} src={item.pictures[0].picture} />
+                  <CardWork
+                    title={item.title}
+                    category={item.category}
+                    src={item.pictures[0].picture}
+                  />
                 </Link>
               </Grid>
             ))}
@@ -144,12 +146,19 @@ export default function Home() {
           Blog
         </Typography>
         <CustomContainer>
-          <Grid container mb={4} spacing={4}>
+          <Grid container mb={4} rowSpacing={2}>
             {blogs.map((item) => (
-               <CardBlog key={item.title} src={item.src} title={item.title} category={item.category} created_at={item.created_at}/>
+                <CardBlog
+                  key={item.title}
+                  src={item.src}
+                  title={item.title}
+                  category={item.category}
+                  created_at={item.created_at}
+                  slug={item.slug}
+                />
             ))}
           </Grid>
-          <Link href="blog" className="button-link">
+          <Link href="/blogs" className="button-link" title="blogs">
             <CustomButton text="view all posts" />
           </Link>
         </CustomContainer>
@@ -206,7 +215,7 @@ export default function Home() {
                           style={{
                             width: "50%",
                             height: "auto",
-                            objectFit:"cover"
+                            objectFit: "cover",
                           }}
                           loading="lazy"
                         />
