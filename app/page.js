@@ -60,7 +60,7 @@ export default function Home() {
 
         <CustomContainer maxWidth="md">
           <Typography variant="h4" component="h1" gutterBottom>
-            Hi, Welcome to TW-X I&#39;m Rhandyta Briantama - I&#39;m Software
+            Hi, Welcome to TW-X I&#39;m Rhandyta Briantama - Software
             Engineer
           </Typography>
           <Typography variant="subtitle2" textAlign="justify" color="secondary">

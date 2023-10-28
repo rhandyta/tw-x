@@ -11,7 +11,7 @@ async function page() {
  
   return (
     <CustomBoxBorderedBottom>
-      <Typography variant="h3" component="h1">
+      <Typography variant="h2" component="h1">
         Let&#39;s Talk
       </Typography>
       <Box

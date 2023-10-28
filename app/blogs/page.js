@@ -7,7 +7,7 @@ import CardBlog from "@/components/CardBlog";
 function page() {
   return (
     <CustomBoxBorderedBottom>
-      <Typography variant="h3" component="h2">
+      <Typography variant="h2" component="h1">
         Blog
       </Typography>
       <CustomContainer>

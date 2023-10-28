@@ -11,7 +11,7 @@ function page({ params }) {
   return (
     <CustomBoxBorderedBottom>
       <CustomContainer>
-        <Typography component="h1" variant="h4" gutterBottom>
+        <Typography component="h1" variant="h2">
           {work.title}
         </Typography>
         <Typography component="time" variant="caption" gutterBottom>

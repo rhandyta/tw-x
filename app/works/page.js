@@ -8,7 +8,7 @@ import CardWork from "@/components/CardWork";
 function page() {
   return (
     <CustomBoxBorderedBottom>
-      <Typography variant="h3" component="h1">
+      <Typography variant="h2" component="h1">
         Work
       </Typography>
       <CustomContainer>
