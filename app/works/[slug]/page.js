@@ -225,7 +225,7 @@ function page({ params }) {
 
           {
             projects.filter((item) => item.slug != work.slug).splice(0, projects.length - ( projects.length - 2)).map((item) => (
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} key={item.slug}>
                 <Link
                   href={`/works/${item.slug}`}
                   key={work.slug}
