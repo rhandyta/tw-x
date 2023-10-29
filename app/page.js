@@ -148,14 +148,21 @@ export default function Home() {
         <CustomContainer>
           <Grid container mb={4} rowSpacing={2}>
             {blogs.map((item) => (
-                <CardBlog
-                  key={item.title}
-                  src={item.src}
+              <Grid item xs={12} key={item.title}>
+                <Link
+                  href={`/blogs/${item.slug}`}
                   title={item.title}
-                  category={item.category}
-                  created_at={item.created_at}
-                  slug={item.slug}
-                />
+                  className="button-link"
+                >
+                  <CardBlog
+                    key={item.title}
+                    src={item.src}
+                    title={item.title}
+                    category={item.category}
+                    created_at={item.created_at}
+                  />
+                </Link>
+              </Grid>
             ))}
           </Grid>
           <Link href="/blogs" className="button-link" title="blogs">

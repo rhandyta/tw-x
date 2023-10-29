@@ -260,6 +260,7 @@ export const blogs = [
     src: Covid,
     created_at: datetime,
     slug: "hi-first-post",
+    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo corrupti amet debitis perspiciatis minus molestias aut alias consequuntur eos, vero blanditiis dolore ad? Eligendi voluptatem voluptas, sint non assumenda veniam, eos minima quibusdam ipsam unde praesentium illo, consequatur ullam earum quisquam quia eaque nihil aliquam labore placeat quaerat molestiae neque tempore! Voluptatem fuga labore aut facere itaque cum, animi commodi corrupti obcaecati libero sint dolorem impedit possimus quasi, accusamus pariatur sunt quas distinctio voluptate illum recusandae! Nulla quisquam consequatur rem ad eius tenetur commodi quos quas iste, iusto adipisci laboriosam enim dolor. Corrupti vero aut omnis excepturi? Ratione saepe quisquam, obcaecati dolorum fugit expedita numquam quod dolor unde cum culpa accusamus aperiam maxime perspiciatis voluptatum? Quibusdam fugit ullam necessitatibus vero officiis nostrum provident esse quis autem libero vel nemo voluptate nihil",
     author: "Rhandyta Briantama"
   },
   {
@@ -268,6 +269,7 @@ export const blogs = [
     src: Note,
     created_at: datetime,
     slug: "experience-using-nextjs",
+    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo corrupti amet debitis perspiciatis minus molestias aut alias consequuntur eos, vero blanditiis dolore ad? Eligendi voluptatem voluptas, sint non assumenda veniam, eos minima quibusdam ipsam unde praesentium illo, consequatur ullam earum quisquam quia eaque nihil aliquam labore placeat quaerat molestiae neque tempore! Voluptatem fuga labore aut facere itaque cum, animi commodi corrupti obcaecati libero sint dolorem impedit possimus quasi, accusamus pariatur sunt quas distinctio voluptate illum recusandae! Nulla quisquam consequatur rem ad eius tenetur commodi quos quas iste, iusto adipisci laboriosam enim dolor. Corrupti vero aut omnis excepturi? Ratione saepe quisquam, obcaecati dolorum fugit expedita numquam quod dolor unde cum culpa accusamus aperiam maxime perspiciatis voluptatum? Quibusdam fugit ullam necessitatibus vero officiis nostrum provident esse quis autem libero vel nemo voluptate nihil",
     author: "Rhandyta Briantama"
   },
   {
@@ -276,6 +278,7 @@ export const blogs = [
     src: Rental,
     created_at: datetime,
     slug: "eating",
+    description: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo corrupti amet debitis perspiciatis minus molestias aut alias consequuntur eos, vero blanditiis dolore ad? Eligendi voluptatem voluptas, sint non assumenda veniam, eos minima quibusdam ipsam unde praesentium illo, consequatur ullam earum quisquam quia eaque nihil aliquam labore placeat quaerat molestiae neque tempore! Voluptatem fuga labore aut facere itaque cum, animi commodi corrupti obcaecati libero sint dolorem impedit possimus quasi, accusamus pariatur sunt quas distinctio voluptate illum recusandae! Nulla quisquam consequatur rem ad eius tenetur commodi quos quas iste, iusto adipisci laboriosam enim dolor. Corrupti vero aut omnis excepturi? Ratione saepe quisquam, obcaecati dolorum fugit expedita numquam quod dolor unde cum culpa accusamus aperiam maxime perspiciatis voluptatum? Quibusdam fugit ullam necessitatibus vero officiis nostrum provident esse quis autem libero vel nemo voluptate nihil",
     author: "Rhandyta Briantama"
   },
 ];

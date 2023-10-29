@@ -3,14 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function CardBlog({ title, src, category, created_at, slug }) {
+function CardBlog({ title, src, category, created_at }) {
   return (
-    <Grid item xs={12}>
-      <Link
-        href={`blogs/${slug}`}
-        title={title}
-        className="button-link"
-      >
         <Grid container columnSpacing={4}>
           <Grid item xs={12} md={4}>
             <Card
@@ -54,8 +48,6 @@ function CardBlog({ title, src, category, created_at, slug }) {
             </CardContent>
           </Grid>
         </Grid>
-      </Link>
-    </Grid>
   );
 }
 
