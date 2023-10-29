@@ -33,40 +33,48 @@ function page() {
           }}
         >
           <Typography variant="h4" component="h2" gutterBottom>
-            Rhandy
+            Rhandyta Briantama
           </Typography>
-          <Typography variant="body1" component="h3" gutterBottom>
+          <Typography
+            variant="body1"
+            component="h3"
+            color="secondary"
+            gutterBottom
+            sx={{ textAlign: { xs: "justify", md: "left" } }}
+          >
             loremlorem lorem lorem llorem lorenlorem loremloremlorem lorem lorem
             llorem lorenlorem loremloremlorem lorem lorem llorem lorenlorem
             loremloremlorem lorem lorem llorem lorenlorem loremloremlorem lorem
             lorem llorem lorenlorem lorem
           </Typography>
-          <Box sx={{
-            
-            borderRadius: "10px",
-            overflow: "hidden"
-          }}>
-            <Image
-            src={profile.src}
-            placeholder="blur"
-            alt="profile rhandy"
-            style={{
-              width: "100%",
-              height: "100%",
-              maxHeight: "400px",
+          <Box
+            sx={{
               borderRadius: "10px",
-              marginBottom: "10px",
-              backgroundPosition: "top",
-              objectFit: "contain",
+              overflow: "hidden",
             }}
-          />
+          >
+            <Image
+              src={profile.src}
+              placeholder="blur"
+              alt="profile rhandy"
+              style={{
+                width: "100%",
+                height: "100%",
+                maxHeight: "400px",
+                borderRadius: "10px",
+                marginBottom: "10px",
+                backgroundPosition: "top",
+                objectFit: "contain",
+              }}
+            />
           </Box>
-          
+
           <Typography
             variant="subtitle2"
             component="p"
             color="secondary"
             gutterBottom
+            sx={{ textAlign: { xs: "justify", md: "left" } }}
           >
             loremlorem lorem lorem llorem lorenlorem loremloremlorem lorem lorem
             llorem lorenlorem loremloremlorem lorem lorem llorem lorenlorem

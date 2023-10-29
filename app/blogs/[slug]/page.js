@@ -63,6 +63,7 @@ function page({ params }) {
             <Typography
               variant="body1"
               component="p"
+              color="secondary"
               sx={{ textAlign: { xs: "justify", md: "left" } }}
             >
               {blog.description}

@@ -146,7 +146,7 @@ export const projects = [
     ],
     timeline: "2 month ago",
     position: "Programmer",
-    createdAt: "Jumat, 13 Oktober 2023 22:22 WIB",
+    createdAt: datetime,
     author: "Rhandyta Briantama",
     pictures: [
       {
@@ -191,7 +191,7 @@ export const projects = [
     ],
     timeline: "2 month ago",
     position: "Programmer",
-    createdAt: "Jumat, 13 Oktober 2023 22:22 WIB",
+    createdAt: datetime,
     author: "Rhandyta Briantama",
     pictures: [
       {
@@ -231,7 +231,7 @@ export const projects = [
     ],
     timeline: "2 month ago",
     position: "Programmer",
-    createdAt: "Jumat, 13 Oktober 2023 22:22 WIB",
+    createdAt: datetime,
     author: "Rhandyta Briantama",
     pictures: [
       {

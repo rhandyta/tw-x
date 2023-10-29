@@ -17,17 +17,43 @@ function page({ params }) {
           <Typography component="h1" variant="h2">
             {work.title}
           </Typography>
-          <Typography component="time" variant="caption" gutterBottom>
+          {/* <Typography component="time" variant="caption" gutterBottom>
             {work.createdAt}
           </Typography>
           <Typography component="p" variant="caption" gutterBottom>
             Author: {work.author}
-          </Typography>
+          </Typography> */}
+            <Box sx={{ display: "flex", gap: 1 }}>
+              <Typography
+                variant="overline"
+                component="address"
+                sx={{ fontStyle: "normal" }}
+                gutterBottom
+              >
+                Author:{" "}
+                <Link
+                  href="/about"
+                  title={work.author}
+                  className="button-link"
+                  rel="author"
+                >
+                  {work.author}
+                </Link>
+              </Typography>
+              <Typography
+                variant="overline"
+                component="time"
+                dateTime={work.createdAt}
+              >
+                {work.createdAt}
+              </Typography>
+            </Box>
           <Grid container columnSpacing={5} rowSpacing={2}>
             <Grid item xs={12} sm={7} lg={9} order={{ xs: 3, sm: 2, md: 1 }}>
               <Typography
                 component="p"
                 variant="body1"
+                color="secondary"
                 sx={{
                   textIndent: {
                     xs: "2rem",
@@ -145,18 +171,19 @@ function page({ params }) {
               >
                 <CircleIcon sx={{ width: "14px", height: "auto" }} />
 
-                <Typography variant="h4" component="h4">
+                <Typography variant="h5" component="h4">
                   Project
                 </Typography>
               </Box>
             </Grid>
             <Grid item xs={12} sm={7}>
-              <Typography variant="h5" component="h5" gutterBottom>
+              <Typography variant="h6" component="h5" gutterBottom>
                 Challenge
               </Typography>
               <Typography
                 component="p"
                 variant="body1"
+                color="secondary"
                 sx={{
                   textIndent: {
                     xs: "2rem",
@@ -172,12 +199,13 @@ function page({ params }) {
               >
                 {work.project[0].description}
               </Typography>
-              <Typography variant="h5" component="h5" gutterBottom>
+              <Typography variant="h6" component="h5" gutterBottom>
                 OutCome
               </Typography>
               <Typography
                 component="p"
                 variant="body1"
+                color="secondary"
                 sx={{
                   textIndent: {
                     xs: "2rem",
