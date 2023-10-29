@@ -5,7 +5,7 @@ import {
   projects,
   skills,
 } from "@/utils/constant";
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -18,6 +18,7 @@ import CarouselButton from "@/components/pages/home/ButtonCarousel";
 import CustomButton from "@/components/CustomButton";
 import CardWork from "@/components/CardWork";
 import CardBlog from "@/components/CardBlog";
+import SummarizeIcon from '@mui/icons-material/Summarize';
 
 export default function Home() {
   return (
@@ -54,7 +55,21 @@ export default function Home() {
             </Box>
           </Grid>
           <Grid item xs={12} sm="auto" sx={{ textAlign: "center" }}>
+            <Grid container rowSpacing={1}>
+              <Grid item xs={12}>
             <ButtonOpenWork />
+              </Grid>
+              <Grid item xs={12}>
+                <Link
+                  href="/preview"
+                  title="Preview CV"
+                >
+                <Button startIcon={<SummarizeIcon/>}>
+                  Preview CV
+                </Button>
+                </Link>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
 
