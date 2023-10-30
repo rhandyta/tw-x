@@ -11,16 +11,11 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import DrawerHeader from "./DrawerHeader";
 import { Box, Typography } from "@mui/material";
-import Link from "next/link";
-import { linkNavigation } from "@/utils/constant";
 import { usePathname } from "next/navigation";
-import { grey } from "@mui/material/colors";
+import UserContextProvider from "@/context/user-context";
+import ListMenuItem from "./ListMenuItem";
 
 const drawerWidth = 240;
 
@@ -84,6 +79,7 @@ function Sidebar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const router = usePathname();
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -110,7 +106,7 @@ function Sidebar() {
   }, []);
 
   return (
-    <>
+    <UserContextProvider>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -161,49 +157,10 @@ function Sidebar() {
         </DrawerHeader>
         <Divider />
         <List>
-          {linkNavigation.map((item, index) => (
-            <Link
-              title={item.title}
-              href={item.link}
-              style={{ color: "inherit", textDecoration: "none" }}
-              key={item.title}
-              onClick={() => handleDrawerClose()}
-            >
-              <ListItem
-                key={item.title}
-                disablePadding
-                sx={{ display: "block", 
-                backgroundColor: router === item.link ? grey[900] : ''
-              }}
-              >
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {item.icon}
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={item.title}
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
-              <Divider />
-            </Link>
-          ))}
+          <ListMenuItem router={router} open={open} handleDrawerClose={handleDrawerClose}/>
         </List>
       </Drawer>
-    </>
+    </UserContextProvider>
   );
 }
 

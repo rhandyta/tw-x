@@ -20,6 +20,10 @@ import EngineeringIcon from "@mui/icons-material/Engineering";
 import BookIcon from "@mui/icons-material/Book";
 import InfoIcon from "@mui/icons-material/Info";
 import MailIcon from "@mui/icons-material/Mail";
+import Dashboard from "@mui/icons-material/Dashboard";
+import RssFeedIcon from '@mui/icons-material/RssFeed';
+import WorkIcon from '@mui/icons-material/Work';
+
 
 import Html from "@/public/assets/images/icons/html5.svg";
 import Css from "@/public/assets/images/icons/css3.svg";
@@ -44,27 +48,51 @@ export const linkNavigation = [
     title: "Home",
     link: "/",
     icon: <SpaceDashboardIcon />,
+    role: "guest"
   },
   {
     title: "Work",
     link: "/works",
     icon: <EngineeringIcon />,
+    role: "guest"
   },
   {
     title: "Blog",
     link: "/blogs",
-    icon: <BookIcon />,
+    icon: <RssFeedIcon />,
+    role: "guest"
   },
   {
     title: "About",
     link: "/about",
     icon: <InfoIcon />,
+    role: "guest"
   },
   {
     title: "Guest Book",
     link: "/guestbook",
     icon: <MailIcon />,
+    role: "guest"
   },
+  {
+    title: "Dashboard",
+    link: "/administrator/dashboard",
+    icon: <Dashboard />,
+    role: "administrator"
+  },
+  {
+    title: "Manage Works",
+    link: "/administrator/works",
+    icon: <WorkIcon />,
+    role: "administrator"
+  },
+  {
+    title: "Manage Blogs",
+    link: "/administrator/blogs",
+    icon: <BookIcon />,
+    role: "administrator"
+  },
+
 ];
 
 export const profile = {
