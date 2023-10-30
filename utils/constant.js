@@ -76,7 +76,7 @@ export const linkNavigation = [
   },
   {
     title: "Dashboard",
-    link: "/administrator/dashboard",
+    link: "/dashboard",
     icon: <Dashboard />,
     role: "administrator"
   },
