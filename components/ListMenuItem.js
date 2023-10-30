@@ -1,7 +1,7 @@
 import { UserContext } from "@/context/user-context";
 import { linkNavigation } from "@/utils/constant";
 import {
-    Box,
+  Box,
   Divider,
   ListItem,
   ListItemButton,
@@ -17,12 +17,16 @@ function ListMenuItem({ open, handleDrawerClose, router }) {
   const [isClient, setIsClient] = useState(false);
   const { user } = useContext(UserContext);
 
-
   useEffect(() => {
-    setIsClient(true)
-  }, [])
+    setIsClient(true);
+  }, []);
 
-  if (!isClient) return <Box sx={{display: "flex", justifyContent: "center"}}><LoadingProgress/></Box>;
+  if (!isClient)
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <LoadingProgress />
+      </Box>
+    );
 
   return (
     <>
@@ -31,11 +35,16 @@ function ListMenuItem({ open, handleDrawerClose, router }) {
           if (
             item.role === "administrator" &&
             user.currentUser?.uid === process.env.NEXT_PUBLIC_UID_AUTHORIZED &&
-            user.currentUser?.email === process.env.NEXT_PUBLIC_EMAIL_AUTHORIZED
+            user.currentUser?.email === process.env.NEXT_PUBLIC_EMAIL_AUTHORIZED ||
+            item.role === "guest"
           ) {
             return item;
           }
-          if (item.role !== "administrator" || !item?.role) {
+          if (
+            item.role === "guest" &&
+            user.currentUser?.uid !== process.env.NEXT_PUBLIC_UID_AUTHORIZED &&
+            user.currentUser?.email !== process.env.NEXT_PUBLIC_EMAIL_AUTHORIZED
+          ) {
             return item;
           }
         })
