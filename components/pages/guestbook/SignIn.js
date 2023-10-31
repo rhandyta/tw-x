@@ -19,7 +19,7 @@ function SignIn() {
         // const token = credential.accessToken;
         const user = result.user;
         if(user.email === process.env.NEXT_PUBLIC_EMAIL_AUTHORIZED && user.uid === process.env.NEXT_PUBLIC_UID_AUTHORIZED) {
-          return router.push('/dashboard');
+          return router.push('/administrator/dashboard');
         }
         return router.push('/guestbook');
       })

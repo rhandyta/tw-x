@@ -7,12 +7,14 @@ import React from "react";
 import BoxImage from "@/components/pages/works/BoxImage";
 import CardWork from "@/components/CardWork";
 import Link from "next/link";
+import ButtonBack from "@/components/ButtonBack";
 
 function page({ params }) {
   const work = projects.filter((item) => item.slug === params.slug)[0];
   return (
     <CustomBoxBorderedBottom>
       <CustomBoxBorderedBottom>
+      <ButtonBack />
         <CustomContainer>
           <Typography component="h1" variant="h2">
             {work.title}
@@ -23,31 +25,31 @@ function page({ params }) {
           <Typography component="p" variant="caption" gutterBottom>
             Author: {work.author}
           </Typography> */}
-            <Box sx={{ display: "flex", gap: 1 }}>
-              <Typography
-                variant="overline"
-                component="address"
-                sx={{ fontStyle: "normal" }}
-                gutterBottom
+          <Box sx={{ display: "flex", gap: 1 }}>
+            <Typography
+              variant="overline"
+              component="address"
+              sx={{ fontStyle: "normal" }}
+              gutterBottom
+            >
+              Author:{" "}
+              <Link
+                href="/about"
+                title={work.author}
+                className="button-link"
+                rel="author"
               >
-                Author:{" "}
-                <Link
-                  href="/about"
-                  title={work.author}
-                  className="button-link"
-                  rel="author"
-                >
-                  {work.author}
-                </Link>
-              </Typography>
-              <Typography
-                variant="overline"
-                component="time"
-                dateTime={work.createdAt}
-              >
-                {work.createdAt}
-              </Typography>
-            </Box>
+                {work.author}
+              </Link>
+            </Typography>
+            <Typography
+              variant="overline"
+              component="time"
+              dateTime={work.createdAt}
+            >
+              {work.createdAt}
+            </Typography>
+          </Box>
           <Grid container columnSpacing={5} rowSpacing={2}>
             <Grid item xs={12} sm={7} lg={9} order={{ xs: 3, sm: 2, md: 1 }}>
               <Typography
@@ -250,9 +252,10 @@ function page({ params }) {
           Related Projects
         </Typography>
         <Grid container spacing={2}>
-
-          {
-            projects.filter((item) => item.slug != work.slug).splice(0, projects.length - ( projects.length - 2)).map((item) => (
+          {projects
+            .filter((item) => item.slug != work.slug)
+            .splice(0, projects.length - (projects.length - 2))
+            .map((item) => (
               <Grid item xs={12} sm={6} key={item.slug}>
                 <Link
                   href={`/works/${item.slug}`}
@@ -266,10 +269,8 @@ function page({ params }) {
                     src={item.pictures[0].picture}
                   />
                 </Link>
-            </Grid>
-            ))
-          }
-          
+              </Grid>
+            ))}
         </Grid>
       </CustomContainer>
     </CustomBoxBorderedBottom>

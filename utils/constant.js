@@ -76,7 +76,7 @@ export const linkNavigation = [
   },
   {
     title: "Dashboard",
-    link: "/dashboard",
+    link: "/administrator/dashboard",
     icon: <Dashboard />,
     role: "administrator"
   },
@@ -157,7 +157,7 @@ export const projects = [
   {
     category: "healthy",
     title: "Covid-19",
-    slug: "Covid-19",
+    slug: "covid-19",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     project: [
@@ -172,7 +172,7 @@ export const projects = [
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       },
     ],
-    timeline: "2 month ago",
+    timeline: "2 month",
     position: "Programmer",
     createdAt: datetime,
     author: "Rhandyta Briantama",
