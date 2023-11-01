@@ -14,36 +14,15 @@ import {
 import { useTheme } from "@emotion/react";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
+import Image from "next/image";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-const images = [
-  {
-    label: "San Francisco - Oakland Bay Bridge, United States",
-    imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
-  },
-  {
-    label: "Bird",
-    imgPath:
-      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
-  },
-  {
-    label: "Bali, Indonesia",
-    imgPath:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250",
-  },
-  {
-    label: "Goč, Serbia",
-    imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60",
-  },
-];
 
 function Swipeable({title, pictures}) {
   const [activeStep, setActiveStep] = useState(0);
   const theme = useTheme();
-  const maxSteps = images.length;
+  const maxSteps = pictures.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -103,7 +82,7 @@ function Swipeable({title, pictures}) {
           bgcolor: 'background.default',
         }}
       >
-        <Typography>{images[activeStep].label}</Typography>
+        <Typography>{pictures[activeStep].title}</Typography>
       </Paper>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -115,17 +94,28 @@ function Swipeable({title, pictures}) {
           <div key={step.title}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
-                component="img"
-                sx={{
-                  height: 255,
-                  display: 'block',
-                  maxWidth: 400,
-                  overflow: 'hidden',
-                  width: '100%',
+              sx={{
+                height: 255,
+                display: 'block',
+                maxWidth: 400,
+                overflow: 'hidden',
+                width: '100%',
+              }}
+              >
+              <Image 
+                src={step.picture}
+                alt={step.title}
+                loading="lazy"
+                width={255}
+                height={400}
+                style={{
+                  width: "100%",
+                  height: "100%", // Mengatur tinggi Image ke tinggi maksimum
+                  maxHeight: "100%", // Optional: Untuk menghindari gambar terlalu besar
+                  objectFit: "cover"
                 }}
-                src={step.imgPath}
-                alt={step.label}
-              />
+                />
+                </Box>
             ) : null}
           </div>
         ))}

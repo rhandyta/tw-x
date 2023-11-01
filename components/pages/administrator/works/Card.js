@@ -1,6 +1,6 @@
 "use client";
 import { db } from "@/libs/firebase";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Swipeable from "./Swipeable";
@@ -30,23 +30,24 @@ function Card() {
     };
   }, []);
 
-  console.log(data);
   return (
     <>
-      <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+      <Grid container>
         {isLoading ? (
           <Loading />
         ) : (
           data.map((item) => (
-          <Box key={item.title}>
-            <Swipeable title={item.title} pictures={item.pictures} />
-            <Box>
-              <CardAccordion />
-            </Box>
-          </Box>
+            <Grid item xs={12} sm={6} md={4} key={item.title}>
+              <Box>
+                <Swipeable title={item.title} pictures={item.pictures} />
+                <Box>
+                  <CardAccordion />
+                </Box>
+              </Box>
+            </Grid>
           ))
         )}
-      </Box>
+      </Grid>
     </>
   );
 }
