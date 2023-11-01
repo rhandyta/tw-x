@@ -3,6 +3,7 @@ import CustomContainer from '@/components/CustomContainer'
 import Card from '@/components/pages/administrator/works/Card';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Button, Typography } from '@mui/material'
+import Link from 'next/link';
 import React from 'react'
 
 function page() {
@@ -10,7 +11,7 @@ function page() {
     <CustomBoxBorderedBottom>
         <Typography variant="h2" component="h1">Works</Typography>
         <CustomContainer>
-            <Button variant='outlined' startIcon={<AddBoxIcon/>}>Add Data</Button>
+           <Link href="works/add" title="Add Work"><Button variant='outlined' startIcon={<AddBoxIcon/>}>Add Data</Button></Link>
             <Card/>
         </CustomContainer>
     </CustomBoxBorderedBottom>
