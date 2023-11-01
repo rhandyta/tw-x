@@ -32,16 +32,24 @@ function Card() {
 
   return (
     <>
-      <Grid container>
+      <Grid container sx={{marginTop: 2}}>
         {isLoading ? (
           <Loading />
         ) : (
           data.map((item) => (
             <Grid item xs={12} sm={6} md={4} key={item.title}>
               <Box>
-                <Swipeable title={item.title} pictures={item.pictures} />
+                <Swipeable pictures={item.pictures} />
                 <Box>
-                  <CardAccordion />
+                  <CardAccordion
+                    title={item.title}
+                    author={item.author}
+                    description={item.description}
+                    category={item.category}
+                    position={item.position}
+                    timeline={item.timeline}
+                    projects={item.projects}
+                  />
                 </Box>
               </Box>
             </Grid>

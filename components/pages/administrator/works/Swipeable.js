@@ -71,19 +71,6 @@ function Swipeable({title, pictures}) {
 
   return (
     <>
-      <Paper
-        square
-        elevation={0}
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          height: 50,
-          pl: 2,
-          bgcolor: 'background.default',
-        }}
-      >
-        <Typography>{pictures[activeStep].title}</Typography>
-      </Paper>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
@@ -106,8 +93,8 @@ function Swipeable({title, pictures}) {
                 src={step.picture}
                 alt={step.title}
                 loading="lazy"
-                width={255}
-                height={400}
+                width={800}
+                height={800}
                 style={{
                   width: "100%",
                   height: "100%", // Mengatur tinggi Image ke tinggi maksimum

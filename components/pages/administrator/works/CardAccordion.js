@@ -1,22 +1,29 @@
-"use client"
+"use client";
 
-import {
-  ExpandMore,
-} from "@mui/icons-material";
+import { Delete, Edit, ExpandMore, Preview } from "@mui/icons-material";
 
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Typography
+  Box,
+  Button,
+  Grid,
+  Typography,
 } from "@mui/material";
 import { useState } from "react";
 
-
-function CardAccordion() {
+function CardAccordion({
+  title,
+  author,
+  description,
+  category,
+  position,
+  timeline,
+  projects,
+}) {
   const [expanded, setExpanded] = useState(false);
 
-  
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -24,99 +31,134 @@ function CardAccordion() {
   return (
     <>
       <Accordion
-            expanded={expanded === "panel1"}
-            onChange={handleChange("panel1")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMore />}
-              aria-controls="panel1bh-content"
-              id="panel1bh-header"
-            >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                General settings
-              </Typography>
-              <Typography sx={{ color: "text.secondary" }}>
-                I am an accordion
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Nulla facilisi. Phasellus sollicitudin nulla et quam mattis
-                feugiat. Aliquam eget maximus est, id dignissim quam.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel2"}
-            onChange={handleChange("panel2")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMore />}
-              aria-controls="panel2bh-content"
-              id="panel2bh-header"
-            >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Users
-              </Typography>
-              <Typography sx={{ color: "text.secondary" }}>
-                You are currently not an owner
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Donec placerat, lectus sed mattis semper, neque lectus feugiat
-                lectus, varius pulvinar diam eros in elit. Pellentesque
-                convallis laoreet laoreet.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel3"}
-            onChange={handleChange("panel3")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMore />}
-              aria-controls="panel3bh-content"
-              id="panel3bh-header"
-            >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Advanced settings
-              </Typography>
-              <Typography sx={{ color: "text.secondary" }}>
-                Filtering has been entirely disabled for whole web server
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                Integer sit amet egestas eros, vitae egestas augue. Duis vel est
-                augue.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion
-            expanded={expanded === "panel4"}
-            onChange={handleChange("panel4")}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMore />}
-              aria-controls="panel4bh-content"
-              id="panel4bh-header"
-            >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Personal data
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                Integer sit amet egestas eros, vitae egestas augue. Duis vel est
-                augue.
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
+        expanded={expanded === "panel1"}
+        onChange={handleChange("panel1")}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMore />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          <Typography sx={{ width: "33%", flexShrink: 0 }}>Title</Typography>
+          <Typography sx={{ color: "text.secondary" }}>{title}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>{description}</Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
+        expanded={expanded === "panel2"}
+        onChange={handleChange("panel2")}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMore />}
+          aria-controls="panel2bh-content"
+          id="panel2bh-header"
+        >
+          <Typography sx={{ width: "33%", flexShrink: 0 }}>
+            Information
+          </Typography>
+          <Typography sx={{ color: "text.secondary" }}>
+            Detail information work
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Grid container>
+            <Grid item xs={12}>
+              <Grid container>
+                <Grid item xs={4}>
+                  Author
+                </Grid>
+                <Grid item xs={8} sx={{ color: "text.secondary" }}>
+                  {author}
+                </Grid>
+                <Grid item xs={4}>
+                  Category
+                </Grid>
+                <Grid item xs={8} sx={{ color: "text.secondary" }}>
+                  {category}
+                </Grid>
+                <Grid item xs={4}>
+                  Position
+                </Grid>
+                <Grid item xs={8} sx={{ color: "text.secondary" }}>
+                  {position}
+                </Grid>
+                <Grid item xs={4}>
+                  Timeline
+                </Grid>
+                <Grid item xs={8} sx={{ color: "text.secondary" }}>
+                  {timeline}
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
+        expanded={expanded === "panel3"}
+        onChange={handleChange("panel3")}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMore />}
+          aria-controls="panel3bh-content"
+          id="panel3bh-header"
+        >
+          <Typography sx={{ width: "33%", flexShrink: 0 }}>
+            Projects
+          </Typography>
+          <Typography sx={{ color: "text.secondary" }}>
+            What comes next?
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+        <Grid container>
+            <Grid item xs={12}>
+              <Grid container>
+                {
+                  projects.map((item) => (
+                    <Box key={item.name}>
+                      <Grid item xs={12}>
+                        {item.name}
+                      </Grid>
+                      <Grid item xs={12} sx={{ color: "text.secondary" }}>
+                        {item.description}
+                      </Grid>
+                    </Box>
+                  ))
+                }
+                
+              </Grid>
+            </Grid>
+          </Grid>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
+        expanded={expanded === "panel4"}
+        onChange={handleChange("panel4")}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMore />}
+          aria-controls="panel4bh-content"
+          id="panel4bh-header"
+        >
+          <Typography sx={{ width: "33%", flexShrink: 0 }}>
+            Action
+          </Typography>
+          <Typography sx={{ color: "text.secondary" }}>
+            Need further action?
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Grid container justifyContent="space-evenly">
+            <Grid item><Button startIcon={<Preview/>}>View</Button></Grid>
+            <Grid item><Button startIcon={<Edit/>}>Edit</Button></Grid>
+            <Grid item><Button startIcon={<Delete/>}>View</Button></Grid>
+          </Grid>
+        </AccordionDetails>
+      </Accordion>
     </>
-  )
+  );
 }
 
-export default CardAccordion
+export default CardAccordion;
