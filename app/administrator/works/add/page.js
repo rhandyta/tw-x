@@ -12,7 +12,7 @@ import { Box, Grid, TextField, Typography } from "@mui/material";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { Formik, Form } from "formik";
-import { useState } from "react";
+import React, { useState } from "react";
 import * as yup from "yup";
 
 function generateRandomFileName() {
@@ -56,7 +56,6 @@ const uploadImageAsPromises = (imageFile) => {
 };
 
 const store = async (data) => {
-  console.log(data)
   let dataPictures = [];
   for (let i = 0; i < data.pictures.length; i++) {
     let upload = await uploadImageAsPromises(data.pictures[i]);
