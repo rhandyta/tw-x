@@ -1,6 +1,5 @@
 import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
-import { projects } from "@/utils/constant";
 import { Box, Grid, Typography } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import React from "react";
@@ -8,13 +7,38 @@ import BoxImage from "@/components/pages/works/BoxImage";
 import CardWork from "@/components/CardWork";
 import Link from "next/link";
 import ButtonBack from "@/components/ButtonBack";
+import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import { db } from "@/libs/firebase";
+import { dateTimeString } from "@/utils/helpers";
 
-function page({ params }) {
-  const work = projects.filter((item) => item.slug === params.slug)[0];
+async function getData(slug) {
+  const mainWork = [];
+  const relateWorks = [];
+  const q = query(collection(db, 'works'), where('slug', '==', slug), limit(1));
+  const docSnap = await getDocs(q);
+  docSnap.forEach((doc) => {
+    mainWork.push(doc.data())
+  })
+  const work = mainWork[0] || null;
+
+  if(mainWork) {
+    const relateQ = query(collection(db, 'works'), where('category', '==', work.category), limit(6));
+    const docSnapRelate = await getDocs(relateQ);
+    docSnapRelate.forEach(doc => {
+      relateWorks.push(doc.data());
+    })
+    return {work, relateWorks}
+  }
+
+  return null;
+}
+
+async function Page({ params }) {
+  const {work, relateWorks} = await getData(params.slug);
   return (
     <CustomBoxBorderedBottom>
       <CustomBoxBorderedBottom>
-      <ButtonBack />
+        <ButtonBack />
         <CustomContainer>
           <Typography component="h1" variant="h2">
             {work.title}
@@ -45,9 +69,9 @@ function page({ params }) {
             <Typography
               variant="overline"
               component="time"
-              dateTime={work.createdAt}
+              dateTime={dateTimeString(work.createdAt)}
             >
-              {work.createdAt}
+              {dateTimeString(work.createdAt)}
             </Typography>
           </Box>
           <Grid container columnSpacing={5} rowSpacing={2}>
@@ -199,7 +223,7 @@ function page({ params }) {
                 }}
                 gutterBottom
               >
-                {work.project[0].description}
+                {work.projects[0].description}
               </Typography>
               <Typography variant="h6" component="h5" gutterBottom>
                 OutCome
@@ -221,7 +245,7 @@ function page({ params }) {
                 }}
                 gutterBottom
               >
-                {work.project[0].description}
+                {work.projects[1].description}
               </Typography>
             </Grid>
           </Grid>
@@ -252,9 +276,8 @@ function page({ params }) {
           Related Projects
         </Typography>
         <Grid container spacing={2}>
-          {projects
+          {relateWorks
             .filter((item) => item.slug != work.slug)
-            .splice(0, projects.length - (projects.length - 2))
             .map((item) => (
               <Grid item xs={12} sm={6} key={item.slug}>
                 <Link
@@ -277,4 +300,4 @@ function page({ params }) {
   );
 }
 
-export default page;
+export default Page;
