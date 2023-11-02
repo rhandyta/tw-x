@@ -1,29 +1,96 @@
 "use client";
+import Loading from "@/app/loading";
 import ButtonBack from "@/components/ButtonBack";
 import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomButton from "@/components/CustomButton";
 import CustomContainer from "@/components/CustomContainer";
 import ErrorMessageField from "@/components/ErrorMessageField";
-import styled from "@emotion/styled";
-import { CloudUpload } from "@mui/icons-material";
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import { red } from "@mui/material/colors";
-import { Formik, Form, ErrorMessage } from "formik";
+import InputUpload from "@/components/InputUpload";
+import { db, storage } from "@/libs/firebase";
+import { slugify } from "@/utils/helpers";
+import { Box, Grid, TextField, Typography } from "@mui/material";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { Formik, Form } from "formik";
+import { useState } from "react";
 import * as yup from "yup";
 
-const VisuallyHiddenInput = styled("input")({
-  clip: "rect(0 0 0 0)",
-  clipPath: "inset(50%)",
-  height: 1,
-  overflow: "hidden",
-  position: "absolute",
-  bottom: 0,
-  left: 0,
-  whiteSpace: "nowrap",
-  width: 1,
-});
+function generateRandomFileName() {
+  const randomString = Math.random().toString(36).substring(7);
+  const timestamp = Date.now();
+  return `${timestamp}-${randomString}`;
+}
+
+const uploadImageAsPromises = (imageFile) => {
+  return new Promise(function (resolve, reject) {
+    const uniqueFileName = generateRandomFileName();
+    let storageRef = ref(storage, `portfolio/images/works/${uniqueFileName}`);
+    let uploadTask = uploadBytesResumable(storageRef, imageFile);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+        }
+      },
+      (error) => {
+        reject(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          resolve(downloadURL);
+        });
+      }
+    );
+  });
+};
+
+const store = async (data) => {
+  console.log(data)
+  let dataPictures = [];
+  for (let i = 0; i < data.pictures.length; i++) {
+    let upload = await uploadImageAsPromises(data.pictures[i]);
+    dataPictures.push({
+      title: `${data.title} Picture ${i}`,
+      picture: upload,
+    });
+  }
+  const { challenge, outcome, ...storeData } = {
+    ...data,
+    pictures: dataPictures,
+  };
+
+  const docRef = await addDoc(collection(db, "works"), {
+    ...storeData,
+    slug: slugify(data.title),
+    projects: [
+      {
+        description: data.challenge,
+        name: "challenge",
+      },
+      {
+        description: data.outcome,
+        name: "outcome",
+      },
+    ],
+    updatedAt: serverTimestamp(),
+    createdAt: serverTimestamp(),
+  });
+};
 
 function page() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const initialValues = {
     title: "",
     category: "",
@@ -43,17 +110,25 @@ function page() {
     description: yup.string().required().min(3),
     challenge: yup.string().required().min(3),
     outcome: yup.string().required().min(3),
-    pictures: yup.array().min(5).max(5).of(yup.mixed().test('file-type',
-    'Hanya gambar yang diperbolehkan',
-    (value) => {
-      if (!value) return true; // Biarkan kosong
-      // Pastikan jenis file adalah gambar (misalnya, jpg, png, gif)
-      return /^image\/(jpeg|png|gif)$/.test(value.type);
-    })),
+    pictures: yup
+      .array()
+      .min(5)
+      .max(5)
+      .of(
+        yup
+          .mixed()
+          .test("file-type", "Hanya gambar yang diperbolehkan", (value) => {
+            if (!value) return true;
+            return /^image\/(jpeg|png|gif)$/.test(value.type);
+          })
+      ),
   });
 
-  const onSubmit = (values, props) => {
-    console.log({ values, props });
+  const onSubmit = async (values, props) => {
+    setIsLoading(true);
+    await store(values);
+    props.resetForm();
+    setIsLoading(false);
   };
 
   return (
@@ -179,35 +254,35 @@ function page() {
                         <ErrorMessageField name="outcome" />
                       </Grid>
                       <Grid item xs={12}>
-                        <Button
-                          sx={{ width: "100%" }}
-                          component="label"
-                          variant="contained"
-                          startIcon={<CloudUpload />}
-                        >
-                          Upload file
-                          <VisuallyHiddenInput
-                            type="file"
-                            multiple
-                            name="pictures"
-                            onChange={(event) => props.setFieldValue('pictures', Array.from(event.target.files))}
-                            onBlur={props.handleBlur}
-                          />
-                        </Button>
-                        <ErrorMessageField name="pictures" />
+                        <InputUpload
+                          type="file"
+                          multiple
+                          name="pictures"
+                          onChange={(event) =>
+                            props.setFieldValue(
+                              "pictures",
+                              Array.from(event.target.files)
+                            )
+                          }
+                          onBlur={props.handleBlur}
+                        />
                       </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
-                <CustomButton
-                  type="submit"
-                  sx={{ marginTop: 2, display: "block", width: "100%" }}
-                  disabled={
-                    !props.isValid || props.isSubmitting || !props.dirty
-                  }
-                >
-                  Add Data
-                </CustomButton>
+                {isLoading ? (
+                  <Loading />
+                ) : (
+                  <CustomButton
+                    type="submit"
+                    sx={{ marginTop: 2, display: "block", width: "100%" }}
+                    disabled={
+                      !props.isValid || props.isSubmitting || !props.dirty
+                    }
+                  >
+                    Add Data
+                  </CustomButton>
+                )}
               </Form>
             )}
           </Formik>

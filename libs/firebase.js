@@ -1,6 +1,7 @@
 import { initializeApp, getApps } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { GoogleAuthProvider, getAuth } from "firebase/auth";
+import { getStorage, ref } from 'firebase/storage'
 
 
 const firebaseConfig = {
@@ -16,9 +17,11 @@ const firebaseConfig = {
 let app =  getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
 
-const auth = getAuth(app);
 const provider = new GoogleAuthProvider()
+const auth = getAuth(app);
 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+const storage = getStorage(app)
 const db = getFirestore(app);
 
-export {auth, provider, db}
+
+export {auth, provider, db, storage}

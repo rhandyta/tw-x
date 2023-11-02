@@ -32,7 +32,7 @@ function Card() {
 
   return (
     <>
-      <Grid container sx={{marginTop: 2}}>
+      <Grid container sx={{marginTop: 2}} spacing={2}>
         {isLoading ? (
           <Loading />
         ) : (
