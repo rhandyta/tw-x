@@ -49,6 +49,7 @@ function Card() {
                     position={item.position}
                     timeline={item.timeline}
                     projects={item.projects}
+                    slug={item.slug}
                   />
                 </Box>
               </Box>

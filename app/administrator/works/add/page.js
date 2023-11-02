@@ -12,6 +12,7 @@ import { Box, Grid, TextField, Typography } from "@mui/material";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { Formik, Form } from "formik";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import * as yup from "yup";
 
@@ -89,6 +90,7 @@ const store = async (data) => {
 };
 
 function Page() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const initialValues = {
@@ -129,6 +131,7 @@ function Page() {
     await store(values);
     props.resetForm();
     setIsLoading(false);
+    router.push('/administrator/works')
   };
 
   return (

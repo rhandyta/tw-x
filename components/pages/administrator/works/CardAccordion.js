@@ -11,6 +11,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 import { useState } from "react";
 
 function CardAccordion({
@@ -21,6 +22,7 @@ function CardAccordion({
   position,
   timeline,
   projects,
+  slug
 }) {
   const [expanded, setExpanded] = useState(false);
 
@@ -151,8 +153,8 @@ function CardAccordion({
         </AccordionSummary>
         <AccordionDetails>
           <Grid container justifyContent="space-evenly">
-            <Grid item><Button startIcon={<Preview/>}>View</Button></Grid>
-            <Grid item><Button startIcon={<Edit/>}>Edit</Button></Grid>
+            <Grid item><Link href={`/works/${slug}`}><Button startIcon={<Preview/>}>View</Button></Link></Grid>
+            {/* <Grid item><Button startIcon={<Edit/>}>Edit</Button></Grid> */}
             <Grid item><Button startIcon={<Delete/>}>Delete</Button></Grid>
           </Grid>
         </AccordionDetails>

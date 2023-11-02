@@ -23,6 +23,8 @@ function CardWork({title, category, src}) {
         src={src}
         alt={title}
         loading="lazy"
+        width={390}
+        height={260}
         style={{
           objectFit: "cover",
           width: "100%",
