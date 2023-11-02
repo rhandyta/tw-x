@@ -87,7 +87,7 @@ const store = async (data) => {
   });
 };
 
-function page() {
+function Page() {
   const [isLoading, setIsLoading] = useState(false);
 
   const initialValues = {
@@ -293,4 +293,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
