@@ -71,6 +71,7 @@ const store = async (data) => {
 
   const docRef = await addDoc(collection(db, "works"), {
     ...storeData,
+    author: "Rhandyta Briantama",
     slug: slugify(data.title),
     projects: [
       {

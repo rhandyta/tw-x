@@ -153,7 +153,7 @@ function CardAccordion({
           <Grid container justifyContent="space-evenly">
             <Grid item><Button startIcon={<Preview/>}>View</Button></Grid>
             <Grid item><Button startIcon={<Edit/>}>Edit</Button></Grid>
-            <Grid item><Button startIcon={<Delete/>}>View</Button></Grid>
+            <Grid item><Button startIcon={<Delete/>}>Delete</Button></Grid>
           </Grid>
         </AccordionDetails>
       </Accordion>
