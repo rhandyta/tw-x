@@ -43,12 +43,6 @@ async function Page({ params }) {
           <Typography component="h1" variant="h2">
             {work.title}
           </Typography>
-          {/* <Typography component="time" variant="caption" gutterBottom>
-            {work.createdAt}
-          </Typography>
-          <Typography component="p" variant="caption" gutterBottom>
-            Author: {work.author}
-          </Typography> */}
           <Box sx={{ display: "flex", gap: 1 }}>
             <Typography
               variant="overline"
@@ -173,13 +167,13 @@ async function Page({ params }) {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={12} sm={6} lg={5} order={{ xs: 2, sm: 3, md: 3 }}>
+            <Grid item xs={12} sm={6} lg={5} height={300} order={{ xs: 2, sm: 3, md: 3 }}>
               <BoxImage
                 title={work.pictures[0].title}
                 picture={work.pictures[0].picture}
               />
             </Grid>
-            <Grid item xs={12} sm={6} lg={7} order={{ xs: 4, sm: 4, md: 4 }}>
+            <Grid item xs={12} sm={6} lg={7} height={300} order={{ xs: 4, sm: 4, md: 4 }}>
               <BoxImage
                 title={work.pictures[1].title}
                 picture={work.pictures[1].picture}
@@ -250,19 +244,19 @@ async function Page({ params }) {
             </Grid>
           </Grid>
           <Grid container mt={2} columnSpacing={5} rowSpacing={2}>
-            <Grid item xs={12} sm={6} md={7}>
+            <Grid item xs={12} sm={6} md={7} height={300}>
               <BoxImage
                 title={work.pictures[2].title}
                 picture={work.pictures[2].picture}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={5}>
+            <Grid item xs={12} sm={6} md={5} height={300}>
               <BoxImage
                 title={work.pictures[3].title}
                 picture={work.pictures[3].picture}
               />
             </Grid>
-            <Grid item>
+            <Grid item xs={12} height={300}>
               <BoxImage
                 title={work.pictures[3].title}
                 picture={work.pictures[4].picture}
@@ -279,7 +273,7 @@ async function Page({ params }) {
           {relateWorks
             .filter((item) => item.slug != work.slug)
             .map((item) => (
-              <Grid item xs={12} sm={6} key={item.slug}>
+              <Grid item xs={12} sm={6} md={4} key={item.slug}>
                 <Link
                   href={`/works/${item.slug}`}
                   key={work.slug}

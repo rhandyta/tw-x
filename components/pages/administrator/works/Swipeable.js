@@ -8,8 +8,6 @@ import {
   Box,
   Button,
   MobileStepper,
-  Paper,
-  Typography,
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import SwipeableViews from "react-swipeable-views";
