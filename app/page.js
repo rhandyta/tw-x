@@ -19,8 +19,10 @@ import CustomButton from "@/components/CustomButton";
 import CardWork from "@/components/CardWork";
 import CardBlog from "@/components/CardBlog";
 import SummarizeIcon from '@mui/icons-material/Summarize';
+import { getDataWorks } from "@/services/works/works";
 
-export default function Home() {
+export default async function Home() {
+  const works = await getDataWorks();
   return (
     <>
       <CustomBoxBorderedBottom>
@@ -122,7 +124,7 @@ export default function Home() {
               },
             }}
           >
-            {projects.map((item) => (
+            {works.map((item) => (
               <Grid
                 key={item.title}
                 item
