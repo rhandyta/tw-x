@@ -14,10 +14,7 @@ async function ContentWork() {
       alignItems="stretch"
       spacing={2}
       sx={{
-        justifyContent: {
-          xs: "center",
-          md: "space-between",
-        },
+        justifyContent: "center",
       }}
     >
       {

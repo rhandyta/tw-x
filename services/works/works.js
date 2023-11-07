@@ -1,5 +1,5 @@
 import { db } from "@/libs/firebase";
-import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 
 
 export async function getDataWorks(lmt = 6) {
@@ -16,4 +16,27 @@ export async function getDataWorks(lmt = 6) {
       }
      
       return worksData;
+}
+
+
+export async function getDataWork(slug) {
+    const mainWork = [];
+    const relateWorks = [];
+    const q = query(collection(db, 'works'), where('slug', '==', slug), limit(1));
+    const docSnap = await getDocs(q);
+    docSnap.forEach((doc) => {
+      mainWork.push(doc.data())
+    })
+    const work = mainWork[0] || null;
+  
+    if(mainWork) {
+      const relateQ = query(collection(db, 'works'), where('category', '==', work.category), limit(12));
+      const docSnapRelate = await getDocs(relateQ);
+      docSnapRelate.forEach(doc => {
+        relateWorks.push(doc.data());
+      })
+      return {work, relateWorks}
+    }
+  
+    return {work, relateWorks};
 }

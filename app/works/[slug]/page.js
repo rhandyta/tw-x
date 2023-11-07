@@ -7,34 +7,11 @@ import BoxImage from "@/components/pages/works/BoxImage";
 import CardWork from "@/components/CardWork";
 import Link from "next/link";
 import ButtonBack from "@/components/ButtonBack";
-import { collection, getDocs, limit, query, where } from "firebase/firestore";
-import { db } from "@/libs/firebase";
 import { dateTimeString } from "@/utils/helpers";
-
-async function getData(slug) {
-  const mainWork = [];
-  const relateWorks = [];
-  const q = query(collection(db, 'works'), where('slug', '==', slug), limit(1));
-  const docSnap = await getDocs(q);
-  docSnap.forEach((doc) => {
-    mainWork.push(doc.data())
-  })
-  const work = mainWork[0] || null;
-
-  if(mainWork) {
-    const relateQ = query(collection(db, 'works'), where('category', '==', work.category), limit(6));
-    const docSnapRelate = await getDocs(relateQ);
-    docSnapRelate.forEach(doc => {
-      relateWorks.push(doc.data());
-    })
-    return {work, relateWorks}
-  }
-
-  return null;
-}
+import { getDataWork } from "@/services/works/works";
 
 async function Page({ params }) {
-  const {work, relateWorks} = await getData(params.slug);
+  const {work, relateWorks} = await getDataWork(params.slug);
   return (
     <CustomBoxBorderedBottom>
       <CustomBoxBorderedBottom>

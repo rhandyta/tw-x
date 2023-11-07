@@ -1,5 +1,5 @@
 import {
-  blogs,
+  blogss,
   linkExternal,
   profile,
   projects,
@@ -20,9 +20,11 @@ import CardWork from "@/components/CardWork";
 import CardBlog from "@/components/CardBlog";
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import { getDataWorks } from "@/services/works/works";
+import { getDataBlogs } from "@/services/blogs/blogs";
 
 export default async function Home() {
   const works = await getDataWorks();
+  const blogs = await getDataBlogs();
   return (
     <>
       <CustomBoxBorderedBottom>
