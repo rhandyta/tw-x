@@ -120,10 +120,7 @@ export default async function Home() {
             alignItems="stretch"
             spacing={2}
             sx={{
-              justifyContent: {
-                xs: "center",
-                md: "space-between",
-              },
+              justifyContent: "center",
             }}
           >
             {works.map((item) => (

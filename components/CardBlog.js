@@ -1,6 +1,5 @@
 import { Card, CardContent, Grid, Typography } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 function CardBlog({ title, src, category, created_at }) {
@@ -12,17 +11,19 @@ function CardBlog({ title, src, category, created_at }) {
                 backgroundImage: "none",
                 boxShadow: "none",
                 textAlign: "center",
-                height: "100%", // Mengatur tinggi Card ke tinggi maksimum
+                height: "100%", 
               }}
             >
               <Image
                 src={src}
                 alt={title}
                 loading="lazy"
+                width={1400}
+                height={1400}
                 style={{
                   width: "100%",
-                  height: "100%", // Mengatur tinggi Image ke tinggi maksimum
-                  maxHeight: "100%", // Optional: Untuk menghindari gambar terlalu besar
+                  height: "100%", 
+                  maxHeight: "100%", 
                   objectFit: "cover",
                 }}
               />

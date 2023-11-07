@@ -1,11 +1,12 @@
 import { Grid, Typography } from "@mui/material";
-import { blogs } from "@/utils/constant";
 import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
 import CardBlog from "@/components/CardBlog";
 import Link from "next/link";
+import { getDataBlogs } from "@/services/blogs/blogs";
 
-function page() {
+async function page() {
+  const blogs = await getDataBlogs();
   return (
     <CustomBoxBorderedBottom>
       <Typography variant="h2" component="h1">

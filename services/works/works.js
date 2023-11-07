@@ -2,7 +2,7 @@ import { db } from "@/libs/firebase";
 import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 
 
-export async function getDataWorks(lmt = 6) {
+export async function getDataWorks(lmt = 12) {
     const worksData = [];
     const q = query(collection(db, 'works'), orderBy('createdAt', 'desc'), limit(lmt));
     const querySnapshot = await getDocs(q);
@@ -30,7 +30,7 @@ export async function getDataWork(slug) {
     const work = mainWork[0] || null;
   
     if(mainWork) {
-      const relateQ = query(collection(db, 'works'), where('category', '==', work.category), limit(12));
+      const relateQ = query(collection(db, 'works'), where('category', '==', work.category), where('slug', '!=', work.slug), limit(12));
       const docSnapRelate = await getDocs(relateQ);
       docSnapRelate.forEach(doc => {
         relateWorks.push(doc.data());

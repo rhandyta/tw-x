@@ -1,14 +1,15 @@
 import CardBlog from "@/components/CardBlog";
 import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
+import { getDataBlog } from "@/services/blogs/blogs";
 import { blogs } from "@/utils/constant";
 import { Box, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function page({ params }) {
-  const blog = blogs.filter((item) => item.slug == params.slug)[0];
+async function page({ params }) {
+  const {blog, relateBlogs} = await getDataBlog(params.slug)
   return (
     <CustomBoxBorderedBottom component="article" sx={{ mx: "auto" }}>
       <CustomBoxBorderedBottom>
@@ -58,7 +59,9 @@ function page({ params }) {
               src={blog.src}
               alt={blog.title}
               priority
-              style={{ width: "100%", height: "100%" }}
+              width={1400}
+              height={400}
+              style={{ width: "100%"}}
             />
             <Typography
               variant="body1"
@@ -77,9 +80,7 @@ function page({ params }) {
           Related Projects
         </Typography>
         <Grid container spacing={2}>
-          {blogs
-            .filter((item) => item.slug != blog.slug)
-            .splice(0, blogs.length - (blogs.length - 2))
+          {relateBlogs
             .map((item) => (
               <Grid item xs={12}
               key={item.title}
