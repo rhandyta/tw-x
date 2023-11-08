@@ -5,7 +5,7 @@ import React from "react";
 function CardBlog({ title, src, category, created_at }) {
   return (
         <Grid container columnSpacing={4}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <Card
               sx={{
                 backgroundImage: "none",
@@ -30,7 +30,7 @@ function CardBlog({ title, src, category, created_at }) {
             </Card>
           </Grid>
 
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} sm={6} md={8}>
             <CardContent sx={{ padding: "20px 0" }}>
               <Typography
                 variant="subtitle2"

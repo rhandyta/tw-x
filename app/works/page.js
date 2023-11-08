@@ -1,15 +1,58 @@
-import { Typography } from "@mui/material";
+import { Grid, Stack, Typography } from "@mui/material";
 import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
-import ContentWork from "@/components/pages/works/ContentWork";
-function Page() {
+import Link from "next/link";
+import CardWork from "@/components/CardWork";
+import { orange } from "@mui/material/colors";
+import { getDataWorks } from "@/services/works/works";
+import Paginate from "@/components/pages/works/Paginate";
+async function Page() {
+  const works = await getDataWorks(3)
+  
   return (
     <CustomBoxBorderedBottom>
       <Typography variant="h2" component="h1">
         Work
       </Typography>
       <CustomContainer>
-        <ContentWork/>
+        <Grid
+          container
+          alignItems="stretch"
+          spacing={2}
+          sx={{
+            justifyContent: "center",
+          }}
+        >
+          {works.map((item) => (
+            <Grid
+              key={item.title}
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              sx={{
+                "&:hover": {
+                  color: orange[400],
+                },
+              }}
+            >
+              <Link
+                href={`works/${item.slug}`}
+                key={item.slug}
+                className="button-link"
+              >
+                <CardWork
+                  title={item.title}
+                  category={item.category}
+                  src={item.pictures[0].picture}
+                />
+              </Link>
+            </Grid>
+          ))}
+        </Grid>
+        <Stack mt={2} alignItems="center">
+        <Paginate/>
+        </Stack>
       </CustomContainer>
     </CustomBoxBorderedBottom>
   );

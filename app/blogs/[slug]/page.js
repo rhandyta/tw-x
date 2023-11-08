@@ -2,7 +2,6 @@ import CardBlog from "@/components/CardBlog";
 import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
 import { getDataBlog } from "@/services/blogs/blogs";
-import { blogs } from "@/utils/constant";
 import { Box, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";

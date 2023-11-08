@@ -2,7 +2,7 @@ import { db } from "@/libs/firebase";
 import { collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 
 
-export async function getDataBlogs(lmt = 12) {
+export async function getDataBlogs(lmt = 9) {
     const blogsData = [];
     const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'), limit(lmt));
     const querySnapshot = await getDocs(q);

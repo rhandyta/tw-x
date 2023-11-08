@@ -1,8 +1,6 @@
 import {
-  blogss,
   linkExternal,
   profile,
-  projects,
   skills,
 } from "@/utils/constant";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";

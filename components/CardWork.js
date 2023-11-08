@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import { grey, orange } from "@mui/material/colors";
 import Image from "next/image";
 import React from "react";
@@ -7,8 +7,6 @@ function CardWork({title, category, src}) {
   return (
     <Card
       sx={{
-        maxWidth: "100%",
-        height: "100%", // Mengatur tinggi Card ke tinggi maksimum
         backgroundImage: "none",
         boxShadow: "none",
         textAlign: "center",
@@ -19,19 +17,23 @@ function CardWork({title, category, src}) {
         },
       }}
     >
+      <Box sx={{
+        width:"100%",
+        height:"200px"
+      }}>
       <Image
         src={src}
         alt={title}
-        loading="lazy"
-        width={1400}
-        height={1400}
+        width={400}
+        height={400}
+        priority
         style={{
           objectFit: "cover",
-          width: "100%",
-          height: "100%", // Mengatur tinggi Image ke tinggi maksimum
-          maxHeight: "100%", // Optional: Untuk menghindari gambar terlalu besar
+          width: '100%',
+          height: "200px"
         }}
-      />
+        />
+        </Box>
       <CardContent sx={{ padding: "20px 0" }}>
         <Typography
           variant="subtitle2"
