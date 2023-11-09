@@ -1,29 +1,63 @@
 import { db } from "@/libs/firebase";
 import {
   collection,
+  endAt,
+  endBefore,
+  getCountFromServer,
   getDocs,
   limit,
+  limitToLast,
   orderBy,
   query,
+  startAfter,
+  startAt,
   where,
 } from "firebase/firestore";
 
-export async function getDataWorks(lmt = 9) {
-  const worksData = [];
-  const q = query(
-    collection(db, "works"),
-    orderBy("createdAt", "desc"),
-    limit(lmt)
-  );
+export async function getDataWorks(lmt = 9, firstVisible, lastVisible) {
+  const works = [];
+  const coll = collection(db, 'works');
+  const snapShotCount = await getCountFromServer(coll);
+
+  let q;
+  if (firstVisible || lastVisible) {
+    if (lastVisible) {
+      let slug = JSON.parse(atob(lastVisible));
+      let ref = query(collection(db, 'works'), where('slug', '==', slug), limit(1))
+      let docSnap = await getDocs(ref)
+      q = query(
+        collection(db, "works"),
+        orderBy("createdAt", "desc"),
+        startAfter(docSnap.docs[docSnap.docs.length - 1]),
+        limit(lmt)
+      );
+    } else {
+      let slug = JSON.parse(atob(firstVisible));
+      let ref = query(collection(db, 'works'), where('slug', '==', slug), limit(1))
+      let docSnap = await getDocs(ref)
+      q = query(
+        collection(db, "works"),
+        orderBy("createdAt", "desc"),
+        endBefore(docSnap.docs[0]),
+        limitToLast(lmt)
+      );
+    }
+  } else {
+    q = query(
+      collection(db, "works"),
+      orderBy("createdAt", "desc"),
+      limit(lmt)
+    );
+  }
+
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    worksData.push(doc.data());
+    works.push(doc.data());
   });
-
-  if (!worksData) {
+  if (!works) {
     throw new Error("Failed to fetch data");
   }
-  return worksData;
+  return {works, total_data: snapShotCount.data().count};
 }
 
 export async function getDataWork(slug) {

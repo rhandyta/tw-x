@@ -21,7 +21,7 @@ import { getDataWorks } from "@/services/works/works";
 import { getDataBlogs } from "@/services/blogs/blogs";
 
 export default async function Home() {
-  const works = await getDataWorks();
+  const {works} = await getDataWorks();
   const blogs = await getDataBlogs();
   return (
     <>
