@@ -1,3 +1,4 @@
+import ButtonBack from "@/components/ButtonBack";
 import CardBlog from "@/components/CardBlog";
 import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
@@ -8,10 +9,11 @@ import Link from "next/link";
 import React from "react";
 
 async function page({ params }) {
-  const {blog, relateBlogs} = await getDataBlog(params.slug)
+  const { blog, relateBlogs } = await getDataBlog(params.slug);
   return (
     <CustomBoxBorderedBottom component="article" sx={{ mx: "auto" }}>
       <CustomBoxBorderedBottom>
+      <ButtonBack />
         <CustomContainer
           sx={{
             display: "flex",
@@ -60,7 +62,7 @@ async function page({ params }) {
               priority
               width={1400}
               height={400}
-              style={{ width: "100%"}}
+              style={{ width: "100%" }}
             />
             <Typography
               variant="body1"
@@ -79,25 +81,22 @@ async function page({ params }) {
           Related Projects
         </Typography>
         <Grid container spacing={2}>
-          {relateBlogs
-            .map((item) => (
-              <Grid item xs={12}
-              key={item.title}
+          {relateBlogs.map((item) => (
+            <Grid item xs={12} key={item.title}>
+              <Link
+                href={`${item.slug}`}
+                title={item.title}
+                className="button-link"
               >
-                <Link
-                  href={`${item.slug}`}
+                <CardBlog
                   title={item.title}
-                  className="button-link"
-                >
-                  <CardBlog
-                    title={item.title}
-                    category={item.category}
-                    src={item.src}
-                    created_at={item.created_at}
-                  />
-                </Link>
-              </Grid>
-            ))}
+                  category={item.category}
+                  src={item.src}
+                  created_at={item.created_at}
+                />
+              </Link>
+            </Grid>
+          ))}
         </Grid>
       </CustomContainer>
     </CustomBoxBorderedBottom>

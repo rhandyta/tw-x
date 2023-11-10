@@ -1,12 +1,12 @@
 "use client";
 
-import { Delete, Edit, ExpandMore, Preview } from "@mui/icons-material";
+import { dateTimeString } from "@/utils/helpers";
+import { Delete, ExpandMore, Preview } from "@mui/icons-material";
 
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Box,
   Button,
   Grid,
   Typography,
@@ -14,14 +14,12 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
-function CardAccordion({
+function CardAccordionBlog({
   title,
   author,
   description,
   category,
-  position,
-  timeline,
-  projects,
+  createdAt,
   slug
 }) {
   const [expanded, setExpanded] = useState(false);
@@ -81,55 +79,11 @@ function CardAccordion({
                   {category}
                 </Grid>
                 <Grid item xs={4}>
-                  Position
+                  Posted Created
                 </Grid>
                 <Grid item xs={8} sx={{ color: "text.secondary" }}>
-                  {position}
+                  {dateTimeString(createdAt)}
                 </Grid>
-                <Grid item xs={4}>
-                  Timeline
-                </Grid>
-                <Grid item xs={8} sx={{ color: "text.secondary" }}>
-                  {timeline}
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === "panel3"}
-        onChange={handleChange("panel3")}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMore />}
-          aria-controls="panel3bh-content"
-          id="panel3bh-header"
-        >
-          <Typography sx={{ width: "33%", flexShrink: 0 }}>
-            Projects
-          </Typography>
-          <Typography sx={{ color: "text.secondary" }}>
-            What comes next?
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-        <Grid container>
-            <Grid item xs={12}>
-              <Grid container>
-                {
-                  projects.map((item) => (
-                    <Box key={item.name}>
-                      <Grid item xs={12}>
-                        {item.name}
-                      </Grid>
-                      <Grid item xs={12} sx={{ color: "text.secondary" }}>
-                        {item.description}
-                      </Grid>
-                    </Box>
-                  ))
-                }
-                
               </Grid>
             </Grid>
           </Grid>
@@ -153,7 +107,7 @@ function CardAccordion({
         </AccordionSummary>
         <AccordionDetails>
           <Grid container justifyContent="space-evenly">
-            <Grid item><Link href={`/works/${slug}`}><Button startIcon={<Preview/>}>View</Button></Link></Grid>
+            <Grid item><Link href={`/blogs/${slug}`}><Button startIcon={<Preview/>}>View</Button></Link></Grid>
             {/* <Grid item><Button startIcon={<Edit/>}>Edit</Button></Grid> */}
             <Grid item><Button startIcon={<Delete/>}>Delete</Button></Grid>
           </Grid>
@@ -163,4 +117,4 @@ function CardAccordion({
   );
 }
 
-export default CardAccordion;
+export default CardAccordionBlog;

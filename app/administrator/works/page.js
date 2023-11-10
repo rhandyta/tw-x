@@ -1,6 +1,6 @@
 import CustomBoxBorderedBottom from '@/components/CustomBoxBorderedBottom'
 import CustomContainer from '@/components/CustomContainer'
-import Card from '@/components/pages/administrator/works/Card';
+import Card from '@/components/pages/administrator/works/CardWork';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Button, Typography } from '@mui/material'
 import Link from 'next/link';
