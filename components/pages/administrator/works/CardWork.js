@@ -1,7 +1,7 @@
 "use client";
 import { db } from "@/libs/firebase";
 import { Box, Grid } from "@mui/material";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Swipeable from "../Swipeable";
 import CardAccordionWork from "./CardAccordionWork";
@@ -14,7 +14,7 @@ function CardWork() {
   useEffect(() => {
     setIsLoading(true);
     const unsub = onSnapshot(
-      query(collection(db, "works"), orderBy("createdAt", "desc")),
+      query(collection(db, "works"), orderBy("createdAt", "desc"), limit(9)),
       (snapShot) => {
         let tmpData = [];
         snapShot.forEach((doc) => {

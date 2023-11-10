@@ -25,7 +25,7 @@ function generateRandomFileName() {
 const uploadImageAsPromises = (imageFile) => {
   return new Promise(function (resolve, reject) {
     const uniqueFileName = generateRandomFileName();
-    let storageRef = ref(storage, `portfolio/images/works/${uniqueFileName}`);
+    let storageRef = ref(storage, `portfolio/images/blogs/${uniqueFileName}`);
     let uploadTask = uploadBytesResumable(storageRef, imageFile);
     uploadTask.on(
       "state_changed",
@@ -57,33 +57,15 @@ const uploadImageAsPromises = (imageFile) => {
 };
 
 const store = async (data) => {
-  let dataPictures = [];
-  for (let i = 0; i < data.pictures.length; i++) {
-    let upload = await uploadImageAsPromises(data.pictures[i]);
-    dataPictures.push({
-      title: `${data.title} Picture ${i}`,
-      picture: upload,
-    });
-  }
-  const { challenge, outcome, ...storeData } = {
+    let upload = await uploadImageAsPromises(data.pictures);
+  const { pictures, ...storeData } = {
     ...data,
-    pictures: dataPictures,
+    src: upload,
   };
-
-  const docRef = await addDoc(collection(db, "works"), {
+  const docRef = await addDoc(collection(db, "blogs"), {
     ...storeData,
     author: "Rhandyta Briantama",
     slug: slugify(data.title),
-    projects: [
-      {
-        description: data.challenge,
-        name: "challenge",
-      },
-      {
-        description: data.outcome,
-        name: "outcome",
-      },
-    ],
     updatedAt: serverTimestamp(),
     createdAt: serverTimestamp(),
   });
@@ -96,34 +78,20 @@ function Page() {
   const initialValues = {
     title: "",
     category: "",
-    timeline: "",
-    position: "Programmer",
     description: "",
-    challenge: "",
-    outcome: "",
-    pictures: [],
+    pictures: null,
   };
 
   const validationSchema = yup.object().shape({
     title: yup.string().required().min(3),
     category: yup.string().required().min(3),
-    timeline: yup.string().required(),
-    position: yup.string().required(),
     description: yup.string().required().min(3),
-    challenge: yup.string().required().min(3),
-    outcome: yup.string().required().min(3),
     pictures: yup
-      .array()
-      .min(5)
-      .max(5)
-      .of(
-        yup
           .mixed()
           .test("file-type", "Hanya gambar yang diperbolehkan", (value) => {
             if (!value) return true;
             return /^image\/(jpeg|png|gif)$/.test(value.type);
           })
-      ),
   });
 
   const onSubmit = async (values, props) => {
@@ -131,13 +99,13 @@ function Page() {
     await store(values);
     props.resetForm();
     setIsLoading(false);
-    router.push('/administrator/works')
+    router.push('/administrator/blogs')
   };
 
   return (
     <CustomBoxBorderedBottom>
       <Typography variant="h2" component="h1">
-        Add Work
+        Add Blog
       </Typography>
       <Box
         sx={{
@@ -184,32 +152,6 @@ function Page() {
                         />
                         <ErrorMessageField name="category" />
                       </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          variant="filled"
-                          label="Timeline"
-                          name="timeline"
-                          size="small"
-                          fullWidth
-                          onChange={props.handleChange}
-                          onBlur={props.handleBlur}
-                          value={props.values.timeline}
-                        />
-                        <ErrorMessageField name="timeline" />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          variant="filled"
-                          label="Position"
-                          name="position"
-                          size="small"
-                          fullWidth
-                          onChange={props.handleChange}
-                          onBlur={props.handleBlur}
-                          value={props.values.position}
-                        />
-                        <ErrorMessageField name="position" />
-                      </Grid>
                     </Grid>
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -229,42 +171,13 @@ function Page() {
                         <ErrorMessageField name="description" />
                       </Grid>
                       <Grid item xs={12}>
-                        <TextField
-                          variant="filled"
-                          label="Challenge"
-                          name="challenge"
-                          multiline
-                          maxRows={4}
-                          fullWidth
-                          onChange={props.handleChange}
-                          onBlur={props.handleBlur}
-                          value={props.values.challenge}
-                        />
-                        <ErrorMessageField name="challenge" />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          variant="filled"
-                          label="Outcome"
-                          name="outcome"
-                          multiline
-                          maxRows={4}
-                          fullWidth
-                          onChange={props.handleChange}
-                          onBlur={props.handleBlur}
-                          value={props.values.outcome}
-                        />
-                        <ErrorMessageField name="outcome" />
-                      </Grid>
-                      <Grid item xs={12}>
                         <InputUpload
                           type="file"
-                          multiple
                           name="pictures"
                           onChange={(event) =>
                             props.setFieldValue(
                               "pictures",
-                              Array.from(event.target.files)
+                              event.target.files[0]
                             )
                           }
                           onBlur={props.handleBlur}
