@@ -90,7 +90,7 @@ function Swipeable({title, pictures}) {
               <Image 
                 src={step.picture}
                 alt={step.title}
-                loading="lazy"
+                priority
                 width={800}
                 height={800}
                 style={{

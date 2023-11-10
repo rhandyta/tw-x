@@ -32,7 +32,7 @@ const ButtonCarousel = ({ buttons }) => {
     return () => {
       clearInterval(interval);
     };
-  }, [scrollPosition]);
+  }, [scrollPosition, scrollRight]);
 
   return (
     <CustomBoxBorderedBottom sx={{ overflow: "hidden" }}>

@@ -7,7 +7,7 @@ import { orange } from "@mui/material/colors";
 import { getDataWorks } from "@/services/works/works";
 import PaginateWork from "@/components/pages/works/PaginateWork";
 
-async function Page({ searchParams }) {
+async function page({ searchParams }) {
   const { page, ql, qr } = searchParams;
   const {works, total_data} = await getDataWorks(3, qr, ql);
   let maxPages = Math.round(total_data / 3);
@@ -72,4 +72,4 @@ async function Page({ searchParams }) {
   );
 }
 
-export default Page;
+export default page;

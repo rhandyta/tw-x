@@ -22,7 +22,7 @@ import { getDataBlogs } from "@/services/blogs/blogs";
 
 export default async function Home() {
   const {works} = await getDataWorks();
-  const blogs = await getDataBlogs();
+  const {blogs} = await getDataBlogs();
   return (
     <>
       <CustomBoxBorderedBottom>
