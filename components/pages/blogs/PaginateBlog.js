@@ -1,16 +1,16 @@
 "use client";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
-import { Button, Pagination } from "@mui/material";
+import { Button } from "@mui/material";
 import Link from "next/link";
 
-function Paginate({ lastVisible, firstVisible, maxPages, page = 1 }) {
+function PaginateBlog({ lastVisible, firstVisible, maxPages, page = 1 }) {
   return (
     <>
       <div>
         <Link
           // hidden={page < 2 ? true : false}
           hidden={page < 2 ? true : false}
-          href={`works${page < 2 ? "" : page ? `?page=${page - 1}&qr=${firstVisible}` : ""}`}
+          href={`blogs${page < 2 ? "" : page ? `?page=${page - 1}&qr=${firstVisible}` : ""}`}
         >
           <Button disabled={page < 2 ? true : false} startIcon={<ArrowBack />}>
             Previous
@@ -21,7 +21,7 @@ function Paginate({ lastVisible, firstVisible, maxPages, page = 1 }) {
         <Link
           hidden={page >= maxPages ? true : false}
           // hidden={page > 9 ? true : false}
-          href={`works${
+          href={`blogs${
             !page
               ? `?page=${parseInt(page) + 1}&ql=${lastVisible}`
               : page
@@ -43,4 +43,4 @@ function Paginate({ lastVisible, firstVisible, maxPages, page = 1 }) {
   );
 }
 
-export default Paginate;
+export default PaginateBlog;

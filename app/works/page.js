@@ -5,7 +5,7 @@ import Link from "next/link";
 import CardWork from "@/components/CardWork";
 import { orange } from "@mui/material/colors";
 import { getDataWorks } from "@/services/works/works";
-import Paginate from "@/components/pages/works/Paginate";
+import PaginateWork from "@/components/pages/works/PaginateWork";
 
 async function Page({ searchParams }) {
   const { page, ql, qr } = searchParams;
@@ -65,7 +65,7 @@ async function Page({ searchParams }) {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Paginate page={page} lastVisible={last} firstVisible={first} maxPages={maxPages}/>
+          <PaginateWork page={page} lastVisible={last} firstVisible={first} maxPages={maxPages}/>
         </Stack>
       </CustomContainer>
     </CustomBoxBorderedBottom>

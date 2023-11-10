@@ -1,12 +1,21 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Stack, Typography } from "@mui/material";
 import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
 import CardBlog from "@/components/CardBlog";
 import Link from "next/link";
 import { getDataBlogs } from "@/services/blogs/blogs";
+import PaginateBlog from "@/components/pages/blogs/PaginateBlog";
 
-async function page() {
-  const blogs = await getDataBlogs();
+async function page({ searchParams }) {
+  const { page, ql, qr } = searchParams;
+  const {blogs, total_data} = await getDataBlogs(3, qr, ql);
+  let maxPages = Math.round(total_data / 3);
+  let first, last;
+  if(blogs) {
+    first = btoa(JSON.stringify(blogs[0]?.slug));
+    last = btoa(JSON.stringify(blogs.slice(-1)[0]?.slug));
+  }
+
   return (
     <CustomBoxBorderedBottom>
       <Typography variant="h2" component="h1">
@@ -32,6 +41,15 @@ async function page() {
             </Grid>
           ))}
         </Grid>
+        <Stack
+          mt={2}
+          flex
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+        <PaginateBlog page={page} lastVisible={last} firstVisible={first} maxPages={maxPages}/>
+        </Stack>
       </CustomContainer>
     </CustomBoxBorderedBottom>
   );

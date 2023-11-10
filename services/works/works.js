@@ -1,7 +1,6 @@
 import { db } from "@/libs/firebase";
 import {
   collection,
-  endAt,
   endBefore,
   getCountFromServer,
   getDocs,
@@ -10,7 +9,6 @@ import {
   orderBy,
   query,
   startAfter,
-  startAt,
   where,
 } from "firebase/firestore";
 
