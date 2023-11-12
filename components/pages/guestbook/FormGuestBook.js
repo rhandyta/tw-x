@@ -1,16 +1,27 @@
 "use client";
 import CustomButton from "@/components/CustomButton";
 import { auth, db } from "@/libs/firebase";
-import { Grid, TextField } from "@mui/material";
+import { Grid, Stack, TextField } from "@mui/material";
 import { red } from "@mui/material/colors";
 import { ErrorMessage, Form, Formik } from "formik";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as yup from "yup";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { verifyCaptcha } from "@/services/captcha/captcha";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function FormGuestBook() {
   const [isClient, setIsClient] = useState(false);
+  const recaptchaRef = useRef(null);
+  const [isVerified, setIsVerified] = useState(false);
   const [user, setUser] = useState(null);
+
+  async function handleCaptchaSubmission(token) {
+    await verifyCaptcha(token)
+          .then(() => setIsVerified(true))
+          .catch(() => setIsVerified(false))
+  }
+
   const initialValues = {
     message: "",
   };
@@ -33,10 +44,10 @@ function FormGuestBook() {
   useEffect(() => {
     setIsClient(true);
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      setUser(authUser); // Mengatur informasi pengguna sesuai status otentikasi
+      setUser(authUser); 
     });
 
-    return () => unsubscribe(); // Berhenti mendengarkan saat komponen dilepas
+    return () => unsubscribe(); 
   }, []);
 
   if (!isClient) return false;
@@ -73,10 +84,17 @@ function FormGuestBook() {
                   )}
                 </ErrorMessage>
               </Grid>
+              <Stack mt={2} alignItems="center">
+              <ReCAPTCHA
+                sitekey={process.env.NEXT_PUBLIC_KEY_RECAPTCHA_SITE}
+                ref={recaptchaRef}
+                onChange={handleCaptchaSubmission}
+              />
+              </Stack>
               <CustomButton
                 type="submit"
                 sx={{ marginTop: 2, display: "block", width: "100%" }}
-                disabled={!props.isValid || props.isSubmitting || !props.dirty}
+                disabled={!props.isValid || props.isSubmitting || !props.dirty || !isVerified}
               >
                 Send Message
               </CustomButton>
