@@ -1,19 +1,33 @@
-"use server"
-import { db } from "@/libs/firebase";
-import { collection, deleteDoc, doc, getCountFromServer, getDocs, limit, orderBy, query, where } from "firebase/firestore";
-
+"use server";
+import { db, storage } from "@/libs/firebase";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getCountFromServer,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
+import { deleteObject, ref } from "firebase/storage";
 
 export async function getDataBlogs(lmt = 9, firstVisible, lastVisible) {
   const blogs = [];
-  const coll = collection(db, 'blogs');
+  const coll = collection(db, "blogs");
   const snapShotCount = await getCountFromServer(coll);
 
   let q;
   if (firstVisible || lastVisible) {
     if (lastVisible) {
       let slug = JSON.parse(atob(lastVisible));
-      let ref = query(collection(db, 'blogs'), where('slug', '==', slug), limit(1))
-      let docSnap = await getDocs(ref)
+      let ref = query(
+        collection(db, "blogs"),
+        where("slug", "==", slug),
+        limit(1)
+      );
+      let docSnap = await getDocs(ref);
       q = query(
         collection(db, "blogs"),
         orderBy("createdAt", "desc"),
@@ -22,8 +36,12 @@ export async function getDataBlogs(lmt = 9, firstVisible, lastVisible) {
       );
     } else {
       let slug = JSON.parse(atob(firstVisible));
-      let ref = query(collection(db, 'blogs'), where('slug', '==', slug), limit(1))
-      let docSnap = await getDocs(ref)
+      let ref = query(
+        collection(db, "blogs"),
+        where("slug", "==", slug),
+        limit(1)
+      );
+      let docSnap = await getDocs(ref);
       q = query(
         collection(db, "blogs"),
         orderBy("createdAt", "desc"),
@@ -46,39 +64,52 @@ export async function getDataBlogs(lmt = 9, firstVisible, lastVisible) {
   if (!blogs) {
     throw new Error("Failed to fetch data");
   }
-  return {blogs, total_data: snapShotCount.data().count};
+  return { blogs, total_data: snapShotCount.data().count };
 }
 
-
 export async function getDataBlog(slug) {
-    const mainBlog = [];
-    const relateBlogs = [];
-    const q = query(collection(db, 'blogs'), where('slug', '==', slug), limit(1));
-    const docSnap = await getDocs(q);
-    docSnap.forEach((doc) => {
-      mainBlog.push(doc.data())
-    })
-    const blog = mainBlog[0] || null;
-  
-    if(mainBlog) {
-      const relateQ = query(collection(db, 'blogs'), where('category', '==', blog.category), where('slug', '!=', blog.slug), limit(12));
-      const docSnapRelate = await getDocs(relateQ);
-      docSnapRelate.forEach(doc => {
-        relateBlogs.push(doc.data());
-      })
-      return {blog, relateBlogs}
-    }
-  
-    return {blog, relateBlogs};
+  const mainBlog = [];
+  const relateBlogs = [];
+  const q = query(collection(db, "blogs"), where("slug", "==", slug), limit(1));
+  const docSnap = await getDocs(q);
+  docSnap.forEach((doc) => {
+    mainBlog.push(doc.data());
+  });
+  const blog = mainBlog[0] || null;
+
+  if (mainBlog) {
+    const relateQ = query(
+      collection(db, "blogs"),
+      where("category", "==", blog.category),
+      where("slug", "!=", blog.slug),
+      limit(12)
+    );
+    const docSnapRelate = await getDocs(relateQ);
+    docSnapRelate.forEach((doc) => {
+      relateBlogs.push(doc.data());
+    });
+    return { blog, relateBlogs };
+  }
+
+  return { blog, relateBlogs };
 }
 
 export async function destroyDoc(slug) {
-  const workRef = collection(db, 'blogs');
-  const q = query(workRef, where('slug', '==', slug));
+  const blogRef = collection(db, "blogs");
+  const q = query(blogRef, where("slug", "==", slug));
   const querySnapShot = await getDocs(q);
-  querySnapShot.forEach( async (item) => {
-    const docRef = doc(db, 'blogs', item.id);
+  querySnapShot.forEach(async (item) => {
+    const imageRef = ref(storage, item.data().src);
+    deleteObject(imageRef)
+      .then(() => {
+        return true;
+      })
+      .catch((error) => {
+        console.log("err => ", error);
+        return false;
+      });
+    const docRef = doc(db, "blogs", item.id);
     await deleteDoc(docRef);
-  }); 
+  });
   return true;
 }
