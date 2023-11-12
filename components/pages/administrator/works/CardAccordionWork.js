@@ -1,5 +1,6 @@
 "use client";
 
+import { destroyDoc } from "@/services/works/works";
 import { Delete, ExpandMore, Preview } from "@mui/icons-material";
 
 import {
@@ -29,6 +30,11 @@ function CardAccordionWork({
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  const handleDestroy = async (slug) => {
+    const d = await destroyDoc(slug);
+    console.log('success', d);
+  } 
 
   return (
     <>
@@ -154,8 +160,7 @@ function CardAccordionWork({
         <AccordionDetails>
           <Grid container justifyContent="space-evenly">
             <Grid item><Link href={`/works/${slug}`}><Button startIcon={<Preview/>}>View</Button></Link></Grid>
-            {/* <Grid item><Button startIcon={<Edit/>}>Edit</Button></Grid> */}
-            <Grid item><Button startIcon={<Delete/>}>Delete</Button></Grid>
+            <Grid item><Button startIcon={<Delete/>} onClick={() => handleDestroy(slug)}>Delete</Button></Grid>
           </Grid>
         </AccordionDetails>
       </Accordion>

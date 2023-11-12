@@ -1,5 +1,5 @@
 import { db } from "@/libs/firebase";
-import { collection, getCountFromServer, getDocs, limit, orderBy, query, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getCountFromServer, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 
 
 export async function getDataBlogs(lmt = 9, firstVisible, lastVisible) {
@@ -69,4 +69,15 @@ export async function getDataBlog(slug) {
     }
   
     return {blog, relateBlogs};
+}
+
+export async function destroyDoc(slug) {
+  const workRef = collection(db, 'blogs');
+  const q = query(workRef, where('slug', '==', slug));
+  const querySnapShot = await getDocs(q);
+  querySnapShot.forEach( async (item) => {
+    const docRef = doc(db, 'blogs', item.id);
+    await deleteDoc(docRef);
+  }); 
+  return true;
 }

@@ -1,8 +1,11 @@
 import { db } from "@/libs/firebase";
 import {
   collection,
+  deleteDoc,
+  doc,
   endBefore,
   getCountFromServer,
+  getDoc,
   getDocs,
   limit,
   limitToLast,
@@ -83,4 +86,16 @@ export async function getDataWork(slug) {
   }
 
   return { work, relateWorks };
+}
+
+
+export async function destroyDoc(slug) {
+  const workRef = collection(db, 'works');
+  const q = query(workRef, where('slug', '==', slug));
+  const querySnapShot = await getDocs(q);
+  querySnapShot.forEach( async (item) => {
+    const docRef = doc(db, 'works', item.id);
+    await deleteDoc(docRef);
+  }); 
+  return true;
 }
