@@ -1,3 +1,4 @@
+"use server"
 import { db } from "@/libs/firebase";
 import { collection, deleteDoc, doc, getCountFromServer, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 

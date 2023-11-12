@@ -1,3 +1,4 @@
+"use server"
 import { db } from "@/libs/firebase";
 import {
   collection,
@@ -5,7 +6,6 @@ import {
   doc,
   endBefore,
   getCountFromServer,
-  getDoc,
   getDocs,
   limit,
   limitToLast,

@@ -37,7 +37,7 @@ function CardWork() {
           <Loading />
         ) : (
           data.map((item) => (
-            <Grid item xs={12} sm={6} md={4} key={item.title}>
+            <Grid item xs={12} sm={6} lg={4} key={item.title}>
               <Box>
                 <Swipeable pictures={item.pictures} />
                 <Box>
