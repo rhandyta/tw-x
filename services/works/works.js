@@ -1,5 +1,5 @@
 "use server"
-import { db } from "@/libs/firebase";
+import { db, storage } from "@/libs/firebase";
 import {
   collection,
   deleteDoc,
@@ -14,6 +14,7 @@ import {
   startAfter,
   where,
 } from "firebase/firestore";
+import { deleteObject, ref } from "firebase/storage";
 
 export async function getDataWorks(lmt = 9, firstVisible, lastVisible) {
   const works = [];
@@ -94,6 +95,15 @@ export async function destroyDoc(slug) {
   const q = query(workRef, where('slug', '==', slug));
   const querySnapShot = await getDocs(q);
   querySnapShot.forEach( async (item) => {
+    item.data().pictures.forEach(data => {
+      const imageRef = ref(storage, data.picture);
+      deleteObject(imageRef).then(() => {
+        return true;
+      }).catch((error) => {
+        console.log("err => ", error);
+        return false;
+      });
+    })
     const docRef = doc(db, 'works', item.id);
     await deleteDoc(docRef);
   }); 
