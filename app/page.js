@@ -20,10 +20,16 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 import { getDataWorks } from "@/services/works/works";
 import { getDataBlogs } from "@/services/blogs/blogs";
 
-export default async function Home() {
-  const {works} = await getDataWorks(9);
-  const {blogs} = await getDataBlogs(9);
-  let maxPages = Math.round(works.length / 25);
+export default async function Home({ searchParams }) {
+  const { page, ql, qr } = searchParams;
+  const {works} = await getDataWorks(9,qr, ql);
+  const {blogs} = await getDataBlogs(9,qr, ql);
+  let maxPages = Math.round(works.length / 9);
+  let first, last;
+  if(blogs) {
+    first = btoa(JSON.stringify(works[0]?.slug));
+    last = btoa(JSON.stringify(works.slice(-1)[0]?.slug));
+  }
   return (
     <>
       <CustomBoxBorderedBottom>
