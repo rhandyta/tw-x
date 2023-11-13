@@ -17,19 +17,45 @@ import CustomButton from "@/components/CustomButton";
 import CardWork from "@/components/CardWork";
 import CardBlog from "@/components/CardBlog";
 import SummarizeIcon from '@mui/icons-material/Summarize';
-import { getDataWorks } from "@/services/works/works";
-import { getDataBlogs } from "@/services/blogs/blogs";
 
-export default async function Home({ searchParams }) {
-  const { page, ql, qr } = searchParams;
-  const {works} = await getDataWorks(9,qr, ql);
-  const {blogs} = await getDataBlogs(9,qr, ql);
-  let maxPages = Math.round(works.length / 9);
-  let first, last;
-  if(blogs) {
-    first = btoa(JSON.stringify(works[0]?.slug));
-    last = btoa(JSON.stringify(works.slice(-1)[0]?.slug));
+async function getData() {
+  const fetchBlogs = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/blogs`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  const fetchWorks = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/works`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+
+  try {
+    const [blogsResponse, worksResponse] = await Promise.all([fetchBlogs, fetchWorks])
+    if(!blogsResponse.ok) throw new Error("Sorry, request data blogs failure")
+    if(!worksResponse.ok) throw new Error("Sorry, request data blogs failure")
+    const blogs = await blogsResponse.json();
+    const works = await worksResponse.json();
+    return {blogs: JSON.parse(blogs), works: JSON.parse(works)}
+
+  } catch (err) {
+    console.log(err)
   }
+}
+
+export default async function Home() {
+  const {blogs, works} = await getData();
+  // const { page, ql, qr } = searchParams;
+  // const {works} = await getDataWorks(9,qr, ql);
+  // const {blogs} = await getDataBlogs(9,qr, ql);
+  // let maxPages = Math.round(works.length / 9);
+  // let first, last;
+  // if(blogs) {
+  //   first = btoa(JSON.stringify(works[0]?.slug));
+  //   last = btoa(JSON.stringify(works.slice(-1)[0]?.slug));
+  // }
   return (
     <>
       <CustomBoxBorderedBottom>
