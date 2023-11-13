@@ -23,6 +23,7 @@ import { getDataBlogs } from "@/services/blogs/blogs";
 export default async function Home() {
   const {works} = await getDataWorks(9);
   const {blogs} = await getDataBlogs(9);
+  let maxPages = Math.round(works.length / 25);
   return (
     <>
       <CustomBoxBorderedBottom>
