@@ -50,10 +50,10 @@ async function getData() {
   }
 }
 
-export default async function Home() {
+export default async function Home({searchParams}) {
   // const {blogs, works} = await getData();
   // console.log("ok",blogs)
-  // const { page, ql, qr } = searchParams;
+  const { page, ql, qr } = searchParams;
   const {works} = await getDataWorks(9,qr, ql);
   const {blogs} = await getDataBlogs(9,qr, ql);
   let maxPages = Math.round(works.length / 9);
