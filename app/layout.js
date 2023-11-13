@@ -1,7 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import 'react-toastify/dist/ReactToastify.css';
 import ThemeRegistry from "./themeRegistry";
-
+import { ToastContainer } from "react-toastify";
 import { Box } from "@mui/material";
 import Sidebar from "@/components/Sidebar";
 import DrawerHeader from "@/components/DrawerHeader";
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <ToastContainer />
         <ThemeRegistry options={{ key: "mui" }}>
           <Box sx={{ display: "flex" }}>
             <Sidebar />
@@ -27,7 +29,7 @@ export default function RootLayout({ children }) {
                 flexGrow: 1,
                 p: {
                   xs: 1,
-                  md: 3
+                  md: 3,
                 },
               }}
             >

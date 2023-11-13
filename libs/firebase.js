@@ -19,6 +19,8 @@ let app =  getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider()
 const auth = getAuth(app);
+auth.languageCode = 'id';
+auth.useDeviceLanguage();
 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 const storage = getStorage(app)
 const db = getFirestore(app);

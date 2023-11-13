@@ -29,13 +29,14 @@ function BoxListGuesBook() {
       unsub();
     };
   }, []);
-
   return (
     <Grid container>
       {isLoading ? (
         <Loading />
-      ) : !data ? (
-        <Typography>Tidak ada data.</Typography>
+      ) : data.length === 0 ? (
+        <Grid item xs={12}>
+          <Typography textAlign="center">Tidak ada data.</Typography>
+        </Grid>
       ) : (
         data &&
         data.map((doc, index) => (

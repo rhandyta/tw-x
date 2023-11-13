@@ -1,14 +1,15 @@
 "use client";
 import CustomButton from "@/components/CustomButton";
-import { auth, db } from "@/libs/firebase";
+import { auth } from "@/libs/firebase";
 import { Grid, Stack, TextField } from "@mui/material";
 import { red } from "@mui/material/colors";
 import { ErrorMessage, Form, Formik } from "formik";
 import { useEffect, useRef, useState } from "react";
 import * as yup from "yup";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { verifyCaptcha } from "@/services/captcha/captcha";
 import ReCAPTCHA from "react-google-recaptcha";
+import { store } from "@/services/guestbook/guestbook";
+import { toast } from "react-toastify";
 
 function FormGuestBook() {
   const [isClient, setIsClient] = useState(false);
@@ -18,8 +19,8 @@ function FormGuestBook() {
 
   async function handleCaptchaSubmission(token) {
     await verifyCaptcha(token)
-          .then(() => setIsVerified(true))
-          .catch(() => setIsVerified(false))
+      .then(() => setIsVerified(true))
+      .catch(() => setIsVerified(false));
   }
 
   const initialValues = {
@@ -31,23 +32,39 @@ function FormGuestBook() {
   });
 
   const onSubmit = async (values, props) => {
-    await addDoc(collection(db, "messages"), {
-      name: auth.currentUser.displayName,
-      picture: auth.currentUser.photoURL,
-      message: values.message,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
+    const guestbook = await store(values);
+    if (guestbook) {
+      toast.success("Success, the message was successfully sent", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      })
+      return props.resetForm();
+    }
+    return toast.error("Sorry, message can only be done 3 times a day", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
     });
-    props.resetForm();
   };
 
   useEffect(() => {
     setIsClient(true);
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      setUser(authUser); 
+      setUser(authUser);
     });
 
-    return () => unsubscribe(); 
+    return () => unsubscribe();
   }, []);
 
   if (!isClient) return false;
@@ -85,16 +102,21 @@ function FormGuestBook() {
                 </ErrorMessage>
               </Grid>
               <Stack mt={2} alignItems="center">
-              <ReCAPTCHA
-                sitekey={process.env.NEXT_PUBLIC_KEY_RECAPTCHA_SITE}
-                ref={recaptchaRef}
-                onChange={handleCaptchaSubmission}
-              />
+                <ReCAPTCHA
+                  sitekey={process.env.NEXT_PUBLIC_KEY_RECAPTCHA_SITE}
+                  ref={recaptchaRef}
+                  onChange={handleCaptchaSubmission}
+                />
               </Stack>
               <CustomButton
                 type="submit"
                 sx={{ marginTop: 2, display: "block", width: "100%" }}
-                disabled={!props.isValid || props.isSubmitting || !props.dirty || !isVerified}
+                disabled={
+                  !props.isValid ||
+                  props.isSubmitting ||
+                  !props.dirty ||
+                  !isVerified
+                }
               >
                 Send Message
               </CustomButton>
