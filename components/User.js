@@ -26,10 +26,10 @@ function User() {
     setIsClient(true);
 
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      setUser(authUser); // Mengatur informasi pengguna sesuai status otentikasi
+      setUser(authUser); 
     });
 
-    return () => unsubscribe(); // Berhenti mendengarkan saat komponen dilepas
+    return () => unsubscribe(); 
   }, []);
 
   if (!isClient) return false;
