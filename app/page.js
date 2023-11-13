@@ -47,7 +47,7 @@ async function getData() {
   }
 }
 
-export default async function page() {
+export default async function Home() {
   const {blogs, works} = await getData();
   // const { page, ql, qr } = searchParams;
   // const {works} = await getDataWorks(9,qr, ql);
