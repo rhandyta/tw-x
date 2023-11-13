@@ -41,7 +41,7 @@ async function getData() {
     return {blogs: JSON.parse(blogs), works: JSON.parse(works)}
 
   } catch (err) {
-    console.log(err)
+    return {blogs: [], works: []};
   }
 }
 
