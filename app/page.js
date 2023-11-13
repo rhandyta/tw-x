@@ -40,7 +40,7 @@ async function getData() {
     if(!worksResponse.ok) throw new Error("Sorry, request data blogs failure")
     const blogs = await blogsResponse.json();
     const works = await worksResponse.json();
-    return {blogs: JSON.parse(blogs), works: JSON.parse(works)}
+    return {blogs, works}
 
   } catch (err) {
     return {blogs: [], works: []};
