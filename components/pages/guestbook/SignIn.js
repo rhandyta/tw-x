@@ -1,16 +1,12 @@
 "use client";
-import {  auth, provider } from "@/libs/firebase";
+import { auth, provider } from "@/libs/firebase";
 import { Google } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
 function SignIn() {
-
-    const router = useRouter()
+  const router = useRouter();
 
   const onLoginHandler = () => {
     signInWithPopup(auth, provider)
@@ -18,10 +14,13 @@ function SignIn() {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
         const user = result.user;
-        if(user.email === process.env.NEXT_PUBLIC_EMAIL_AUTHORIZED && user.uid === process.env.NEXT_PUBLIC_UID_AUTHORIZED) {
-          return router.push('/administrator/dashboard');
+        if (
+          user.email === process.env.NEXT_PUBLIC_EMAIL_AUTHORIZED &&
+          user.uid === process.env.NEXT_PUBLIC_UID_AUTHORIZED
+        ) {
+          return router.push("/administrator/dashboard");
         }
-        return router.push('/guestbook');
+        return router.push("/guestbook");
       })
       .catch((err) => {
         const errorCode = err.code;
@@ -29,7 +28,7 @@ function SignIn() {
         const email = err.customData.email;
         const credential = GoogleAuthProvider.credentialFromError(err);
 
-        console.log({errorCode, errorMessage, email, credential})
+        console.log({ errorCode, errorMessage, email, credential });
       });
   };
 
