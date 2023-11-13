@@ -23,13 +23,15 @@ async function getData() {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
-    }
+    },
+    next: { revalidate: 0 }
   });
   const fetchWorks = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/works`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
-    }
+    },
+    next: { revalidate: 0 }
   });
 
   try {
@@ -45,7 +47,7 @@ async function getData() {
   }
 }
 
-export default async function Home() {
+export default async function page() {
   const {blogs, works} = await getData();
   // const { page, ql, qr } = searchParams;
   // const {works} = await getDataWorks(9,qr, ql);
