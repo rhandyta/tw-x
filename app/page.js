@@ -156,7 +156,7 @@ export default async function Home() {
               justifyContent: "center",
             }}
           >
-            {works.map((item) => (
+            {works && works.map((item) => (
               <Grid
                 key={item.title}
                 item
@@ -196,7 +196,7 @@ export default async function Home() {
         </Typography>
         <CustomContainer>
           <Grid container mb={4} rowSpacing={2}>
-            {blogs.map((item) => (
+            {blogs && blogs.map((item) => (
               <Grid item xs={12} key={item.title}>
                 <Link
                   href={`/blogs/${item.slug}`}
