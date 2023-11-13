@@ -9,8 +9,8 @@ import PaginateWork from "@/components/pages/works/PaginateWork";
 
 async function page({ searchParams }) {
   const { page, ql, qr } = searchParams;
-  const {works, total_data} = await getDataWorks(3, qr, ql);
-  let maxPages = Math.round(total_data / 3);
+  const {works, total_data} = await getDataWorks(25, qr, ql);
+  let maxPages = Math.round(total_data / 25);
   let first, last;
   if(works) {
     first = btoa(JSON.stringify(works[0]?.slug));

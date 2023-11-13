@@ -8,8 +8,8 @@ import PaginateBlog from "@/components/pages/blogs/PaginateBlog";
 
 async function page({ searchParams }) {
   const { page, ql, qr } = searchParams;
-  const {blogs, total_data} = await getDataBlogs(3, qr, ql);
-  let maxPages = Math.round(total_data / 3);
+  const {blogs, total_data} = await getDataBlogs(25, qr, ql);
+  let maxPages = Math.round(total_data / 25);
   let first, last;
   if(blogs) {
     first = btoa(JSON.stringify(blogs[0]?.slug));
