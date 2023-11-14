@@ -20,13 +20,15 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 import { getDataWorks } from "@/services/works/works";
 import { getDataBlogs } from "@/services/blogs/blogs";
 
+
+export const dynamic = 'force-dynamic'
+
 async function getData() {
   const fetchBlogs = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/blogs`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
     },
-    next: { revalidate: 0 },
     cache: "no-store"
   });
   const fetchWorks = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/works`, {
@@ -34,14 +36,13 @@ async function getData() {
     headers: {
       "Content-Type": "application/json"
     },
-    next: { revalidate: 0 },
     cache: "no-store"
   });
 
   try {
     const [blogsResponse, worksResponse] = await Promise.all([fetchBlogs, fetchWorks])
     if(!blogsResponse.ok) throw new Error("Sorry, request data blogs failure")
-    if(!worksResponse.ok) throw new Error("Sorry, request data blogs failure")
+    if(!worksResponse.ok) throw new Error("Sorry, request data works failure")
     const blogs = await blogsResponse.json();
     const works = await worksResponse.json();
    
@@ -54,6 +55,7 @@ async function getData() {
 
 export default async function Home({searchParams}) {
   const {blogs, works} = await getData();
+  console.log(works.length)
   // console.log("ok",blogs)
   // const { page, ql, qr } = searchParams;
   // const {works} = await getDataWorks(9,qr, ql);
