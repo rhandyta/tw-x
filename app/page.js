@@ -53,9 +53,18 @@ async function getData() {
   }
 }
 
-export default async function Home({searchParams}) {
-  const {blogs, works} = await getData();
-  console.log(works.length)
+export async function getServerSideProps() {
+  const {blogs, works} = await getData()
+  return {
+    props: {
+      blogs, works
+    }
+  }
+}
+
+export default async function Home({blogs, works}) {
+  // const {blogs, works} = await getData();
+  // console.log(works.length)
   // console.log("ok",blogs)
   // const { page, ql, qr } = searchParams;
   // const {works} = await getDataWorks(9,qr, ql);
