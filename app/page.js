@@ -26,14 +26,16 @@ async function getData() {
     headers: {
       "Content-Type": "application/json"
     },
-    next: { revalidate: 0 }
+    next: { revalidate: 0 },
+    cache: "no-store"
   });
   const fetchWorks = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/works`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
     },
-    next: { revalidate: 0 }
+    next: { revalidate: 0 },
+    cache: "no-store"
   });
 
   try {
@@ -51,17 +53,17 @@ async function getData() {
 }
 
 export default async function Home({searchParams}) {
-  // const {blogs, works} = await getData();
+  const {blogs, works} = await getData();
   // console.log("ok",blogs)
-  const { page, ql, qr } = searchParams;
-  const {works} = await getDataWorks(9,qr, ql);
-  const {blogs} = await getDataBlogs(9,qr, ql);
-  let maxPages = Math.round(works.length / 9);
-  let first, last;
-  if(blogs) {
-    first = btoa(JSON.stringify(works[0]?.slug));
-    last = btoa(JSON.stringify(works.slice(-1)[0]?.slug));
-  }
+  // const { page, ql, qr } = searchParams;
+  // const {works} = await getDataWorks(9,qr, ql);
+  // const {blogs} = await getDataBlogs(9,qr, ql);
+  // let maxPages = Math.round(works.length / 9);
+  // let first, last;
+  // if(blogs) {
+  //   first = btoa(JSON.stringify(works[0]?.slug));
+  //   last = btoa(JSON.stringify(works.slice(-1)[0]?.slug));
+  // }
   return (
     <>
       <CustomBoxBorderedBottom>
