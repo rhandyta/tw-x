@@ -29,7 +29,6 @@ async function getData() {
     headers: {
       "Content-Type": "application/json"
     },
-    cache: "no-store",
     next: { revalidate: 0 } 
   });
   const fetchWorks = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/works`, {
@@ -37,7 +36,6 @@ async function getData() {
     headers: {
       "Content-Type": "application/json"
     },
-    cache: "no-store",
     next: { revalidate: 0 } 
   });
 
