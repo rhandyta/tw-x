@@ -20,8 +20,8 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 import { getDataWorks } from "@/services/works/works";
 import { getDataBlogs } from "@/services/blogs/blogs";
 
-
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 async function getData() {
   const fetchBlogs = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/blogs`, {
@@ -29,14 +29,16 @@ async function getData() {
     headers: {
       "Content-Type": "application/json"
     },
-    cache: "no-store"
+    cache: "no-store",
+    next: { revalidate: 0 } 
   });
   const fetchWorks = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/works`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
     },
-    cache: "no-store"
+    cache: "no-store",
+    next: { revalidate: 0 } 
   });
 
   try {
@@ -53,18 +55,10 @@ async function getData() {
   }
 }
 
-export async function getServerSideProps() {
-  const {blogs, works} = await getData()
-  return {
-    props: {
-      blogs, works
-    }
-  }
-}
 
-export default async function Home({blogs, works}) {
-  // const {blogs, works} = await getData();
-  // console.log(works.length)
+export default async function Home() {
+  const {blogs, works} = await getData();
+  console.log(works.length)
   // console.log("ok",blogs)
   // const { page, ql, qr } = searchParams;
   // const {works} = await getDataWorks(9,qr, ql);
