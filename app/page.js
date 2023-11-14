@@ -55,7 +55,7 @@ async function getData() {
 
 
 export default async function Home() {
-  const {blogs, works} = await getData();
+  let {blogs, works} = await getData();
   console.log(works.length)
   // console.log("ok",blogs)
   // const { page, ql, qr } = searchParams;
@@ -63,10 +63,12 @@ export default async function Home() {
   // const {blogs} = await getDataBlogs(9,qr, ql);
   // let maxPages = Math.round(works.length / 9);
   // let first, last;
-  // if(blogs) {
-  //   first = btoa(JSON.stringify(works[0]?.slug));
-  //   last = btoa(JSON.stringify(works.slice(-1)[0]?.slug));
-  // }
+  if(blogs.length === 0 ) {
+    blogs = []
+  }
+  if(works.length === 0 ) {
+    works = []
+  }
   return (
     <>
       <CustomBoxBorderedBottom>
