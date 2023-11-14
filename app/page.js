@@ -1,8 +1,4 @@
-import {
-  linkExternal,
-  profile,
-  skills,
-} from "@/utils/constant";
+import { linkExternal, profile, skills } from "@/utils/constant";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,59 +12,74 @@ import CarouselButton from "@/components/pages/home/ButtonCarousel";
 import CustomButton from "@/components/CustomButton";
 import CardWork from "@/components/CardWork";
 import CardBlog from "@/components/CardBlog";
-import SummarizeIcon from '@mui/icons-material/Summarize';
+import SummarizeIcon from "@mui/icons-material/Summarize";
 import { getDataWorks } from "@/services/works/works";
 import { getDataBlogs } from "@/services/blogs/blogs";
 
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
-async function getData() {
+// async function getData() {
+//   const fetchBlogs = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/blogs`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     next: { revalidate: 0 }
+//   });
+//   const fetchWorks = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/works`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     next: { revalidate: 0 }
+//   });
+
+//   try {
+//     const [blogsResponse, worksResponse] = await Promise.all([fetchBlogs, fetchWorks])
+//     if(!blogsResponse.ok) throw new Error("Sorry, request data blogs failure")
+//     if(!worksResponse.ok) throw new Error("Sorry, request data works failure")
+//     const blogs = await blogsResponse.json();
+//     const works = await worksResponse.json();
+
+//     return {blogs, works}
+
+//   } catch (err) {
+//     return {blogs: [], works: []};
+//   }
+// }
+
+export default async function Home() {
   const fetchBlogs = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/blogs`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    next: { revalidate: 0 } 
+    next: { revalidate: 5 },
   });
   const fetchWorks = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/works`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    next: { revalidate: 0 } 
+    next: { revalidate: 5 },
   });
-
-  try {
-    const [blogsResponse, worksResponse] = await Promise.all([fetchBlogs, fetchWorks])
-    if(!blogsResponse.ok) throw new Error("Sorry, request data blogs failure")
-    if(!worksResponse.ok) throw new Error("Sorry, request data works failure")
-    const blogs = await blogsResponse.json();
-    const works = await worksResponse.json();
-   
-    return {blogs, works}
-
-  } catch (err) {
-    return {blogs: [], works: []};
-  }
-}
-
-
-export default async function Home() {
-  let {blogs, works} = await getData();
-  console.log(works.length)
+  const [blogsResponse, worksResponse] = await Promise.all([
+    fetchBlogs,
+    fetchWorks,
+  ]);
+  if (!blogsResponse.ok) throw new Error("Sorry, request data blogs failure");
+  if (!worksResponse.ok) throw new Error("Sorry, request data works failure");
+  const blogs = await blogsResponse.json();
+  const works = await worksResponse.json();
+  console.log(works.length);
   // console.log("ok",blogs)
   // const { page, ql, qr } = searchParams;
   // const {works} = await getDataWorks(9,qr, ql);
   // const {blogs} = await getDataBlogs(9,qr, ql);
   // let maxPages = Math.round(works.length / 9);
   // let first, last;
-  if(blogs.length === 0 ) {
-    blogs = []
-  }
-  if(works.length === 0 ) {
-    works = []
-  }
+
   return (
     <>
       <CustomBoxBorderedBottom>
@@ -105,16 +116,11 @@ export default async function Home() {
           <Grid item xs={12} sm="auto" sx={{ textAlign: "center" }}>
             <Grid container rowSpacing={1}>
               <Grid item xs={12}>
-            <ButtonOpenWork />
+                <ButtonOpenWork />
               </Grid>
               <Grid item xs={12}>
-                <Link
-                  href="/preview"
-                  title="Preview CV"
-                >
-                <Button startIcon={<SummarizeIcon/>}>
-                  Preview CV
-                </Button>
+                <Link href="/preview" title="Preview CV">
+                  <Button startIcon={<SummarizeIcon />}>Preview CV</Button>
                 </Link>
               </Grid>
             </Grid>
@@ -167,33 +173,34 @@ export default async function Home() {
               justifyContent: "center",
             }}
           >
-            {works && works.map((item) => (
-              <Grid
-                key={item.title}
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                sx={{
-                  "&:hover": {
-                    color: orange[400],
-                  },
-                }}
-              >
-                <Link
-                  href={`works/${item.slug}`}
+            {works &&
+              works.map((item) => (
+                <Grid
                   key={item.title}
-                  className="button-link"
-                  title={item.title}
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  sx={{
+                    "&:hover": {
+                      color: orange[400],
+                    },
+                  }}
                 >
-                  <CardWork
+                  <Link
+                    href={`works/${item.slug}`}
+                    key={item.title}
+                    className="button-link"
                     title={item.title}
-                    category={item.category}
-                    src={item.pictures[0].picture}
-                  />
-                </Link>
-              </Grid>
-            ))}
+                  >
+                    <CardWork
+                      title={item.title}
+                      category={item.category}
+                      src={item.pictures[0].picture}
+                    />
+                  </Link>
+                </Grid>
+              ))}
           </Grid>
           <Link href="/works" className="button-link" title="works">
             <CustomButton text="view all work" />
@@ -207,23 +214,24 @@ export default async function Home() {
         </Typography>
         <CustomContainer>
           <Grid container mb={4} rowSpacing={2}>
-            {blogs && blogs.map((item) => (
-              <Grid item xs={12} key={item.title}>
-                <Link
-                  href={`/blogs/${item.slug}`}
-                  title={item.title}
-                  className="button-link"
-                >
-                  <CardBlog
-                    key={item.title}
-                    src={item.src}
+            {blogs &&
+              blogs.map((item) => (
+                <Grid item xs={12} key={item.title}>
+                  <Link
+                    href={`/blogs/${item.slug}`}
                     title={item.title}
-                    category={item.category}
-                    created_at={item.created_at}
-                  />
-                </Link>
-              </Grid>
-            ))}
+                    className="button-link"
+                  >
+                    <CardBlog
+                      key={item.title}
+                      src={item.src}
+                      title={item.title}
+                      category={item.category}
+                      created_at={item.created_at}
+                    />
+                  </Link>
+                </Grid>
+              ))}
           </Grid>
           <Link href="/blogs" className="button-link" title="blogs">
             <CustomButton text="view all posts" />
