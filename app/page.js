@@ -14,6 +14,50 @@ import CardWork from "@/components/CardWork";
 import CardBlog from "@/components/CardBlog";
 import SummarizeIcon from "@mui/icons-material/Summarize";
 
+export const metadata = {
+  title: "Rhandyta Briantama",
+  description:
+    "Portofolio Rhandyta Briantama sebagai Software Engineer berpengalaman di bidang pembuatan aplikasi web.",
+  keywords: ["Next.js", "React", "JavaScript"],
+
+  alternates: {
+    canonical: "/",
+  },
+
+  other: {
+    "page-topic": "personal",
+    "revisit-after": "6 month",
+    expires: "never",
+  },
+
+  openGraph: {
+    title: {
+      template: "%s | Rhandy",
+      default: "Rhandyta Briantama",
+    },
+    url: "/",
+    siteName: "Portfolio Rhandyta Briantama",
+    description: "Portofolio Rhandyta Briantama sebagai Software Engineer berpengalaman di bidang pembuatan aplikasi web.",
+    images: [
+      {
+        url: "/assets/images/profile.jpg",
+        width: 800,
+        height: 600,
+        alt: "Profile Picture",
+      },
+      {
+        url: "/assets/images/profile.jpg",
+        width: 1800,
+        height: 1600,
+        alt: "Profile Picture",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+    authors: ['Rhandyta Briantama', 'Rhandyta', "Rhandy", "Briantama"],
+  },
+};
+
 export const revalidate = 3600;
 async function getData(value) {
   const fetchBlogs = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/blogs`, {

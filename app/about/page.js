@@ -7,6 +7,10 @@ import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
 import CustomButton from "@/components/CustomButton";
 
+export const metadata = {
+  title: "About"
+}
+
 function page() {
   return (
     <CustomBoxBorderedBottom>
