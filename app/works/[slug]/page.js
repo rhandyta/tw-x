@@ -19,7 +19,7 @@ export async function generateMetadata({params, searchParams}, parent) {
     keywords: ["Pengalaman Kerja", "Portfolio", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
     category: "resume, portfolio",
     alternates: {
-      canonical: `works/${work.slug}`,
+      canonical: `${process.env.NEXT_PUBLIC_HOST}/works/${work.slug}`,
     },
   
     other: {
@@ -35,7 +35,7 @@ export async function generateMetadata({params, searchParams}, parent) {
   
     openGraph: {
       title: `${work.title}`,
-      url: `works/${work.slug}`,
+      url: `${process.env.NEXT_PUBLIC_HOST}/works/${work.slug}`,
       siteName: "Portfolio Rhandyta Briantama",
       description: `${work.description}`,
       images: work.pictures.map((item, index) => {

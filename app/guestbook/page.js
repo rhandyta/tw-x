@@ -17,7 +17,7 @@ export async function generateMetadata({params, searchParams}, parent) {
     keywords: ["Guestbook", "Portfolio", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
     category: "personal, news",
     alternates: {
-      canonical: "/guestbook",
+      canonical: `${process.env.NEXT_PUBLIC_HOST}/guestbook`,
     },
   
     other: {
@@ -28,17 +28,17 @@ export async function generateMetadata({params, searchParams}, parent) {
   
     openGraph: {
       title: "Guest Book",
-      url: "/guestbook",
+      url: `${process.env.NEXT_PUBLIC_HOST}/guestbook`,
       siteName: "Portfolio Rhandyta Briantama",
       description: "Lihat pesan yang dikirimkan oleh para pengunjung di halaman ini.",
       images: [
         {
-          url: "/assets/images/profile.jpg",
+          url: `${process.env.NEXT_PUBLIC_HOST}/assets/images/profile.jpg`,
           width: 800,
           height: 600,
         },
         {
-          url: "/assets/images/profile.jpg",
+          url: `${process.env.NEXT_PUBLIC_HOST}/assets/images/profile.jpg`,
           width: 1800,
           height: 1600,
           alt: "Profile Picture",

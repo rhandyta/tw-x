@@ -21,7 +21,7 @@ export const metadata = {
   keywords: ["Rhandyta Briantama", "Rhandy", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
   category: "resume, portfolio, biography",
   alternates: {
-    canonical: "/",
+    canonical: process.env.NEXT_PUBLIC_HOST,
   },
 
   other: {
@@ -32,17 +32,17 @@ export const metadata = {
 
   openGraph: {
     title: "Rhandyta Briantama",
-    url: "/",
+    url: process.env.NEXT_PUBLIC_HOST,
     siteName: "Portfolio Rhandyta Briantama",
     description: "Portfolio Rhandyta Briantama sebagai Software Engineer berpengalaman di bidang pembuatan aplikasi web.",
     images: [
       {
-        url: "/assets/images/profile.jpg",
+        url: `${process.env.NEXT_PUBLIC_HOST}/assets/images/profile.jpg`,
         width: 800,
         height: 600,
       },
       {
-        url: "/assets/images/profile.jpg",
+        url: `${process.env.NEXT_PUBLIC_HOST}/assets/images/profile.jpg`,
         width: 1800,
         height: 1600,
         alt: "Profile Picture",

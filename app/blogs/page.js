@@ -16,7 +16,7 @@ export async function generateMetadata({params, searchParams}, parent) {
     keywords: ["Artikel", "Portfolio", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
     category: "news, lifestyle",
     alternates: {
-      canonical: "/blogs",
+      canonical: `${process.env.NEXT_PUBLIC_HOST}/blogs`,
     },
   
     other: {
@@ -27,7 +27,7 @@ export async function generateMetadata({params, searchParams}, parent) {
   
     openGraph: {
       title: "My Work Portfolio",
-      url: "/blogs",
+      url: `${process.env.NEXT_PUBLIC_HOST}/blogs`,
       siteName: "Portfolio Rhandyta Briantama",
       description: "Lihat semua artikel yang ada di halaman ini untuk menampilkan artikel terbaru dari Rhandyta Briantama.",
       images: [
