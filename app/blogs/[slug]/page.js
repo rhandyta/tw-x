@@ -3,6 +3,7 @@ import CardBlog from "@/components/CardBlog";
 import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
 import { getDataBlog } from "@/services/blogs/blogs";
+import { dateTimeString } from "@/utils/helpers";
 import { Box, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,7 +30,13 @@ async function page({ params }) {
             <Typography variant="overline" component="h2" color="primary.main">
               {blog.category}
             </Typography>
-            <Box sx={{ display: "flex", gap: 1 }}>
+            <Box sx={{ display: "flex", flexDirection: {
+              xs: "column",
+              sm: "row"
+            }, gap: {
+              xs: 0,
+              sm: 1
+            } }}>
               <Typography
                 variant="overline"
                 component="address"
@@ -47,12 +54,12 @@ async function page({ params }) {
                 </Link>
               </Typography>
               <Typography
-                variant="overline"
-                component="time"
-                dateTime={blog.created_at}
-              >
-                {blog.created_at}
-              </Typography>
+              variant="overline"
+              component="time"
+              dateTime={dateTimeString(blog.createdAt)}
+            >
+              {dateTimeString(blog.createdAt)}
+            </Typography>
             </Box>
           </Box>
           <Box component="section">

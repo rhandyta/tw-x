@@ -17,33 +17,29 @@ import SummarizeIcon from "@mui/icons-material/Summarize";
 export const metadata = {
   title: "Rhandyta Briantama",
   description:
-    "Portofolio Rhandyta Briantama sebagai Software Engineer berpengalaman di bidang pembuatan aplikasi web.",
-  keywords: ["Next.js", "React", "JavaScript"],
-
+    "Portfolio Rhandyta Briantama sebagai Software Engineer berpengalaman di bidang pembuatan aplikasi web.",
+  keywords: ["Rhandyta Briantama", "Rhandy", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
+  category: "resume, portfolio, biography",
   alternates: {
     canonical: "/",
   },
 
   other: {
-    "page-topic": "personal",
-    "revisit-after": "6 month",
+    "page-topic": "Personal website portfolio Rhandyta Briantama",
+    "revisit-after": "1 month",
     expires: "never",
   },
 
   openGraph: {
-    title: {
-      template: "%s | Rhandy",
-      default: "Rhandyta Briantama",
-    },
+    title: "Rhandyta Briantama",
     url: "/",
     siteName: "Portfolio Rhandyta Briantama",
-    description: "Portofolio Rhandyta Briantama sebagai Software Engineer berpengalaman di bidang pembuatan aplikasi web.",
+    description: "Portfolio Rhandyta Briantama sebagai Software Engineer berpengalaman di bidang pembuatan aplikasi web.",
     images: [
       {
         url: "/assets/images/profile.jpg",
         width: 800,
         height: 600,
-        alt: "Profile Picture",
       },
       {
         url: "/assets/images/profile.jpg",

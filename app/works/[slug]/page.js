@@ -20,7 +20,13 @@ async function Page({ params }) {
           <Typography component="h1" variant="h2">
             {work.title}
           </Typography>
-          <Box sx={{ display: "flex", gap: 1 }}>
+          <Box sx={{ display: "flex", flexDirection: {
+              xs: "column",
+              sm: "row"
+            }, gap: {
+              xs: 0,
+              sm: 1
+            } }}>
             <Typography
               variant="overline"
               component="address"

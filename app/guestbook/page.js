@@ -7,6 +7,50 @@ import FormGuestBook from "@/components/pages/guestbook/FormGuestBook";
 import { grey } from "@mui/material/colors";
 import BoxListGuesBook from "@/components/pages/guestbook/BoxListGuesBook";
 
+
+export async function generateMetadata({params, searchParams}, parent) {
+
+  return {
+    title: "Guest Book",
+    description:
+      "Lihat pesan yang dikirimkan oleh para pengunjung di halaman ini.",
+    keywords: ["Guestbook", "Portfolio", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
+    category: "personal, news",
+    alternates: {
+      canonical: "/guestbook",
+    },
+  
+    other: {
+      "page-topic": "Pesan yang di kirimkan ke Rhandyta Briantama",
+      "revisit-after": "1 year",
+      expires: "never",
+    },
+  
+    openGraph: {
+      title: "Guest Book",
+      url: "/guestbook",
+      siteName: "Portfolio Rhandyta Briantama",
+      description: "Lihat pesan yang dikirimkan oleh para pengunjung di halaman ini.",
+      images: [
+        {
+          url: "/assets/images/profile.jpg",
+          width: 800,
+          height: 600,
+        },
+        {
+          url: "/assets/images/profile.jpg",
+          width: 1800,
+          height: 1600,
+          alt: "Profile Picture",
+        },
+      ],
+      locale: "id_ID",
+      type: "website",
+      authors: ['Rhandyta Briantama', 'Rhandyta', "Rhandy", "Briantama"],
+    },
+  }
+}
+
 async function page() {
  
   return (

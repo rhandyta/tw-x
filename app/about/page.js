@@ -7,8 +7,47 @@ import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
 import CustomButton from "@/components/CustomButton";
 
-export const metadata = {
-  title: "About"
+export async function generateMetadata({params, searchParams}, parent) {
+
+  return {
+    title: "About Me",
+    description:
+      "Lihat biografi Rhandyta Briantama sebagai Software Engineer secara lengkap di halaman ini.",
+    keywords: ["Biography", "Portfolio", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
+    category: "personal, biography",
+    alternates: {
+      canonical: "/about",
+    },
+  
+    other: {
+      "page-topic": "Biografi Rhandyta Briantama secara lengkap",
+      "revisit-after": "1 year",
+      expires: "never",
+    },
+  
+    openGraph: {
+      title: "About Me",
+      url: "/about",
+      siteName: "Portfolio Rhandyta Briantama",
+      description: "Lihat biografi Rhandyta Briantama sebagai Software Engineer secara lengkap di halaman ini.",
+      images: [
+        {
+          url: "/assets/images/profile.jpg",
+          width: 800,
+          height: 600,
+        },
+        {
+          url: "/assets/images/profile.jpg",
+          width: 1800,
+          height: 1600,
+          alt: "Profile Picture",
+        },
+      ],
+      locale: "id_ID",
+      type: "website",
+      authors: ['Rhandyta Briantama', 'Rhandyta', "Rhandy", "Briantama"],
+    },
+  }
 }
 
 function page() {

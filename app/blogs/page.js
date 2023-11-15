@@ -6,6 +6,50 @@ import Link from "next/link";
 import { getDataBlogs } from "@/services/blogs/blogs";
 import PaginateBlog from "@/components/pages/blogs/PaginateBlog";
 
+export async function generateMetadata({params, searchParams}, parent) {
+  const {blogs} = await getDataBlogs(1);
+
+  return {
+    title: "All Articles",
+    description:
+      "Lihat semua artikel yang ada di halaman ini untuk menampilkan artikel terbaru dari Rhandyta Briantama.",
+    keywords: ["Artikel", "Portfolio", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
+    category: "news, lifestyle",
+    alternates: {
+      canonical: "/blogs",
+    },
+  
+    other: {
+      "page-topic": "Artikel terbaru dari Rhandyta Briantama",
+      "revisit-after": "3 days",
+      expires: "never",
+    },
+  
+    openGraph: {
+      title: "My Work Portfolio",
+      url: "/blogs",
+      siteName: "Portfolio Rhandyta Briantama",
+      description: "Lihat semua artikel yang ada di halaman ini untuk menampilkan artikel terbaru dari Rhandyta Briantama.",
+      images: [
+        {
+          url: blogs[0].src,
+          width: 800,
+          height: 600,
+        },
+        {
+          url: blogs[0].src,
+          width: 800,
+          height: 600,
+          alt: blogs[0].title,
+        },
+      ],
+      locale: "id_ID",
+      type: "website",
+      authors: ['Rhandyta Briantama', 'Rhandyta', "Rhandy", "Briantama"],
+    },
+  }
+}
+
 async function page({ searchParams }) {
   const { page, ql, qr } = searchParams;
   const {blogs, total_data} = await getDataBlogs(25, qr, ql);

@@ -7,6 +7,46 @@ import { orange } from "@mui/material/colors";
 import { getDataWorks } from "@/services/works/works";
 import PaginateWork from "@/components/pages/works/PaginateWork";
 
+export async function generateMetadata({params, searchParams}, parent) {
+  const {works} = await getDataWorks(1);
+
+  return {
+    title: "My Work Portfolio",
+    description:
+      "Temukan semua ringkasan pengalaman kerja saya sebagai Software Engineer di beberapa perusahaan.",
+    keywords: ["Pengalaman Kerja", "Portfolio", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
+    category: "resume, portfolio",
+    alternates: {
+      canonical: "/works",
+    },
+  
+    other: {
+      "page-topic": "Ringkasan pengalaman kerja di beberapa perusahaan",
+      "revisit-after": "3 days",
+      expires: "never",
+    },
+  
+    openGraph: {
+      title: "My Work Portfolio",
+      url: "/works",
+      siteName: "Portfolio Rhandyta Briantama",
+      description: "Temukan semua ringkasan pengalaman kerja saya sebagai Software Engineer di beberapa perusahaan.",
+      images: works[0].pictures.map((item, index) => {
+        if(index > 1) return;
+        return {
+          url: item.picture,
+          width: index > 0 ? 1800 : 800,
+          height: index > 0 ? 1600 : 600,
+          alt: index === 0 ? null : item.title
+        }
+      }),
+      locale: "id_ID",
+      type: "website",
+      authors: ['Rhandyta Briantama', 'Rhandyta', "Rhandy", "Briantama"],
+    },
+  }
+}
+
 async function page({ searchParams }) {
   const { page, ql, qr } = searchParams;
   const {works, total_data} = await getDataWorks(25, qr, ql);
