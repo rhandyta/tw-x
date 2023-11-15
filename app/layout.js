@@ -4,11 +4,9 @@ import "react-toastify/dist/ReactToastify.css";
 import ThemeRegistry from "./themeRegistry";
 import { ToastContainer } from "react-toastify";
 import { Box } from "@mui/material";
-// import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/Sidebar";
 import DrawerHeader from "@/components/DrawerHeader";
 import Footer from "@/components/Footer";
-import dynamic from "next/dynamic";
-import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -74,11 +72,6 @@ export const metadata = {
   bookmarks: [`${process.env.NEXT_PUBLIC_HOST}/guestbook`],
 };
 
-const LazyLoadedHeavyComponent = dynamic(() => import('@/components/Sidebar'), {
-  ssr: false,
-  loading: () => <Loading/>
-})
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -86,7 +79,7 @@ export default function RootLayout({ children }) {
         <ToastContainer />
         <ThemeRegistry options={{ key: "mui" }}>
           <Box sx={{ display: "flex" }}>
-            <LazyLoadedHeavyComponent/>
+            <Sidebar />
             <Box
               component="main"
               sx={{
