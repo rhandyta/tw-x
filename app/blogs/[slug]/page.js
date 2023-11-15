@@ -9,6 +9,58 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+export async function generateMetadata({params, searchParams}, parent) {
+  const {blog} = await getDataBlog(params.slug);
+  return {
+    title: `${blog.title}`,
+    description:
+      `${blog.description}`,
+    keywords: ["Pengalaman Kerja", "Portfolio", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
+    category: "resume, portfolio",
+    alternates: {
+      canonical: `blogs/${blog.slug}`,
+    },
+  
+    other: {
+      url: `${process.env.NEXT_PUBLIC_HOST}/blogs/${blog.slug}`,
+      publisher: "Rhandyta Briantama",
+      "published_time": dateTimeString(blog.createdAt),
+      "modified_time": dateTimeString(blog.createdAt),
+      "page-topic": "Ringkasan pengalaman kerja di beberapa perusahaan",
+      "revisit-after": "7 days",
+      expires: "never",
+      type: "article"
+    },
+  
+    openGraph: {
+      title: `${blog.title}`,
+      url: `blogs/${blog.slug}`,
+      siteName: "Portfolio Rhandyta Briantama",
+      description: `${blog.description}`,
+      images: [
+        {
+          url: blog.src,
+          width: 800,
+          height: 600,
+        },
+        {
+          url: blog.src,
+          width: 1800,
+          height: 1600,
+          alt: blog.title,
+        },
+      ],
+      locale: "id_ID",
+      type: "article",
+      category: `${blog.category}`,
+      publishedTime: dateTimeString(blog.createdAt),
+      modifiedTime: dateTimeString(blog.udpatedAt),
+      publisher: "Rhandyta Briantama",
+      authors: ['Rhandyta Briantama', 'Rhandyta', "Rhandy", "Briantama"],
+    },
+  }
+}
+
 async function page({ params }) {
   const { blog, relateBlogs } = await getDataBlog(params.slug);
   return (

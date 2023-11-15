@@ -22,7 +22,7 @@ export async function generateMetadata({params, searchParams}, parent) {
   
     other: {
       "page-topic": "Pesan yang di kirimkan ke Rhandyta Briantama",
-      "revisit-after": "1 year",
+      "revisit-after": "1 month",
       expires: "never",
     },
   

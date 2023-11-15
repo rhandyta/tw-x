@@ -38,8 +38,8 @@ export async function generateMetadata({params, searchParams}, parent) {
         },
         {
           url: blogs[0].src,
-          width: 800,
-          height: 600,
+          width: 1800,
+          height: 1600,
           alt: blogs[0].title,
         },
       ],

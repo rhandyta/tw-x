@@ -10,6 +10,55 @@ import ButtonBack from "@/components/ButtonBack";
 import { dateTimeString } from "@/utils/helpers";
 import { getDataWork } from "@/services/works/works";
 
+export async function generateMetadata({params, searchParams}, parent) {
+  const {work} = await getDataWork(params.slug);
+  return {
+    title: `${work.title}`,
+    description:
+      `${work.description}`,
+    keywords: ["Pengalaman Kerja", "Portfolio", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
+    category: "resume, portfolio",
+    alternates: {
+      canonical: `works/${work.slug}`,
+    },
+  
+    other: {
+      url: `${process.env.NEXT_PUBLIC_HOST}/works/${work.slug}`,
+      publisher: "Rhandyta Briantama",
+      "published_time": dateTimeString(work.createdAt),
+      "modified_time": dateTimeString(work.createdAt),
+      "page-topic": "Ringkasan pengalaman kerja di beberapa perusahaan",
+      "revisit-after": "7 days",
+      expires: "never",
+      type: "article"
+    },
+  
+    openGraph: {
+      title: `${work.title}`,
+      url: `works/${work.slug}`,
+      siteName: "Portfolio Rhandyta Briantama",
+      description: `${work.description}`,
+      images: work.pictures.map((item, index) => {
+        if(index > 1) return;
+        return {
+          url: item.picture,
+          width: index > 0 ? 1800 : 800,
+          height: index > 0 ? 1600 : 600,
+          alt: index === 0 ? null : item.title
+        }
+      }),
+      locale: "id_ID",
+      type: "article",
+      category: `${work.category}`,
+      publishedTime: dateTimeString(work.createdAt),
+      modifiedTime: dateTimeString(work.udpatedAt),
+      publisher: "Rhandyta Briantama",
+      authors: ['Rhandyta Briantama', 'Rhandyta', "Rhandy", "Briantama"],
+    },
+  }
+}
+
+
 async function Page({ params }) {
   const {work, relateWorks} = await getDataWork(params.slug);
   return (
