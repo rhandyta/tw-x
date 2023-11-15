@@ -21,10 +21,10 @@ export const metadata = {
   referrer: "origin-when-cross-origin",
 
   authors: [
-    { name: "Rhandyta Briantama", url: "https://rhandyta.my.id" },
-    { name: "Rhandyta", url: "https://rhandyta.my.id" },
-    { name: "Rhandy", url: "https://rhandyta.my.id" },
-    { name: "Briantama", url: "https://rhandyta.my.id" },
+    { name: "Rhandyta Briantama", url: process.env.NEXT_PUBLIC_HOST },
+    { name: "Rhandyta", url: process.env.NEXT_PUBLIC_HOST },
+    { name: "Rhandy", url: process.env.NEXT_PUBLIC_HOST },
+    { name: "Briantama", url: process.env.NEXT_PUBLIC_HOST },
   ],
   creator: "Rhandyta Briantama",
   publisher: "Rhandyta Briantama",
