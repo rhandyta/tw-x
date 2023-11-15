@@ -77,7 +77,7 @@ const Drawer = styled(MuiDrawer, {
 
 function Sidebar() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const router = usePathname();
 
   const handleDrawerOpen = () => {

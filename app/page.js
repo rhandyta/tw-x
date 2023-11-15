@@ -104,7 +104,7 @@ export default async function Home() {
             <Box
               sx={{
                 width: {
-                  xs: "40vh",
+                  xs: "150px",
                   sm: "150px",
                 },
                 mx: {
@@ -120,10 +120,11 @@ export default async function Home() {
                 alt={profile.name}
                 priority
                 placeholder="blur"
+                width={250}
+                height={250}
                 style={{
                   width: "100%",
                   height: "auto",
-
                   objectFit: "cover",
                 }}
               />
