@@ -75,7 +75,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 async function page({ params }) {
   const { blog, relateBlogs } = await getData(params.slug);
-
+  
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
