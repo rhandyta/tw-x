@@ -14,7 +14,7 @@ function BoxImage({title, picture}) {
     >
       <Image
         src={picture}
-        loading="lazy"
+        priority
         alt={title}
         width={1400}
         height={1400}

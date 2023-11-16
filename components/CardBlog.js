@@ -17,7 +17,7 @@ function CardBlog({ title, src, category, created_at }) {
               <Image
                 src={src}
                 alt={title}
-                loading="lazy"
+                priority
                 width={1400}
                 height={1400}
                 style={{
