@@ -10,42 +10,54 @@ import ButtonBack from "@/components/ButtonBack";
 import { dateTimeFormat, dateTimeString } from "@/utils/helpers";
 import { getDataWork } from "@/services/works/works";
 
-export async function generateMetadata({params, searchParams}, parent) {
-  const {work} = await getDataWork(params.slug);
+async function getData(slug) {
+  const { work, relateWorks } = await getDataWork(slug);
+  return { work, relateWorks };
+}
+
+export async function generateMetadata({ params, searchParams }, parent) {
+  const { work } = await getData(params.slug);
   return {
     title: `${work.title}`,
-    description:
-      `${work.description}`,
-    keywords: ["Pengalaman Kerja", "Portfolio", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
+    description: `${work.description}`,
+    keywords: [
+      "Pengalaman Kerja",
+      "Portfolio",
+      "Rhandyta",
+      "Briantama",
+      "Portfolio",
+      "Software Engineer",
+      "Personal Website Portfolio",
+    ],
     category: "resume, portfolio",
     alternates: {
       canonical: `${process.env.NEXT_PUBLIC_HOST}/works/${work.slug}`,
     },
-  
+
     other: {
       url: `${process.env.NEXT_PUBLIC_HOST}/works/${work.slug}`,
       publisher: "Rhandyta Briantama",
-      "published_time": dateTimeString(work.createdAt),
-      "modified_time": dateTimeString(work.createdAt),
+      published_time: dateTimeString(work.createdAt),
+      modified_time: dateTimeString(work.createdAt),
       "page-topic": "Ringkasan pengalaman kerja di beberapa perusahaan",
       "revisit-after": "7 days",
       expires: "never",
-      type: "article"
+      type: "article",
     },
-  
+
     openGraph: {
       title: `${work.title}`,
       url: `${process.env.NEXT_PUBLIC_HOST}/works/${work.slug}`,
       siteName: "Portfolio Rhandyta Briantama",
       description: `${work.description}`,
       images: work.pictures.map((item, index) => {
-        if(index > 1) return;
+        if (index > 1) return;
         return {
           url: item.picture,
           width: index > 0 ? 1800 : 800,
           height: index > 0 ? 1600 : 600,
-          alt: index === 0 ? null : item.title
-        }
+          alt: index === 0 ? null : item.title,
+        };
       }),
       locale: "id_ID",
       type: "article",
@@ -53,29 +65,71 @@ export async function generateMetadata({params, searchParams}, parent) {
       publishedTime: dateTimeString(work.createdAt),
       modifiedTime: dateTimeString(work.udpatedAt),
       publisher: "Rhandyta Briantama",
-      authors: ['Rhandyta Briantama', 'Rhandyta', "Rhandy", "Briantama"],
+      authors: ["Rhandyta Briantama", "Rhandyta", "Rhandy", "Briantama"],
     },
-  }
+  };
 }
 
-
 async function Page({ params }) {
-  const {work, relateWorks} = await getDataWork(params.slug);
+  const { work, relateWorks } = await getData(params.slug);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${process.env.NEXT_PUBLIC_HOST}/works/${params.slug}`,
+    },
+    headline: work.title,
+    description: work.description,
+    datePublished: dateTimeFormat(work.createdAt),
+    dateModified: dateTimeFormat(work.updatedAt),
+    author: {
+      "@type": "Person",
+      name: "Rhandyta Briantama",
+      url: `${process.env.NEXT_PUBLIC_HOST}/about`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Rhandyta Briantama",
+      logo: {
+        "@type": "ImageObject",
+        url: `${process.env.NEXT_PUBLIC_HOST}/favicon.ico?v=4`,
+      },
+    },
+    image: {
+      "@type": "ImageObject",
+      url: work.pictures[0].picture,
+      width: 800,
+      height: 600,
+    },
+    articleBody: work.description,
+    keywords: "Rhandyta Briantama, Rhandy, Rhandyta, SEO, Briantama",
+    url: `${process.env.NEXT_PUBLIC_HOST}/works/${params.slug}`,
+    wordCount: work.description.length,
+  };
+
   return (
     <CustomBoxBorderedBottom>
       <CustomBoxBorderedBottom>
         <ButtonBack />
-        <CustomContainer>
+        <CustomContainer component="article">
           <Typography component="h1" variant="h2">
             {work.title}
           </Typography>
-          <Box sx={{ display: "flex", flexDirection: {
-              xs: "column",
-              sm: "row"
-            }, gap: {
-              xs: 0,
-              sm: 1
-            } }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: {
+                xs: "column",
+                sm: "row",
+              },
+              gap: {
+                xs: 0,
+                sm: 1,
+              },
+            }}
+          >
             <Typography
               variant="overline"
               component="address"
@@ -199,13 +253,27 @@ async function Page({ params }) {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={12} sm={6} lg={5} height={300} order={{ xs: 2, sm: 3, md: 3 }}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              lg={5}
+              height={300}
+              order={{ xs: 2, sm: 3, md: 3 }}
+            >
               <BoxImage
                 title={work.pictures[0].title}
                 picture={work.pictures[0].picture}
               />
             </Grid>
-            <Grid item xs={12} sm={6} lg={7} height={300} order={{ xs: 4, sm: 4, md: 4 }}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              lg={7}
+              height={300}
+              order={{ xs: 4, sm: 4, md: 4 }}
+            >
               <BoxImage
                 title={work.pictures[1].title}
                 picture={work.pictures[1].picture}
@@ -322,6 +390,12 @@ async function Page({ params }) {
             ))}
         </Grid>
       </CustomContainer>
+      <section>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        ></script>
+      </section>
     </CustomBoxBorderedBottom>
   );
 }

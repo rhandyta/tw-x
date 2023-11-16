@@ -67,7 +67,7 @@ async function page({ searchParams }) {
       </Typography>
       <CustomContainer>
         <Grid container mb={4} spacing={4}>
-          {blogs.map((item) => (
+          {blogs && blogs.map((item) => (
             <Grid item xs={12} key={item.title}>
               <Link
                 href={`blogs/${item.slug}`}
