@@ -54,14 +54,14 @@ export const metadata = {
   },
 };
 
-export const revalidate = 3600;
+export const revalidate = 60;
 async function getData(value) {
   const fetchBlogs = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/blogs`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    next: { revalidate: 3600 },
+    next: { revalidate: 60 },
     body: JSON.stringify({
       maxContent: value,
     }),
@@ -71,7 +71,7 @@ async function getData(value) {
     headers: {
       "Content-Type": "application/json",
     },
-    next: { revalidate: 3600 },
+    next: { revalidate: 60 },
     body: JSON.stringify({
       maxContent: value,
     }),

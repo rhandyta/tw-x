@@ -1,4 +1,9 @@
+import { Timestamp } from "firebase/firestore"
 
+export const dateTimeFormat = (data) => {
+    const dateTime = new Timestamp(data.seconds, data.nanoseconds);
+    return dateTime.toDate();
+}
 
 export const dateTimeString = (data) => {
     const date = new Intl.DateTimeFormat(

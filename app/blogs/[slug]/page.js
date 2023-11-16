@@ -3,7 +3,7 @@ import CardBlog from "@/components/CardBlog";
 import CustomBoxBorderedBottom from "@/components/CustomBoxBorderedBottom";
 import CustomContainer from "@/components/CustomContainer";
 import { getDataBlog } from "@/services/blogs/blogs";
-import { dateTimeString } from "@/utils/helpers";
+import { dateTimeFormat, dateTimeString } from "@/utils/helpers";
 import { Box, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -108,7 +108,7 @@ async function page({ params }) {
               <Typography
               variant="overline"
               component="time"
-              dateTime={dateTimeString(blog.createdAt)}
+              dateTime={dateTimeFormat(blog.createdAt)}
             >
               {dateTimeString(blog.createdAt)}
             </Typography>

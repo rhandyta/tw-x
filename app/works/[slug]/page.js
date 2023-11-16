@@ -7,7 +7,7 @@ import BoxImage from "@/components/pages/works/BoxImage";
 import CardWork from "@/components/CardWork";
 import Link from "next/link";
 import ButtonBack from "@/components/ButtonBack";
-import { dateTimeString } from "@/utils/helpers";
+import { dateTimeFormat, dateTimeString } from "@/utils/helpers";
 import { getDataWork } from "@/services/works/works";
 
 export async function generateMetadata({params, searchParams}, parent) {
@@ -95,7 +95,7 @@ async function Page({ params }) {
             <Typography
               variant="overline"
               component="time"
-              dateTime={dateTimeString(work.createdAt)}
+              dateTime={dateTimeFormat(work.createdAt)}
             >
               {dateTimeString(work.createdAt)}
             </Typography>

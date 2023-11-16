@@ -9,7 +9,7 @@ async function getData(value) {
         headers: {
           "Content-Type": "application/json",
         },
-        next: { revalidate: 0 },
+        next: { revalidate: 60 },
         body: JSON.stringify({
           maxContent: value,
         }),
@@ -19,7 +19,7 @@ async function getData(value) {
         headers: {
           "Content-Type": "application/json",
         },
-        next: { revalidate: 0 },
+        next: { revalidate: 60 },
         body: JSON.stringify({
           maxContent: value,
         }),
