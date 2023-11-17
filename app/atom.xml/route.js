@@ -137,7 +137,6 @@ export async function GET() {
 
   // Mengonversi objek XML menjadi string
   const xmlContent =  new xml2js.Builder().buildObject(xmlObject);
-  console.log(xmlContent);
 
   return new Response(xmlContent, {
     status: 200,
