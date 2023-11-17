@@ -52,32 +52,24 @@ export async function GET() {
   const { works, blogs } = await getData(250);
   const d = new Date();
 
-  const worksArticles = works.map((item) => {
-    const timeStamp = new Timestamp(
-      item.updatedAt.seconds,
-      item.updatedAt.nanoseconds
-    );
+  const worksArticles = !works ? [] : works.map((item) => {
+    const timeStamp = new Timestamp(item.updatedAt.seconds, item.updatedAt.nanoseconds);
     return {
-      url: `${HOST}/works/${item.slug}`,
-      lastModified: timeStamp.toDate(),
-      changeFrequency:
-        timeStamp.toDate() < d.getMonth() - 3 ? "yearly" : "monthly",
-      priority: timeStamp.toDate() < d.getMonth() - 3 ? 0.5 : 0.7,
-    };
-  });
-  const blogsArticles = blogs.map((item) => {
-    const timeStamp = new Timestamp(
-      item.updatedAt.seconds,
-      item.updatedAt.nanoseconds
-    );
+        url: `${HOST}/works/${item.slug}`,
+        lastModified: timeStamp.toDate(),
+        changeFrequency: timeStamp.toDate() < d.getMonth() - 3 ? 'yearly' : "monthly",
+        priority: timeStamp.toDate() < d.getMonth() - 3 ? 0.5 : 0.7
+    }
+})
+const blogsArticles = !blogs ? [] : blogs.map((item) => {
+    const timeStamp = new Timestamp(item.updatedAt.seconds, item.updatedAt.nanoseconds);
     return {
-      url: `${HOST}/blogs/${item.slug}`,
-      lastModified: timeStamp.toDate(),
-      changeFrequency:
-        timeStamp.toDate() < d.getMonth() - 3 ? "yearly" : "monthly",
-      priority: timeStamp.toDate() < d.getMonth() - 3 ? 0.5 : 0.7,
-    };
-  });
+        url: `${HOST}/blogs/${item.slug}`,
+        lastModified: timeStamp.toDate(),
+        changeFrequency: timeStamp.toDate() < d.getMonth() - 3 ? 'yearly' : "monthly",
+        priority: timeStamp.toDate() < d.getMonth() - 3 ? 0.5 : 0.7
+    }
+})
 
 
   const urls = [
