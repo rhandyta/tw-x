@@ -4,6 +4,6 @@ export default function robots() {
         userAgent: '*',
         disallow: '/administrator/',
       },
-      sitemap: `${process.env.NEXT_PUBLIC_HOST}`,
+      sitemap: `${process.env.NEXT_PUBLIC_HOST}/sitemap.xml`,
     }
   }
