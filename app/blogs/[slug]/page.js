@@ -75,41 +75,41 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 async function page({ params }) {
   const { blog, relateBlogs } = await getData(params.slug);
-  
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": `${process.env.NEXT_PUBLIC_HOST}/blogs/${params.slug}`
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${process.env.NEXT_PUBLIC_HOST}/blogs/${params.slug}`,
     },
-    "headline": blog.title,
-    "description": blog.description,
-    "datePublished": dateTimeFormat(blog.createdAt),
-    "dateModified": dateTimeFormat(blog.updatedAt),
-    "author": {
+    headline: blog.title,
+    description: blog.description,
+    datePublished: dateTimeFormat(blog.createdAt),
+    dateModified: dateTimeFormat(blog.updatedAt),
+    author: {
       "@type": "Person",
-      "name": "Rhandyta Briantama",
-      "url": `${process.env.NEXT_PUBLIC_HOST}/about`
+      name: "Rhandyta Briantama",
+      url: `${process.env.NEXT_PUBLIC_HOST}/about`,
     },
-    "publisher": {
+    publisher: {
       "@type": "Organization",
-      "name": "Rhandyta Briantama",
-      "logo": {
+      name: "Rhandyta Briantama",
+      logo: {
         "@type": "ImageObject",
-        "url": `${process.env.NEXT_PUBLIC_HOST}/favicon.ico?v=4`
-      }
+        url: `${process.env.NEXT_PUBLIC_HOST}/favicon.ico?v=4`,
+      },
     },
-    "image": {
+    image: {
       "@type": "ImageObject",
-      "url": blog.src,
-      "width": 800,
-      "height": 600
+      url: blog.src,
+      width: 800,
+      height: 600,
     },
-    "articleBody": blog.description,
-    "keywords": "Rhandyta Briantama, Rhandy, Rhandyta, SEO, Briantama",
-    "url": `${process.env.NEXT_PUBLIC_HOST}/blogs/${params.slug}`,
-    "wordCount": blog.description.length
+    articleBody: blog.description,
+    keywords: "Rhandyta Briantama, Rhandy, Rhandyta, SEO, Briantama",
+    url: `${process.env.NEXT_PUBLIC_HOST}/blogs/${params.slug}`,
+    wordCount: blog.description.length,
   };
 
   return (
@@ -117,7 +117,7 @@ async function page({ params }) {
       <CustomBoxBorderedBottom>
         <ButtonBack />
         <CustomContainer
-          component="article" 
+          component="article"
           sx={{
             display: "flex",
             justifyContent: "center",
@@ -170,15 +170,32 @@ async function page({ params }) {
               </Typography>
             </Box>
           </Box>
-          <Box component="section">
-            <Image
-              src={blog.src}
-              alt={blog.title}
-              priority
-              width={1400}
-              height={400}
-              style={{ width: "100%" }}
-            />
+          <Box component="section" width="100%">
+            <Box width="100%" sx={{ display: "flex", justifyContent: "center"}}>
+            <Box
+              component="figure"
+              sx={{
+                width: {
+                  xs: "100%",
+                  md: "70%"
+                },
+                margin: "0 0 1rem 0",
+              }}
+            >
+              <Image
+                src={blog.src}
+                alt={blog.title}
+                priority
+                width={1400}
+                height={250}
+                style={{
+                  width: "100%",
+                  objectFit: "cover",
+                  borderRadius: "5px",
+                }}
+              />
+            </Box>
+            </Box>
             <Typography
               variant="body1"
               component="p"
