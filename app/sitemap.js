@@ -39,7 +39,6 @@ async function getData(value) {
       }
 }
 
-
 export default async function sitemap(){
     const {works, blogs} = await getData(250);
     const d = new Date()
