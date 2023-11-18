@@ -15,7 +15,7 @@ import CardBlog from "@/components/CardBlog";
 import SummarizeIcon from "@mui/icons-material/Summarize";
 
 export const metadata = {
-  title: "Rhandyta Briantama",
+  title: "Portfolio Rhandyta Briantama - Rhandy",
   description:
     "Portfolio Rhandyta Briantama sebagai Software Engineer berpengalaman di bidang pembuatan aplikasi web.",
   keywords: ["Rhandyta Briantama", "Rhandy", "Rhandyta", "Briantama", "Portfolio", "Software Engineer", "Personal Website Portfolio"],
