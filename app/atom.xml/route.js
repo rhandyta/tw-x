@@ -127,7 +127,7 @@ const blogsArticles = !blogs ? [] : blogs.map((item) => {
     },
   };
 
-  // Mengonversi objek XML menjadi string
+
   const xmlContent =  new xml2js.Builder().buildObject(xmlObject);
 
   return new Response(xmlContent, {
