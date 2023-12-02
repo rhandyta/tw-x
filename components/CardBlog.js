@@ -19,10 +19,9 @@ function CardBlog({ title, src, category, created_at }) {
                 alt={title}
                 priority
                 width={1400}
-                height={1400}
+                height={200}
                 style={{
                   width: "100%",
-                  height: "100%", 
                   maxHeight: "100%", 
                   objectFit: "cover",
                 }}
