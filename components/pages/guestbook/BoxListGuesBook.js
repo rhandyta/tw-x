@@ -2,10 +2,10 @@
 import { Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { db } from "@/libs/firebase";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import { useEffect, useRef, useState } from "react";
+import { collection, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import Loading from "@/app/loading";
-import { dateTimeFormat } from "@/utils/helpers";
+import { dateTimeFormat, dateTime } from "@/utils/helpers";
 
 function BoxListGuesBook() {
   const [data, setData] = useState([]);
@@ -23,13 +23,12 @@ function BoxListGuesBook() {
         setData(tmpData);
         setIsLoading(false);
       }
-    );
-
-    return () => {
-      unsub();
-    };
-  }, []);
-  
+      );
+      
+      return () => {
+        unsub();
+      };
+    }, []);
   return (
     <Grid container>
       {isLoading ? (
@@ -41,7 +40,7 @@ function BoxListGuesBook() {
       ) : (
         data &&
         data.map((doc, index) => {
-          const time = dateTimeFormat(doc.createdAt);
+          const time = dateTimeFormat(doc?.createdAt || serverTimestamp());
           return (
             <Grid
               item
@@ -85,7 +84,7 @@ function BoxListGuesBook() {
                   variant="subtitle2"
                   color="secondary"
                   component="time"
-                  dateTime={time.toISOString()}
+                  dateTime={dateTime(time)}
                   sx={{
                     fontSize: "0.7rem",
                   }}

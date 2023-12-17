@@ -19,6 +19,29 @@ export const dateTimeString = (data) => {
     return date;
 }
 
+export const dateTime = (value) => {
+    // Contoh variabel date dari serverTimestamp()
+        const date = new Date(value); // Gantilah ini dengan variabel date yang sesuai dari serverTimestamp()
+
+        // Fungsi untuk menambahkan angka nol jika nilai kurang dari 10
+        const addLeadingZero = (number) => (number < 10 ? `0${number}` : number);
+
+        // Mendapatkan nilai tahun, bulan, hari, jam, menit, detik, dan milidetik
+        const year = date.getFullYear();
+        const month = addLeadingZero(date.getMonth() + 1);
+        const day = addLeadingZero(date.getDate());
+        const hours = addLeadingZero(date.getHours());
+        const minutes = addLeadingZero(date.getMinutes());
+        const seconds = addLeadingZero(date.getSeconds());
+        const milliseconds = date.getMilliseconds();
+
+        // Membentuk string hasil
+        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${milliseconds}`;
+
+        return formattedDate;
+
+}
+
 
 export const slugify = (text) => {
     return text
