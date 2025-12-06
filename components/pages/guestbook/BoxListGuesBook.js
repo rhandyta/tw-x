@@ -40,7 +40,7 @@ function BoxListGuesBook() {
       ) : (
         data &&
         data.map((doc, index) => {
-          const time = dateTimeFormat(doc.createdAt || serverTimestamp());
+          const time = dateTimeFormat(serverTimestamp());
           return (
             <Grid
               item
